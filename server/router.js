@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
 router.post('/identify', controller.identifyPlant);
 router.get('/garden', controller.getGarden);
 router.post('/garden', controller.savePlantToGarden);
-router.put('/garden/:id', controller.updatePlant);
-router.delete('/garden/:id', controller.removePlant);
+router.put('/garden', controller.updatePlant);
+router.delete('/garden', controller.removePlant);
 
 module.exports = router;

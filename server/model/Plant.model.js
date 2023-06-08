@@ -9,6 +9,7 @@ const plantSchema = new mongoose.Schema({
 		type: Date,
 		required: [true, 'Date is missing?'],
 	},
+	note: String,
 });
 
 const Plant = mongoose.model('Plant', plantSchema);
