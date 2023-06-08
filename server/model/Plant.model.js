@@ -5,9 +5,47 @@ const plantSchema = new mongoose.Schema({
 		type: String,
 		required: [true, 'Plant Name is missing?'],
 	},
-	date: {
+	uploaded_datetime: {
 		type: Date,
+		default: Date.now(),
 		required: [true, 'Date is missing?'],
+	},
+	images: [
+		{
+			file_name: String,
+			url: String,
+		},
+	],
+	plant_details: {
+		common_names: [String],
+		url: String,
+		wiki_description: {
+			value: String,
+			extract: String,
+		},
+		taxonomy: {
+			class: String,
+			family: String,
+			genus: String,
+			kingdom: String,
+			order: String,
+			phylum: String,
+		},
+		wiki_image: String,
+		synonyms: [String],
+		gbif_id: String,
+		edible_parts: mongoose.Mixed,
+		propagation_methods: mongoose.Mixed,
+		watering: {
+			max: Number,
+			min: Number,
+		},
+		language: String,
+		scientific_name: String,
+		structured_name: {
+			genus: String,
+			species: String,
+		},
 	},
 	note: String,
 });

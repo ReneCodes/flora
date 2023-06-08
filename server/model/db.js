@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 const {DB_OWNER, DB_PASS, VAULT, DB_NAME} = require('../config');
 
-// mongoose.connect(`mongodb+srv://${DB_OWNER}:${DB_PASS}@${VAULT}.dtyfi5z.mongodb.net/${DB_NAME}`, {
-// 	useNewUrlParser: true,
-// 	useUnifiedTopology: true,
-// });
+mongoose.connect(`mongodb+srv://${DB_OWNER}:${DB_PASS}@${VAULT}.dtyfi5z.mongodb.net/${DB_NAME}`, {
+	useNewUrlParser: true,
+	useUnifiedTopology: true,
+});
 
 const connection = mongoose.connection;
 

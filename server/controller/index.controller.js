@@ -8,6 +8,8 @@ exports.identifyPlant = async (req, res) => {
 		const base64ImgList = helper.imgToBase64(/* TODO: INSERT_IMAGE_ARRAY_HERE */);
 		const data = helper.prepareIdentBody(base64ImgList);
 
+		// FIXME: Get base64 String from FE
+		// TODO: Uncomment for real API Identification
 		/* Identify image(s) */
 		// const identResult = await axios
 		// 	.post('https://api.plant.id/v2/identify', data)
@@ -22,7 +24,7 @@ exports.identifyPlant = async (req, res) => {
 		/* Clean Data */
 		const tempData = await helper.cleanPlantData(/* TODO: INSERT_API_RESPONSE_HERE */);
 
-		res.status(200).send({'indentification in progress': tempData});
+		res.status(200).send(tempData);
 	} catch (error) {
 		res.status(500);
 		console.log(error);
@@ -42,11 +44,8 @@ exports.getGarden = async (req, res) => {
 
 exports.savePlantToGarden = async (req, res) => {
 	const plant = {
-		plant_name: req.body.name,
-		date: Date.now(),
-		note: req.body.note,
+		...req.body,
 	};
-	console.log(plant);
 	try {
 		await Plant.create(plant);
 		res.status(201).send('planted in Garden');
