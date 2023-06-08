@@ -1,3 +1,5 @@
+const Plant = require('../model/Garden.model');
+
 const identifyPlant = async (req, res) => {
 	try {
 		res.status(200).send('indentification in progress');
@@ -17,7 +19,13 @@ const getGarden = async (req, res) => {
 };
 
 const savePlantToGarden = async (req, res) => {
+	const plant = {
+		plant_name: req.body.name,
+		date: Date.now(),
+	};
+	console.log(plant);
 	try {
+		await Plant.create(plant);
 		res.status(201).send('planted in Garden');
 	} catch (error) {
 		res.status(400);
