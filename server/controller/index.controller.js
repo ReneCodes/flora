@@ -1,26 +1,28 @@
 const axios = require('axios');
 const Plant = require('../model/Plant.model');
-const helper = require('../model/helperFunc');
+const helper = require('../model/helperFunc'); // TODO: Maybe rename to Ident.service
 
 exports.identifyPlant = async (req, res) => {
-	// const plant_name = 'Oxalis_triangularis';
-
 	try {
-		// const summary = await helper.wikiSummary(plant_name);
-		const base64ImgList = helper.imgToBase64();
+		/* Turn image(s) to base64 string */
+		const base64ImgList = helper.imgToBase64(/* TODO: INSERT_IMAGE_ARRAY_HERE */);
 		const data = helper.prepareIdentBody(base64ImgList);
 
-		const identResult = await axios
-			.post('https://api.plant.id/v2/identify', data)
-			.then((res) => {
-				console.log('Success:', res.data);
-				return res.data;
-			})
-			.catch((error) => {
-				console.error('Error: ', error);
-			});
+		/* Identify image(s) */
+		// const identResult = await axios
+		// 	.post('https://api.plant.id/v2/identify', data)
+		// 	.then((res) => {
+		// 		console.log('Success:', res.data);
+		// 		return res.data;
+		// 	})
+		// 	.catch((error) => {
+		// 		console.error('Error: ', error);
+		// 	});
 
-		res.status(200).send({'indentification in progress': identResult});
+		/* Clean Data */
+		const tempData = await helper.cleanPlantData(/* TODO: INSERT_API_RESPONSE_HERE */);
+
+		res.status(200).send({'indentification in progress': tempData});
 	} catch (error) {
 		res.status(500);
 		console.log(error);
