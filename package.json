@@ -1,0 +1,22 @@
+{
+  "name": "flora",
+  "version": "1.0.0",
+  "description": "Identify, track and care for your plant-friends",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ReneCodes/flora.git"
+  },
+  "keywords": [
+    "plant"
+  ],
+  "author": "Rene Gromeier",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ReneCodes/flora/issues"
+  },
+  "homepage": "https://github.com/ReneCodes/flora#readme"
+}

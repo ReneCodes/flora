@@ -1,0 +1,8 @@
+# NPM Package Stuff
+node_modules
+
+# PRIVATE STUFF
+.env*
+
+# misc
+.DS_Store

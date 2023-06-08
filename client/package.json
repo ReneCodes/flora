@@ -1,0 +1,14 @@
+{
+	"name": "flora-client",
+	"version": "1.0.0",
+	"description": "Identify, track and care for your plant-friends",
+	"main": "index.js",
+	"keywords": [
+		"plant"
+	],
+	"author": "Rene Gromeier",
+	"license": "ISC",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	}
+}
