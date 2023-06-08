@@ -38,7 +38,7 @@ const savePlantToGarden = async (req, res) => {
 const updatePlant = async (req, res) => {
 	const {_id, note} = req.body;
 	try {
-		const plant = await Plant.findByIdAndUpdate(_id, {note});
+		const plant = await Plant.findByIdAndUpdate(_id, {note}, {new: true}); // returns updated plant
 		res.status(201).send(`plant ${plant} visited`);
 	} catch (error) {
 		res.status(400);
@@ -49,7 +49,8 @@ const updatePlant = async (req, res) => {
 const removePlant = async (req, res) => {
 	const {_id} = req.body;
 	try {
-		res.status(200).send(`Plant ${_id} Removed`);
+		const plant = await Plant.findByIdAndDelete(_id); // returns updated plant
+		res.status(200).send(`Plant ${plant} Removed`);
 	} catch (error) {
 		res.status(400);
 		res.send(`Error removing plant: ${error}`);
