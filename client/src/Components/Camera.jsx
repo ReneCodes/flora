@@ -1,4 +1,5 @@
 import {useRef, useEffect, useState} from 'react';
+import './Camera.css';
 
 function Camera() {
 	const videoRef = useRef(null);
@@ -80,16 +81,24 @@ function Camera() {
 	}, []);
 
 	return (
-		<div className="App">
+		<div className="Camera">
 			<div>
 				<div className="camera">
 					<video ref={videoRef}></video>
-					<button onClick={takePhoto}>SNAP</button>
+					<button
+						className="btn-cam btn-snap"
+						onClick={takePhoto}>
+						SNAP
+					</button>
 				</div>
 				<div className={'result ' + (hasPhoto ? 'hasPhoto' : '')}>
 					<canvas ref={photoRef}></canvas>
-					<button onClick={closePhoto}>CLOSE</button>
-					<button className="btn-start">
+					<button
+						className="btn-cam btn-close"
+						onClick={closePhoto}>
+						CLOSE
+					</button>
+					<button className="btn-cam btn-save">
 						<a
 							id="canvasDownload"
 							href="#"
