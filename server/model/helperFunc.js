@@ -1,5 +1,5 @@
 const axios = require('axios');
-var fs = require('fs');
+const fs = require('fs');
 // secret var
 const {PLANT_ID} = require('../config');
 
@@ -70,6 +70,8 @@ exports.cleanPlantData = async (data) => {
 		const getWiki = await wikiSummary(scientificNames[i]);
 		wikiPlantData.push(getWiki);
 	}
+
+	// TODO: Fetch More Wiki mobile Data	=> // TODO: Strip out HTML tags
 
 	updateSuggestions(suggestions, wikiPlantData);
 
