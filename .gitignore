@@ -7,3 +7,5 @@ node_modules
 # misc
 .DS_Store
 Temp*
+picture
+vite-test
