@@ -48,45 +48,19 @@
 	line-height: 200px;
 	height: 200px;
 
-	background-color: var(--secondary);
-}
-
-.Navbar {
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	width: 100%;
-
-	display: flex;
-	justify-content: space-evenly;
-
-	height: 60px;
-
-	background-color: var(--primary);
-}
-
-.Navbar button {
-	position: relative;
-	height: 45px;
-	width: 45px;
-	font-size: 42px;
-
+	border: 2px solid var(--secondary);
 	border-radius: 5px;
-	border: none;
-	margin: auto;
 }
+.logo {
+	text-align: center;
+	line-height: 150px;
+	height: 150px;
 
-.Navbar button:nth-child(2) {
-	top: -18px;
-	height: 70px;
-	width: 70px;
 	font-size: 60px;
-}
+	font-family: 'Assistant', 'system-ui', 'BlinkMacSystemFont', '-apple-system', 'Segoe UI', 'Roboto', 'Helvetica',
+		'Arial', 'sans-serif';
+	color: var(--primary);
 
-.nav-icon {
-	position: absolute;
-	bottom: 0;
-	left: 50%;
-
-	transform: translateX(-50%);
+	background-color: transparent;
+	border: none;
 }

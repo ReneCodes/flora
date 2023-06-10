@@ -1,0 +1,39 @@
+.Navbar {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+
+	display: flex;
+	justify-content: space-evenly;
+
+	height: 60px;
+
+	background-color: var(--primary);
+}
+
+.Navbar button {
+	position: relative;
+	height: 45px;
+	width: 45px;
+	font-size: 42px;
+
+	border-radius: 5px;
+	border: none;
+	margin: auto;
+}
+
+.Navbar button:nth-child(2) {
+	top: -18px;
+	height: 70px;
+	width: 70px;
+	font-size: 60px;
+}
+
+.nav-icon {
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+
+	transform: translateX(-50%);
+}

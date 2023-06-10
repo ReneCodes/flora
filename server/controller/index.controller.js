@@ -3,6 +3,7 @@ const Plant = require('../model/Plant.model');
 const helper = require('../model/helperFunc'); // TODO: Maybe rename to Ident.service
 
 exports.identifyPlant = async (req, res) => {
+	const {dataURL} = req.body;
 	try {
 		/* Turn image(s) to base64 string */
 		const base64ImgList = helper.imgToBase64(/* TODO: INSERT_IMAGE_ARRAY_HERE */);
