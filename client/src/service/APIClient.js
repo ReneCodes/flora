@@ -1,6 +1,6 @@
 //
 import axios from 'axios';
-import cleanPlant from './TEMP/cleanPlant';
+import cleanPlant from './TEMP/cleanPlant1';
 // Fetch garden data
 export async function getGarden() {
 	const res = await fetch('http://127.0.0.1:4242/garden')

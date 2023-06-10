@@ -56,6 +56,27 @@
 	border: none;
 }
 
+.section-title {
+	position: relative;
+	display: flex;
+	font-weight: 200;
+
+	margin: 24px;
+	margin-bottom: 36px;
+	padding: 15px 0 6px;
+	border-bottom: 1px solid;
+	cursor: default;
+}
+.section-title h2 {
+	margin-left: 2px;
+}
+.section-icon {
+	position: absolute;
+	right: 8%;
+	bottom: 0px;
+	font-size: 46px;
+}
+
 .block {
 	text-align: center;
 	line-height: 200px;
