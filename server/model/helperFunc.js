@@ -1,6 +1,6 @@
 const axios = require('axios');
 const fs = require('fs');
-// secret var
+// secret variables
 const {PLANT_ID} = require('../config');
 
 exports.dateString = () => {
@@ -8,17 +8,7 @@ exports.dateString = () => {
 };
 
 /* IDENT PREPARATION */
-exports.imgToBase64 = (img_list) => {
-	const IMG_ONE = __dirname + '/Temp/ansel-lee.jpg';
-	const IMG_TWO = __dirname + '/Temp/jonathan-borba.jpg';
-	const IMG_THREE = __dirname + '/Temp/julia-kuzenkov.jpg';
-
-	const files = [img_list ? img_list : IMG_ONE];
-
-	return files.map((file) => fs.readFileSync(file, 'base64'));
-};
-
-exports.prepareIdentBody = (base64files) => {
+exports.prepareIdentBody = (base64dataURL) => {
 	return {
 		api_key: PLANT_ID,
 		/* modifiers*/
@@ -39,12 +29,13 @@ exports.prepareIdentBody = (base64files) => {
 			'wiki_image',
 			'gbif_id',
 		],
-		images: base64files,
+		images: [base64dataURL],
 	};
 };
 
 /* CLEAN DATA */
-exports.cleanPlantData = async (data) => {
+// TODO: uncomment parameter
+exports.cleanPlantData = async (/* plant */) => {
 	const plant = require('./Temp/plantID.example');
 	const scientificNames = [];
 	const wikiPlantData = [];

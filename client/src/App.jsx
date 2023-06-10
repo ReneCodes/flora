@@ -10,9 +10,9 @@ function App() {
 	return (
 		<div className="App-Container">
 			<div className="App">
+				{isCameraOn ? <Camera></Camera> : <div className="block">CAM</div>}
 				<div className="App-content">
 					<div className="block logo">FLORA</div>
-					{isCameraOn ? <Camera></Camera> : <div className="block">CAM</div>}
 					{/* Experimental BOXES for testing functionalities */}
 					<div className="block">
 						<button

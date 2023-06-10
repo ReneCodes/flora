@@ -1,4 +1,5 @@
 //
+import axios from 'axios';
 import cleanPlant from './TEMP/cleanPlant';
 // Fetch garden data
 export async function getGarden() {
@@ -13,19 +14,27 @@ export async function getGarden() {
 // Send base64 img string to BE
 // FIXME: fix data input
 export async function findPLant(dataURL) {
-	const temp = 'FIND MY PLANT';
-	const res = await fetch('http://127.0.0.1:4242/identify', {
-		method: 'POST',
+	let config = {
+		method: 'post',
+		maxBodyLength: Infinity,
+		url: 'http://127.0.0.1:4242/identify',
 		headers: {
 			'Content-Type': 'application/json',
 		},
-		body: JSON.stringify({dataURL: temp}),
-	})
-		.then((data) => data.json())
-		.catch((error) => console.log('\n findPLant ERROR\n', error));
+		data: {dataURL},
+	};
+	const identResult = await axios
+		.request(config)
+		.then((res) => {
+			console.log('Success:', res.data);
+			return res.data;
+		})
+		.catch((error) => {
+			console.error('Error: ', error);
+		});
 
 	console.log(res);
-	return res;
+	return identResult;
 }
 
 // Send suggested plant to BE

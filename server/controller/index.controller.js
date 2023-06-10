@@ -4,19 +4,15 @@ const helper = require('../model/helperFunc'); // TODO: Maybe rename to Ident.se
 
 exports.identifyPlant = async (req, res) => {
 	const {dataURL} = req.body;
-	console.log(dataURL);
+	// console.log('Identify Plant:', dataURL);
 	try {
-		/* Turn image(s) to base64 string */
-		const base64ImgList = helper.imgToBase64(/* TODO: INSERT_IMAGE_ARRAY_HERE */);
-		const data = helper.prepareIdentBody(base64ImgList);
-
-		// FIXME: Get base64 String from FE
-		// TODO: Uncomment for real API Identification
-		/* Identify image(s) */
+		// TODO: Uncomment for real API Identification => very limited API calls
+		// // Identify image(s)
+		// const data = helper.prepareIdentBody(dataURL);
 		// const identResult = await axios
 		// 	.post('https://api.plant.id/v2/identify', data)
 		// 	.then((res) => {
-		// 		console.log('Success:', res.data);
+		//   console.log('Success:', res.data);
 		// 		return res.data;
 		// 	})
 		// 	.catch((error) => {
@@ -24,7 +20,8 @@ exports.identifyPlant = async (req, res) => {
 		// 	});
 
 		/* Clean Data */
-		const tempData = await helper.cleanPlantData(/* TODO: INSERT_API_RESPONSE_HERE */);
+		// TODO: uncomment parameter
+		const tempData = await helper.cleanPlantData(/* identResult */);
 
 		res.status(200).send(tempData);
 	} catch (error) {
@@ -71,7 +68,7 @@ exports.updatePlant = async (req, res) => {
 exports.removePlant = async (req, res) => {
 	const {_id} = req.body;
 	try {
-		const plant = await Plant.findByIdAndDelete(_id); // returns updated plant
+		const plant = await Plant.findByIdAndDelete(_id); // returns removed plant
 		res.status(200).send({result: `Plant ${plant._id} Removed`});
 	} catch (error) {
 		console.log(error);
