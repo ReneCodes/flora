@@ -64,3 +64,12 @@
 	background-color: transparent;
 	border: none;
 }
+
+.btn-API {
+	padding: 8px 16px;
+
+	cursor: pointer;
+}
+.btn-API:active {
+	background-color: var(--secondary);
+}

@@ -3,16 +3,16 @@ const controller = require('./controller/index.controller');
 
 // TEST Routes
 router.get('/', (req, res) => {
-	res.status(200).send('Welcome to my Garden');
+	res.status(200).send({text: 'Welcome to my Garden'});
 });
 router.post('/', (req, res) => {
-	res.status(200).send(`I've received POST ${req.body}`);
+	res.status(200).send({text: "I've received POST", ...req.body});
 });
 router.put('/', (req, res) => {
-	res.status(200).send(`You want to PUT ${req.body}`);
+	res.status(200).send({text: 'You want to PUT', ...req.body});
 });
 router.delete('/', (req, res) => {
-	res.status(200).send(`DELETE this ${req.body}`);
+	res.status(200).send({text: 'DELETE this', ...req.body});
 });
 
 router.post('/identify', controller.identifyPlant);
