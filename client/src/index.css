@@ -7,8 +7,8 @@
 
 :root {
 	color-scheme: light dark;
-	color: rgba(255, 255, 255, 0.87);
-	background-color: #242424;
+	color: var(--white);
+	background-color: var(--black);
 
 	font-synthesis: none;
 	text-rendering: optimizeLegibility;
@@ -26,8 +26,8 @@
 
 @media (prefers-color-scheme: light) {
 	:root {
-		color: #213547;
-		background-color: #ffffff;
+		color: var(--text-black);
+		background-color: var(--white);
 	}
 	a:hover {
 		color: #15aabf;

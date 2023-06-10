@@ -21,6 +21,12 @@
 	border-radius: 5px;
 	border: none;
 	margin: auto;
+
+	cursor: pointer;
+}
+
+.Navbar button:active {
+	background-color: var(--black);
 }
 
 .Navbar button:nth-child(2) {

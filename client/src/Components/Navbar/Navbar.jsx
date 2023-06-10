@@ -1,9 +1,12 @@
 import './Navbar.css';
-function Navbar({setTakePhoto}) {
+import {useDispatch} from 'react-redux';
+import {accessCamera} from '../../actions';
+
+function Navbar() {
+	const dispatch = useDispatch();
+
 	function openCamera() {
-		setTakePhoto((takePhoto) => {
-			setTakePhoto(!takePhoto);
-		});
+		dispatch(accessCamera()); // turn on/Off
 	}
 	return (
 		<div className="Navbar">

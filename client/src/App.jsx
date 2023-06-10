@@ -1,17 +1,19 @@
 import './App.css';
-import {useEffect, useState} from 'react';
 import Camera from './Components/Camera/Camera';
 import Navbar from './Components/Navbar/Navbar';
 import * as service from './service/APIClient';
+import {useSelector, useDispatch} from 'react-redux';
 
 function App() {
-	const [takePhoto, setTakePhoto] = useState(false);
+	const isCameraOn = useSelector((state) => state.camera);
+
 	return (
 		<div className="App-Container">
 			<div className="App">
 				<div className="App-content">
 					<div className="block logo">FLORA</div>
-					{takePhoto ? <Camera></Camera> : <div className="block">CAM</div>}
+					{isCameraOn ? <Camera></Camera> : <div className="block">CAM</div>}
+					{/* Experimental BOXES for testing functionalities */}
 					<div className="block">
 						<button
 							className="btn-API"
@@ -42,9 +44,9 @@ function App() {
 							DELETE PLant
 						</button>
 					</div>
-					<div className="block">yellow</div>
+					<div className="block">YELLOW BOX</div>
 				</div>
-				<Navbar setTakePhoto={setTakePhoto}></Navbar>
+				<Navbar></Navbar>
 			</div>
 		</div>
 	);
