@@ -5,6 +5,7 @@ const plantSchema = new mongoose.Schema({
 		type: String,
 		required: [true, 'Plant Name is missing?'],
 	},
+	personal_name: String,
 	uploaded_datetime: {
 		type: Date,
 		default: Date.now(),

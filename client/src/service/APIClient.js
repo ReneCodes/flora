@@ -1,8 +1,8 @@
 //
+import cleanPlant from './TEMP/cleanPlant';
 // Fetch garden data
-// FIXME: fix endpoint /garden
 export async function getGarden() {
-	const res = await fetch('http://127.0.0.1:4242/')
+	const res = await fetch('http://127.0.0.1:4242/garden')
 		.then((data) => data.json())
 		.catch((error) => console.log('\n getGarden ERROR\n', error));
 
@@ -11,16 +11,15 @@ export async function getGarden() {
 }
 
 // Send base64 img string to BE
-// FIXME: fix endpoint /identify
-// FIXME: fix data
-export async function findPLant(dataUrl) {
+// FIXME: fix data input
+export async function findPLant(dataURL) {
 	const temp = 'FIND MY PLANT';
-	const res = await fetch('http://127.0.0.1:4242/', {
+	const res = await fetch('http://127.0.0.1:4242/identify', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
 		},
-		body: JSON.stringify({dataUrl: temp}),
+		body: JSON.stringify({dataURL: temp}),
 	})
 		.then((data) => data.json())
 		.catch((error) => console.log('\n findPLant ERROR\n', error));
@@ -30,16 +29,15 @@ export async function findPLant(dataUrl) {
 }
 
 // Send suggested plant to BE
-// FIXME: fix endpoint /garden and data
-// FIXME: fix data
+// FIXME: fix data input
 export async function savePLant(plant) {
-	const temp = 'Some Plant Info';
-	const res = await fetch('http://127.0.0.1:4242/', {
+	const temp = cleanPlant;
+	const res = await fetch('http://127.0.0.1:4242/garden', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
 		},
-		body: JSON.stringify({plant: temp}),
+		body: JSON.stringify(temp),
 	})
 		.then((data) => data.json())
 		.catch((error) => console.log('\n savePLant ERROR\n', error));
@@ -49,14 +47,14 @@ export async function savePLant(plant) {
 }
 
 // Update a plant
-// FIXME: fix endpoint /garden
-// FIXME: fix data
+// FIXME: fix data input
 export async function updatePLant(newData) {
 	const temp = {
-		_id: 'oasbdoabda',
-		note: 'personal Plant note',
+		_id: '648435fca70f131b5eaa2f5d',
+		note: 'New trial Plant note',
+		personal_name: 'Bob',
 	};
-	const res = await fetch('http://127.0.0.1:4242/', {
+	const res = await fetch('http://127.0.0.1:4242/garden', {
 		method: 'PUT',
 		headers: {
 			'Content-Type': 'application/json',
@@ -71,10 +69,10 @@ export async function updatePLant(newData) {
 }
 
 // Delete Plant
-// FIXME: fix endpoint /garden
+// FIXME: fix data input
 export async function deletePLant(_id) {
-	const id = 'aosdo;ado;haw';
-	const res = await fetch('http://127.0.0.1:4242/', {
+	const id = '64842a8f9d13d4566dbe1d8e';
+	const res = await fetch('http://127.0.0.1:4242/garden', {
 		method: 'DELETE',
 		headers: {
 			'Content-Type': 'application/json',
