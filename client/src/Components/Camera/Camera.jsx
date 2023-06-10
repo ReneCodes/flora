@@ -1,6 +1,6 @@
 import './Camera.css';
 import {useRef, useEffect, useState} from 'react';
-import {findPLant} from '../../service/APIClient'; // TODO: activate func in camera
+import {findPLant} from '../../service/APIClient';
 import {useSelector, useDispatch} from 'react-redux';
 
 function Camera() {

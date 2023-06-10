@@ -1,0 +1,48 @@
+.card-plant {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	height: fit-content;
+
+	padding: 16px;
+
+	border: 1px solid;
+	border-radius: 25px;
+}
+
+.card-img.garden {
+	height: 200px;
+	width: 40%;
+}
+
+.card-box-garden {
+	width: 60%;
+
+	margin-left: 8px;
+	margin-right: 0;
+}
+
+.input-garden {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+.input-garden p {
+	margin-left: 4px;
+}
+
+.input-garden button {
+	position: absolute;
+	right: 0;
+}
+
+.input-garden input {
+	width: 100%;
+	padding: 8px 25px 8px 2px;
+	margin-bottom: 4px;
+
+	border: none;
+	outline: none;
+	border-bottom: 1px solid;
+}
