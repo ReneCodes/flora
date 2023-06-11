@@ -71,7 +71,7 @@ exports.cleanPlantData = async (/* plant */) => {
 
 // FOR CLEAN DATA
 function deleteKeys(plant) {
-	const keyList = ['id', 'custom_id', 'meta_data', 'finished_datetime', 'modifiers', 'secret'];
+	const keyList = ['custom_id', 'meta_data', 'finished_datetime', 'modifiers', 'secret'];
 
 	return keyList.forEach((key) => {
 		delete plant[key];

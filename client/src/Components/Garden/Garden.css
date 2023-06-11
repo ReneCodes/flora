@@ -68,7 +68,7 @@
 	border-bottom: 1px solid;
 }
 
-.input-garden input:focus {
+.input-garden input:read-write {
 	color: var(--primary);
 	border-color: var(--primary);
 }

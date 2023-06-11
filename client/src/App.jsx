@@ -15,8 +15,8 @@ function App() {
 			<div className="App">
 				{isCameraOn ? <Camera></Camera> : ''}
 				<div className="App-content">
-					<div className="logo">FLORA</div>
-					<Homepage></Homepage>
+					{/* <div className="logo">FLORA</div> */}
+					{/* <Homepage></Homepage> */}
 					<Garden></Garden>
 					{/* Experimental BOXES for testing functionalities */}
 

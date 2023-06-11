@@ -17,6 +17,12 @@ const garden = (state = plantList, action) => {
 	switch (action.type) {
 		case 'INSERT':
 			return state;
+		case 'CHANGE_NAME':
+			const {payload, idx} = action;
+			plantList[idx].personal_name = payload;
+			// console.log('CHANGE_NAME', plantList[idx].personal_name);
+			state = [...plantList];
+			return state;
 		default:
 			return state;
 	}
