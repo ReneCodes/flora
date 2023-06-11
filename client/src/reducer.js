@@ -31,9 +31,22 @@ const garden = (state = [], action) => {
 	}
 };
 
+const plant = (state = false, action) => {
+	switch (action.type) {
+		case 'SELECT_PLANT':
+			console.log('SELECT_PLANT', action);
+			return (state = action.plant);
+		case 'UNSELECT_PLANT':
+			return (state = false);
+		default:
+			return state;
+	}
+};
+
 const rootReducer = combineReducers({
 	camera,
 	garden,
+	plant,
 });
 
 export default rootReducer;

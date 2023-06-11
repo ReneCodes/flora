@@ -12,3 +12,11 @@ export const storeGarden = (garden) => ({
 	type: 'STORE_GARDEN',
 	garden,
 });
+
+export const viewPlant = (plant) => ({
+	type: 'SELECT_PLANT',
+	plant,
+});
+export const unselectPlant = () => ({
+	type: 'UNSELECT_PLANT',
+});

@@ -1,10 +1,14 @@
 import './Garden.css';
+import {useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {changePlantName} from '../../actions';
+import {changePlantName, viewPlant, unselectPlant} from '../../actions';
 import {updatePlant} from '../../service/APIClient';
 
-function Plant({plant, idx}) {
+import Plant from '../Plant/Plant';
+
+function PlantTile({plant, idx}) {
 	const dispatch = useDispatch();
+
 	const waterGuide = {
 		1: ['💧', '10-14 days'],
 		2: ['💧💧', '5-7 days'],
@@ -14,6 +18,10 @@ function Plant({plant, idx}) {
 	const {plant_name, _id, personal_name, plant_details} = plant;
 	const {watering} = plant_details;
 	const maxWater = waterGuide[watering.max];
+
+	function selectPlant() {
+		dispatch(viewPlant(plant));
+	}
 
 	function changeName(e) {
 		if (e.target.localName === 'button') {
@@ -39,11 +47,17 @@ function Plant({plant, idx}) {
 		// TODO send updated name to DB
 	}
 
+	useEffect(() => {
+		dispatch(unselectPlant());
+	}, []);
+
 	return (
 		<div key={_id}>
 			<div className="card-plant">
 				<div className="card-img garden">
-					<img src={plant.images[0].url}></img>
+					<img
+						src={plant.images[0].url}
+						onClick={selectPlant}></img>
 				</div>
 				<div className="card-box-garden">
 					<div className="input-garden">
@@ -72,8 +86,25 @@ function Plant({plant, idx}) {
 	);
 }
 
+function GardenTiles() {
+	const gardenList = useSelector((state) => state.garden);
+
+	return (
+		<>
+			{gardenList.map((plant, idx) => {
+				return (
+					<PlantTile
+						key={plant._id}
+						idx={idx}
+						plant={plant}></PlantTile>
+				);
+			})}
+		</>
+	);
+}
+
 function Garden() {
-	const garden = useSelector((state) => state.garden);
+	const plantState = useSelector((state) => state.plant);
 
 	return (
 		<div className="Garden">
@@ -81,14 +112,7 @@ function Garden() {
 				<h2>GARDEN</h2>
 				<p className="section-icon">🪴</p>
 			</div>
-			{garden.map((plant, idx) => {
-				return (
-					<Plant
-						key={plant._id}
-						idx={idx}
-						plant={plant}></Plant>
-				);
-			})}
+			{plantState ? <Plant plantState={plantState}></Plant> : <GardenTiles></GardenTiles>}
 		</div>
 	);
 }
