@@ -20,6 +20,11 @@
 	--primary: #15aabf;
 	--secondary: #ffcb37;
 
+	--lavender: hsla(250, 99%, 29%, 0.371);
+	--lavender20: hsla(250, 99%, 29%, 0.126);
+	--green: rgba(150, 242, 214, 0.25);
+	--blue: hsla(187, 80%, 42%, 0.25);
+	--grey100: #ebebeb;
 	--black: #313131;
 	--white: #fafafa;
 }

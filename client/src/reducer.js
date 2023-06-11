@@ -18,10 +18,13 @@ const garden = (state = [], action) => {
 			// TODO insert plant in list
 			return state;
 		case 'CHANGE_NAME':
-			// console.log(action);
-			const {payload, idx} = action;
-			state[idx].personal_name = payload;
-			// console.log('CHANGE_NAME', plantList[idx].personal_name);
+			state[action.idx].personal_name = action.payload;
+			// console.log('CHANGE_NAME', state[idx].personal_name);
+			state = [...state];
+			return state;
+		case 'ATTACH_NOTE':
+			state[action.idx].note = action.payload;
+			// console.log('ATTACH_NOTE', state[idx].note);
 			state = [...state];
 			return state;
 		case 'STORE_GARDEN':
@@ -34,8 +37,7 @@ const garden = (state = [], action) => {
 const plant = (state = false, action) => {
 	switch (action.type) {
 		case 'SELECT_PLANT':
-			console.log('SELECT_PLANT', action);
-			return (state = action.plant);
+			return (state = action.idx);
 		case 'UNSELECT_PLANT':
 			return (state = false);
 		default:

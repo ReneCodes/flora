@@ -1,5 +1,5 @@
 import './Garden.css';
-import {useEffect} from 'react';
+import {useEffect, useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {changePlantName, viewPlant, unselectPlant} from '../../actions';
 import {updatePlant} from '../../service/APIClient';
@@ -20,7 +20,7 @@ function PlantTile({plant, idx}) {
 	const maxWater = waterGuide[watering.max];
 
 	function selectPlant() {
-		dispatch(viewPlant(plant));
+		dispatch(viewPlant(Number(idx)));
 	}
 
 	function changeName(e) {
@@ -28,23 +28,15 @@ function PlantTile({plant, idx}) {
 			const input = document.getElementById(`name-field-${_id}`);
 			input.readOnly = false;
 			input.focus();
-			console.dir(input);
 		} else {
 			dispatch(changePlantName(e.target.value, idx));
 		}
 	}
 
-	function writeTrue(e) {
-		e.target.readOnly = false;
-	}
-	function writeFalse(e) {
-		e.target.readOnly = true;
-		postUpdatedName(e.target.value);
-	}
-
-	function postUpdatedName(personal_name) {
-		dispatch(updatePlant({_id, personal_name}));
-		// TODO send updated name to DB
+	function writeTrueFalse(e) {
+		const personal_name = e.target.value;
+		e.target.readOnly = !e.target.readOnly;
+		if (e.target.readOnly) updatePlant({_id, personal_name});
 	}
 
 	useEffect(() => {
@@ -68,8 +60,8 @@ function PlantTile({plant, idx}) {
 							value={personal_name}
 							placeholder={plant_name.split(' ')[0]}
 							onChange={changeName}
-							onDoubleClick={writeTrue}
-							onBlur={writeFalse}
+							onDoubleClick={writeTrueFalse}
+							onBlur={writeTrueFalse}
 							readOnly={true}
 						/>
 						{/* TODO onClick handler function */}
@@ -91,6 +83,10 @@ function GardenTiles() {
 
 	return (
 		<>
+			<div className="section-title">
+				<h2>GARDEN</h2>
+				<p className="section-icon">🪴</p>
+			</div>
 			{gardenList.map((plant, idx) => {
 				return (
 					<PlantTile
@@ -104,17 +100,9 @@ function GardenTiles() {
 }
 
 function Garden() {
-	const plantState = useSelector((state) => state.plant);
+	const plantIDX = useSelector((state) => state.plant);
 
-	return (
-		<div className="Garden">
-			<div className="section-title">
-				<h2>GARDEN</h2>
-				<p className="section-icon">🪴</p>
-			</div>
-			{plantState ? <Plant plantState={plantState}></Plant> : <GardenTiles></GardenTiles>}
-		</div>
-	);
+	return <div className="Garden">{typeof plantIDX === 'number' ? <Plant></Plant> : <GardenTiles></GardenTiles>}</div>;
 }
 
 export default Garden;
