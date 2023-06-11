@@ -1,6 +1,10 @@
 //
 import axios from 'axios';
-import cleanPlant from './TEMP/cleanPlant1';
+
+import cleanPlant1 from './TEMP/cleanPlant1';
+import cleanPlant2 from './TEMP/cleanPlant2';
+import cleanPlant3 from './TEMP/cleanPlant3';
+
 // Fetch garden data
 export async function getGarden() {
 	const res = await fetch('http://127.0.0.1:4242/garden')
@@ -13,7 +17,7 @@ export async function getGarden() {
 
 // Send base64 img string to BE
 // FIXME: fix data input
-export async function findPLant(dataURL) {
+export async function findPlant(dataURL) {
 	let config = {
 		method: 'post',
 		maxBodyLength: Infinity,
@@ -39,8 +43,8 @@ export async function findPLant(dataURL) {
 
 // Send suggested plant to BE
 // FIXME: fix data input
-export async function savePLant(plant) {
-	const temp = cleanPlant;
+export async function savePlant(plant) {
+	const temp = cleanPlant3;
 	const res = await fetch('http://127.0.0.1:4242/garden', {
 		method: 'POST',
 		headers: {
@@ -57,18 +61,13 @@ export async function savePLant(plant) {
 
 // Update a plant
 // FIXME: fix data input
-export async function updatePLant(newData) {
-	const temp = {
-		_id: '648435fca70f131b5eaa2f5d',
-		note: 'New trial Plant note',
-		personal_name: 'Bob',
-	};
+export async function updatePlant(newData) {
 	const res = await fetch('http://127.0.0.1:4242/garden', {
 		method: 'PUT',
 		headers: {
 			'Content-Type': 'application/json',
 		},
-		body: JSON.stringify(temp), // {_id , note}
+		body: JSON.stringify(newData), // {_id , note, personal_name}
 	})
 		.then((data) => data.json())
 		.catch((error) => console.log('\n savePLant ERROR\n', error));
@@ -79,8 +78,8 @@ export async function updatePLant(newData) {
 
 // Delete Plant
 // FIXME: fix data input
-export async function deletePLant(_id) {
-	const id = '64842a8f9d13d4566dbe1d8e';
+export async function deletePlant(_id) {
+	const id = '648435fca70f131b5eaa2f5d';
 	const res = await fetch('http://127.0.0.1:4242/garden', {
 		method: 'DELETE',
 		headers: {

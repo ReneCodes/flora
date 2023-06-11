@@ -7,3 +7,8 @@ export const changePlantName = (text, idx) => ({
 	payload: text,
 	idx,
 });
+
+export const storeGarden = (garden) => ({
+	type: 'STORE_GARDEN',
+	garden,
+});

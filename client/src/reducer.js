@@ -12,17 +12,20 @@ const camera = (state = false, action) => {
 	}
 };
 
-const plantList = [plant1, plant2, plant3];
-const garden = (state = plantList, action) => {
+const garden = (state = [], action) => {
 	switch (action.type) {
 		case 'INSERT':
+			// TODO insert plant in list
 			return state;
 		case 'CHANGE_NAME':
+			// console.log(action);
 			const {payload, idx} = action;
-			plantList[idx].personal_name = payload;
+			state[idx].personal_name = payload;
 			// console.log('CHANGE_NAME', plantList[idx].personal_name);
-			state = [...plantList];
+			state = [...state];
 			return state;
+		case 'STORE_GARDEN':
+			return (state = action.garden);
 		default:
 			return state;
 	}

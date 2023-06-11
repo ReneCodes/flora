@@ -1,6 +1,6 @@
 import './Camera.css';
 import {useRef, useEffect, useState} from 'react';
-import {findPLant} from '../../service/APIClient';
+import {findPlant} from '../../service/APIClient';
 import {useSelector, useDispatch} from 'react-redux';
 
 function Camera() {
@@ -58,7 +58,7 @@ function Camera() {
 		const ctx = photo.getContext('2d');
 
 		const imgDataUrl = photo.toDataURL('image/jpeg', 0.9);
-		findPLant(imgDataUrl);
+		findPlant(imgDataUrl);
 		// console.log(imgDataUrl);
 
 		//  clear Canvas

@@ -1,6 +1,7 @@
 import './Garden.css';
 import {useSelector, useDispatch} from 'react-redux';
 import {changePlantName} from '../../actions';
+import {updatePlant} from '../../service/APIClient';
 
 function Plant({plant, idx}) {
 	const dispatch = useDispatch();
@@ -10,13 +11,13 @@ function Plant({plant, idx}) {
 		3: ['💧💧💧', '2-3 days'],
 	};
 	// console.log('Plant:', idx);
-	const {plant_name, id, personal_name, plant_details} = plant;
+	const {plant_name, _id, personal_name, plant_details} = plant;
 	const {watering} = plant_details;
 	const maxWater = waterGuide[watering.max];
 
 	function changeName(e) {
 		if (e.target.localName === 'button') {
-			const input = document.getElementById(`name-field-${id}`);
+			const input = document.getElementById(`name-field-${_id}`);
 			input.readOnly = false;
 			input.focus();
 			console.dir(input);
@@ -30,10 +31,16 @@ function Plant({plant, idx}) {
 	}
 	function writeFalse(e) {
 		e.target.readOnly = true;
+		postUpdatedName(e.target.value);
+	}
+
+	function postUpdatedName(personal_name) {
+		dispatch(updatePlant({_id, personal_name}));
+		// TODO send updated name to DB
 	}
 
 	return (
-		<div key={id}>
+		<div key={_id}>
 			<div className="card-plant">
 				<div className="card-img garden">
 					<img src={plant.images[0].url}></img>
@@ -43,8 +50,9 @@ function Plant({plant, idx}) {
 						{/* TODO setting state and stuff */}
 						<input
 							type={'text'}
-							id={`name-field-${id}`}
+							id={`name-field-${_id}`}
 							value={personal_name}
+							placeholder={plant_name.split(' ')[0]}
 							onChange={changeName}
 							onDoubleClick={writeTrue}
 							onBlur={writeFalse}
@@ -66,7 +74,6 @@ function Plant({plant, idx}) {
 
 function Garden() {
 	const garden = useSelector((state) => state.garden);
-	const plantKeys = Object.keys(garden);
 
 	return (
 		<div className="Garden">
@@ -77,7 +84,7 @@ function Garden() {
 			{garden.map((plant, idx) => {
 				return (
 					<Plant
-						key={plant.id}
+						key={plant._id}
 						idx={idx}
 						plant={plant}></Plant>
 				);
