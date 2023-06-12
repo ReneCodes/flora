@@ -4,6 +4,7 @@ const helper = require('../model/helperFunc'); // TODO: Maybe rename to Ident.se
 
 exports.identifyPlant = async (req, res) => {
 	const {dataURL} = req.body;
+	// console.log(dataURL);
 	// console.log('Identify Plant:', dataURL);
 	try {
 		// TODO: Uncomment for real API Identification => very limited API calls
@@ -54,10 +55,17 @@ exports.savePlantToGarden = async (req, res) => {
 	}
 };
 
+function getIdField(body) {
+	const {_id, api_id} = body;
+	if (_id) return {_id};
+	else return {api_id};
+}
+
 exports.updatePlant = async (req, res) => {
-	const {_id} = req.body;
 	try {
-		const plant = await Plant.findByIdAndUpdate(_id, req.body, {new: true}); // new:true => returns updated plant
+		// needed when updating a plant directly after Snapshot => _id does not exist yet
+
+		const plant = await Plant.findOneAndUpdate(getIdField(req.body), req.body, {new: true}); // new:true => returns updated plant
 		res.status(201).send({result: `plant ${plant._id} visited`, plant});
 	} catch (error) {
 		res.status(417);
@@ -66,9 +74,9 @@ exports.updatePlant = async (req, res) => {
 };
 
 exports.removePlant = async (req, res) => {
-	const {_id} = req.body;
+	// const {_id} = req.body;
 	try {
-		const plant = await Plant.findByIdAndDelete(_id); // returns removed plant
+		const plant = await Plant.findOneAndRemove(getIdField(req.body)); // returns removed plant
 		res.status(200).send({result: `Plant ${plant._id} Removed`});
 	} catch (error) {
 		console.log(error);

@@ -49,6 +49,7 @@ const plantSchema = new mongoose.Schema({
 		},
 	},
 	note: String,
+	api_id: String,
 });
 
 const Plant = mongoose.model('Plant', plantSchema);
