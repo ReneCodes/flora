@@ -13,6 +13,9 @@
 	flex-direction: column;
 	gap: 16px;
 }
+.article-container button {
+	border: none;
+}
 
 .note-plant {
 	position: relative;
@@ -109,4 +112,28 @@
 	margin-bottom: 8px;
 	padding: 2px 4px;
 	border-bottom: 1px solid var(--primary);
+}
+.danger {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	padding: 8px 0;
+}
+.btn-delete {
+	width: 50%;
+	padding: 5px;
+	margin: 0 auto;
+	cursor: pointer;
+	border: 2px solid var(--red);
+	background-color: inherit;
+
+	transition: 0.4s;
+}
+
+.btn-delete:hover,
+.btn-delete:active {
+	background-color: var(--red);
+}
+.btn-delete:active {
+	scale: 0.95;
 }

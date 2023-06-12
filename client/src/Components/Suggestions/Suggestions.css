@@ -1,10 +1,24 @@
-.section-title {
+.suggestions .section-title {
 	text-transform: uppercase;
+	margin-bottom: 20px;
 }
 
 .suggestion-container .plant-container {
 	margin-bottom: 32px;
 }
+
+.loader {
+	display: flex;
+	width: 100%;
+	height: 400px;
+	justify-content: center;
+	align-items: center;
+}
+
+.loader img {
+	border-radius: 999px;
+}
+
 .img-box {
 	display: flex;
 	flex-wrap: wrap;
