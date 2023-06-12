@@ -37,7 +37,6 @@ function PlantsInGarden({garden}) {
 
 	function goToPlant(idx, route) {
 		dispatch(viewPlant(Number(idx)));
-
 		dispatch(changeAppRoute(route));
 	}
 
@@ -54,10 +53,10 @@ function PlantsInGarden({garden}) {
 	return (
 		<>
 			<div className="card-img">
-				<button>{garden.length > 0 ? <ShowImage idx={0}></ShowImage> : <p onClick={openCamera}>📸</p>}</button>
+				<button>{garden.length > 0 ? <ShowImage idx={0} /> : <p onClick={openCamera}>📸</p>}</button>
 			</div>
 			<div className="card-img">
-				<button>{garden.length > 0 ? <ShowImage idx={1}></ShowImage> : <p onClick={openCamera}>📸</p>}</button>
+				<button>{garden.length > 0 ? <ShowImage idx={1} /> : <p onClick={openCamera}>📸</p>}</button>
 			</div>
 		</>
 	);
@@ -65,8 +64,8 @@ function PlantsInGarden({garden}) {
 
 function Homepage() {
 	const dispatch = useDispatch();
-	// const garden = useSelector((state) => state.garden);
-	const garden = '';
+	const garden = useSelector((state) => state.garden);
+	// const garden = ''; //TODO: delete this variable
 
 	function navigateRoute(switchRoute) {
 		console.log(switchRoute);
@@ -86,7 +85,7 @@ function Homepage() {
 						</div>
 					</button>
 					<div className="card-box">
-						<PlantsInGarden garden={garden}></PlantsInGarden>
+						<PlantsInGarden garden={garden} />
 					</div>
 					{!garden && (
 						<div className="card-info">
@@ -94,8 +93,8 @@ function Homepage() {
 						</div>
 					)}
 				</div>
-				<CareGuide navigateRoute={navigateRoute}></CareGuide>
-				<WaterGuide navigateRoute={navigateRoute}></WaterGuide>
+				<CareGuide navigateRoute={navigateRoute} />
+				<WaterGuide navigateRoute={navigateRoute} />
 			</div>
 		</>
 	);

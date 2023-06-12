@@ -48,8 +48,9 @@ const plant = (state = false, action) => {
 const TEMP = identResponse;
 const identPlants = (state = TEMP, action) => {
 	switch (action.type) {
-		case 'STORE_FINDINGS':
-			console.log(action.plants);
+		case 'STORE_IDENT_FINDINGS':
+			console.log(action.payload);
+			state = action.payload;
 			return state;
 		default:
 			return state;

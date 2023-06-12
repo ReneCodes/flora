@@ -37,7 +37,7 @@ export const unselectPlant = () => ({
 	type: 'UNSELECT_PLANT',
 });
 
-export const storeFindings = (plants) => ({
-	type: 'STORE_FINDINGS',
-	plants,
+export const storeIdentResult = (plants) => ({
+	type: 'STORE_IDENT_FINDINGS',
+	payload: plants,
 });

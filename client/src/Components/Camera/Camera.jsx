@@ -2,11 +2,13 @@ import './Camera.css';
 import {useRef, useEffect, useState} from 'react';
 import {findPlant} from '../../service/APIClient';
 import {useSelector, useDispatch} from 'react-redux';
+import {storeIdentResult} from '../../actions';
 
 function Camera() {
 	const videoRef = useRef(); // grabs video elem in HTML
 	const photoRef = useRef(); // grabs canvas elem in HTML
 	const camera = useSelector((state) => state.camera);
+	const dispatch = useDispatch();
 
 	const [hasPhoto, setHasPhoto] = useState(false);
 
@@ -33,8 +35,8 @@ function Camera() {
 	};
 
 	const takePhoto = () => {
-		let video = videoRef.current;
-		let photo = photoRef.current;
+		const video = videoRef.current;
+		const photo = photoRef.current;
 
 		photo.height = 1200;
 		photo.width = photo.height / (16 / 8.2);
@@ -44,27 +46,33 @@ function Camera() {
 
 		video.pause();
 
-		const imgDataUrl = photo.toDataURL('image/jpeg', 0.9);
+		const imgDataUrl = photo.toDataURL('image/jpeg', 0.9); // convert image to string
 
+		// TODO: delete saveImage => only for testing
 		const saveImage = document.getElementById('canvasDownload');
 		saveImage.href = imgDataUrl;
 
 		setHasPhoto(true);
 	};
 
-	const closePhoto = () => {
+	const closePhoto = async () => {
 		// const video = videoRef.current;
 		const photo = photoRef.current;
 		const ctx = photo.getContext('2d');
 
 		const imgDataUrl = photo.toDataURL('image/jpeg', 0.9);
-		findPlant(imgDataUrl);
+		try {
+			const identResult = await findPlant(imgDataUrl);
+			dispatch(storeIdentResult(identResult));
+			//  clear Canvas
+			ctx.clearRect(0, 0, photo.width, photo.height);
+			setHasPhoto(false);
+			// video.play();
+		} catch (error) {
+			console.log('Error Identifying Plant', error);
+		}
+		//  TODO: get identResult and update identPlants state
 		// console.log(imgDataUrl);
-
-		//  clear Canvas
-		ctx.clearRect(0, 0, photo.width, photo.height);
-		setHasPhoto(false);
-		video.play();
 	};
 
 	// Init video after rendering component

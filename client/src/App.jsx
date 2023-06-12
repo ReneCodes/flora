@@ -18,9 +18,12 @@ function App() {
 	const dispatch = useDispatch();
 
 	async function fetchGarden() {
-		const garden = await service.getGarden();
-
-		dispatch(storeGarden(garden));
+		try {
+			const garden = await service.getGarden();
+			dispatch(storeGarden(garden));
+		} catch (error) {
+			console.log('Error fetching Garden', error);
+		}
 	}
 
 	useEffect(() => {
@@ -28,22 +31,20 @@ function App() {
 	}, []);
 
 	return (
-		<div className="App-Container">
+		<section className="App-Container">
 			<div className="App">
-				{isCameraOn && <Camera></Camera>}
-				{/* {route[0] === 'camera' && <Camera></Camera>} */}
+				{isCameraOn && <Camera />}
 				<div className="App-content">
-					{route[0] === 'home' && <Homepage></Homepage>}
-					{(route[0] === 'garden' || route[0] === 'plantInfo') && <Garden></Garden>}
-					{route[0] === 'identResult' && <Suggestions></Suggestions>}
-					{/* <Suggestions></Suggestions> */}
+					{route[0] === 'home' && <Homepage />}
+					{(route[0] === 'garden' || route[0] === 'plantInfo') && <Garden />}
+					{route[0] === 'identResult' && <Suggestions />}
 					{/* Experimental BOXES for testing functionalities */}
 					{/* <TestSection></TestSection> */}
 				</div>
 				{/* {!isCameraOn && <Navbar></Navbar>} */}
-				<Navbar></Navbar>
+				<Navbar />
 			</div>
-		</div>
+		</section>
 	);
 }
 
