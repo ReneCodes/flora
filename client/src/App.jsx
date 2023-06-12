@@ -13,6 +13,8 @@ import * as service from './service/APIClient';
 
 function App() {
 	const isCameraOn = useSelector((state) => state.camera);
+	const route = useSelector((state) => state.basicRouting);
+	console.log(route);
 	const dispatch = useDispatch();
 
 	async function fetchGarden() {
@@ -28,14 +30,17 @@ function App() {
 	return (
 		<div className="App-Container">
 			<div className="App">
-				{isCameraOn ? <Camera></Camera> : ''}
+				{isCameraOn && <Camera></Camera>}
+				{/* {route[0] === 'camera' && <Camera></Camera>} */}
 				<div className="App-content">
-					{/* <Homepage></Homepage> */}
-					<Garden></Garden>
-					<Suggestions></Suggestions>
+					{route[0] === 'home' && <Homepage></Homepage>}
+					{(route[0] === 'garden' || route[0] === 'plantInfo') && <Garden></Garden>}
+					{route[0] === 'identResult' && <Suggestions></Suggestions>}
+					{/* <Suggestions></Suggestions> */}
 					{/* Experimental BOXES for testing functionalities */}
 					{/* <TestSection></TestSection> */}
 				</div>
+				{/* {!isCameraOn && <Navbar></Navbar>} */}
 				<Navbar></Navbar>
 			</div>
 		</div>

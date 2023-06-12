@@ -1,7 +1,7 @@
 import './Plant.css';
 import {useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {changePlantName, unselectPlant, attachPlantNote} from '../../actions';
+import {changePlantName, unselectPlant, attachPlantNote, changeAppRoute} from '../../actions';
 import {updatePlant} from '../../service/APIClient';
 import {WaterGuide, CareGuide} from '../Homepage/Homepage';
 import {waterDrops} from '../../service/helper.service';
@@ -26,7 +26,9 @@ function Plant() {
 	let inputfield = '';
 	let notefield = '';
 
-	function goToGarden() {
+	function goToGarden(e) {
+		const route = e.target.attributes.route.value;
+		// dispatch(changeAppRoute(route));
 		dispatch(unselectPlant());
 	}
 
@@ -72,7 +74,9 @@ function Plant() {
 		<>
 			<div className="Plant">
 				<section className="PlantHead">
-					<button onClick={goToGarden}>{'<-'}</button>
+					<button onClick={goToGarden}>
+						<span route="garden">{'<-'}</span>
+					</button>
 					<div className="card-img plant">
 						<img
 							src={images[0].url}

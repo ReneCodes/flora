@@ -1,3 +1,8 @@
+export const changeAppRoute = (route) => ({
+	type: 'NEW_ROUTE',
+	payload: route,
+});
+
 export const accessCamera = () => ({
 	type: 'CAM_ON/OFF',
 });

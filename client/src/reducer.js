@@ -44,6 +44,7 @@ const plant = (state = false, action) => {
 			return state;
 	}
 };
+
 const TEMP = identResponse;
 const identPlants = (state = TEMP, action) => {
 	switch (action.type) {
@@ -55,11 +56,25 @@ const identPlants = (state = TEMP, action) => {
 	}
 };
 
+const basicRouting = (state = ['home', ''], action) => {
+	// state => ['current Route','previous Route']
+	switch (action.type) {
+		case 'NEW_ROUTE':
+			console.log('NEW_ROUTE', action.payload);
+			state[1] = state[0];
+			state[0] = action.payload;
+			return [...state];
+		default:
+			return state;
+	}
+};
+
 const rootReducer = combineReducers({
 	camera,
 	garden,
 	plant,
 	identPlants,
+	basicRouting,
 });
 
 export default rootReducer;

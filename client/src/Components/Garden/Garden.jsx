@@ -1,7 +1,7 @@
 import './Garden.css';
 import {useEffect, useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {changePlantName, viewPlant, unselectPlant} from '../../actions';
+import {changePlantName, viewPlant, unselectPlant, changeAppRoute} from '../../actions';
 import {updatePlant} from '../../service/APIClient';
 import {waterDrops} from '../../service/helper.service';
 
@@ -15,8 +15,10 @@ function PlantTile({plant, idx}) {
 	const {watering} = plant_details;
 	const maxWater = waterDrops[watering.max];
 
-	function selectPlant() {
+	function selectPlant(e) {
 		dispatch(viewPlant(Number(idx)));
+		const route = e.target.attributes.route.value;
+		dispatch(changeAppRoute(route));
 	}
 
 	function changeName(e) {
@@ -46,6 +48,7 @@ function PlantTile({plant, idx}) {
 					<img
 						src={plant.images[0].url}
 						alt={`picture of ${plant_name}`}
+						route="plantInfo"
 						onClick={selectPlant}></img>
 				</div>
 				<div className="card-box-garden">
@@ -84,23 +87,33 @@ function GardenTiles() {
 				<h2>GARDEN</h2>
 				<p className="section-icon">🪴</p>
 			</div>
-			{gardenList.map((plant, idx) => {
-				const identKey = plant._id ? plant._id : idx;
-				return (
-					<PlantTile
-						key={identKey}
-						idx={idx}
-						plant={plant}></PlantTile>
-				);
-			})}
+			{gardenList ? (
+				gardenList.map((plant, idx) => {
+					const identKey = plant._id ? plant._id : idx;
+					return (
+						<PlantTile
+							key={identKey}
+							idx={idx}
+							plant={plant}></PlantTile>
+					);
+				})
+			) : (
+				<h3>No plant in Garden</h3>
+			)}
 		</>
 	);
 }
 
 function Garden() {
+	const route = useSelector((state) => state.basicRouting);
+	const currentRoute = route[0];
 	const plantIDX = useSelector((state) => state.plant);
 
-	return <div className="Garden">{typeof plantIDX === 'number' ? <Plant></Plant> : <GardenTiles></GardenTiles>}</div>;
+	return (
+		<div className="Garden">
+			{typeof plantIDX === 'number' && currentRoute === 'plantInfo' ? <Plant></Plant> : <GardenTiles></GardenTiles>}
+		</div>
+	);
 }
 
 export default Garden;
