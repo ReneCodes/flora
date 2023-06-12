@@ -29,6 +29,17 @@ const garden = (state = [], action) => {
 			return state;
 		case 'STORE_GARDEN':
 			return (state = action.garden);
+		case 'DELETE_PLANT':
+			const index = action.payload;
+			console.log(action.payload);
+			if (index == 0) return state.slice(1);
+			if (index == state.length - 1) return state.slice(0, -1);
+			else {
+				const firstPart = state.slice(0, index);
+				const lastPart = state.slice(index + 1);
+
+				return (state = firstPart.concat(lastPart));
+			}
 		default:
 			return state;
 	}
@@ -46,10 +57,10 @@ const plant = (state = false, action) => {
 };
 
 const TEMP = identResponse;
-const identPlants = (state = TEMP, action) => {
+const identPlants = (state = '', action) => {
 	switch (action.type) {
-		case 'STORE_IDENT_FINDINGS':
-			console.log(action.payload);
+		case 'STORE_IDENT_RESULT':
+			console.log('STORING', action.payload);
 			state = action.payload;
 			return state;
 		default:
@@ -61,7 +72,6 @@ const basicRouting = (state = ['home', ''], action) => {
 	// state => ['current Route','previous Route']
 	switch (action.type) {
 		case 'NEW_ROUTE':
-			console.log('NEW_ROUTE', action.payload);
 			state[1] = state[0];
 			state[0] = action.payload;
 			return [...state];

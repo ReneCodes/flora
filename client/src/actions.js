@@ -17,6 +17,7 @@ export const changePlantName = (text, idx) => ({
 	payload: text,
 	idx,
 });
+
 export const attachPlantNote = (note, idx) => ({
 	type: 'ATTACH_NOTE',
 	payload: note,
@@ -33,11 +34,16 @@ export const viewPlant = (idx) => ({
 	idx,
 });
 
+export const deletePlantFromGarden = (plantIDX) => ({
+	type: 'DELETE_PLANT',
+	payload: plantIDX,
+});
+
 export const unselectPlant = () => ({
 	type: 'UNSELECT_PLANT',
 });
 
 export const storeIdentResult = (plants) => ({
-	type: 'STORE_IDENT_FINDINGS',
+	type: 'STORE_IDENT_RESULT',
 	payload: plants,
 });

@@ -10,6 +10,7 @@ export const cleanAndPushPlant = (suggestion, images) => {
 	suggestion['note'] = '';
 	suggestion['images'] = images;
 	suggestion['personal_name'] = '';
+	suggestion['api_id'] = suggestion['id'];
 	delete suggestion['probability'];
 	delete suggestion['id'];
 	savePlant(suggestion); // send to BE
