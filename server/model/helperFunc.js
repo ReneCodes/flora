@@ -35,8 +35,8 @@ exports.prepareIdentBody = (base64dataURL) => {
 
 /* CLEAN DATA */
 // TODO: uncomment parameter
-exports.cleanPlantData = async (/* plant */) => {
-	const plant = require('./Temp/plantID.example');
+exports.cleanPlantData = async (/*plant*/) => {
+	const plant = require('./Temp/noWater.js'); // for mock data reason
 	const scientificNames = [];
 	const wikiPlantData = [];
 	let temp_idx = 0;
@@ -48,11 +48,12 @@ exports.cleanPlantData = async (/* plant */) => {
 
 	let {suggestions} = plant;
 
-	// Exclude found plants below 10% 	// TODO: outsource function
+	// Exclude found plants below 10% BUT keep at least one
+	// TODO: outsource function
 	suggestions.forEach((plant, idx) => {
-		if (plant.probability < 0.1) temp_idx = idx;
+		if (plant.probability < 0.1 && !temp_idx) temp_idx = idx;
 	});
-	if (temp_idx) suggestions.splice(temp_idx);
+	if (temp_idx) suggestions.splice(temp_idx); // delete everything after idx position
 
 	cleanSuggestions(suggestions, scientificNames);
 

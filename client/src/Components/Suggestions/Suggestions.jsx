@@ -42,7 +42,7 @@ function SinglePlant({suggestion, images}) {
 	const dispatch = useDispatch();
 	const {plant_name, plant_details, probability} = suggestion;
 	const {common_names, wiki_image, wiki_description, watering} = plant_details;
-	const maxWater = waterDrops[watering.max];
+	const maxWater = watering ? waterDrops[watering.max] : waterDrops[2];
 
 	function addToMyGarden() {
 		const cleanedPlant = cleanAndPushPlant(suggestion, images);

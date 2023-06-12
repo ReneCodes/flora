@@ -111,7 +111,7 @@ function Camera() {
 					onClick={closePhoto}>
 					CLOSE
 				</button>
-				<DownloadButton></DownloadButton>
+				<DownloadButton />
 			</div>
 		</div>
 	);

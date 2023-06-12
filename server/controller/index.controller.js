@@ -9,11 +9,12 @@ exports.identifyPlant = async (req, res) => {
 	try {
 		// TODO: Uncomment for real API Identification => very limited API calls
 		// // Identify image(s)
+
 		// const data = helper.prepareIdentBody(dataURL);
 		// const identResult = await axios
 		// 	.post('https://api.plant.id/v2/identify', data)
 		// 	.then((res) => {
-		//   console.log('Success:', res.data);
+		// 		console.log('Success:', res.data);
 		// 		return res.data;
 		// 	})
 		// 	.catch((error) => {
@@ -22,9 +23,9 @@ exports.identifyPlant = async (req, res) => {
 
 		/* Clean Data */
 		// TODO: uncomment parameter
-		const tempData = await helper.cleanPlantData(/* identResult */);
+		const plantData = await helper.cleanPlantData(/*identResult*/);
 
-		res.status(200).send(tempData);
+		res.status(200).send(plantData);
 	} catch (error) {
 		res.status(417);
 		console.log(error);
@@ -55,6 +56,8 @@ exports.savePlantToGarden = async (req, res) => {
 	}
 };
 
+// needed when updating a plant directly after Snapshot
+// reason => _id does not exist yet
 function getIdField(body) {
 	const {_id, api_id} = body;
 	if (_id) return {_id};
@@ -63,8 +66,6 @@ function getIdField(body) {
 
 exports.updatePlant = async (req, res) => {
 	try {
-		// needed when updating a plant directly after Snapshot => _id does not exist yet
-
 		const plant = await Plant.findOneAndUpdate(getIdField(req.body), req.body, {new: true}); // new:true => returns updated plant
 		res.status(201).send({result: `plant ${plant._id} visited`, plant});
 	} catch (error) {

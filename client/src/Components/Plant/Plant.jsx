@@ -8,7 +8,6 @@ import {waterDrops} from '../../service/helper.service';
 
 function Plant() {
 	const plantIDX = useSelector((state) => state.plant);
-	console.log('State Idx', plantIDX);
 	const garden = useSelector((state) => state.garden);
 	const {plant_name, personal_name, plant_details, _id, api_id, images, note} = garden[plantIDX];
 	const {
@@ -23,7 +22,7 @@ function Plant() {
 	} = plant_details;
 
 	const dispatch = useDispatch();
-	const maxWater = waterDrops[watering.max];
+	const maxWater = watering ? waterDrops[watering.max] : waterDrops[2];
 	let inputfield = '';
 	let notefield = '';
 

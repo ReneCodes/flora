@@ -14,7 +14,6 @@ import * as service from './service/APIClient';
 function App() {
 	const isCameraOn = useSelector((state) => state.camera);
 	const route = useSelector((state) => state.basicRouting);
-	console.log(route);
 	const dispatch = useDispatch();
 
 	async function fetchGarden() {

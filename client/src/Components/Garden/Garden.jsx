@@ -13,7 +13,7 @@ function PlantTile({plant, idx}) {
 	// console.log('Plant:', idx);
 	const {plant_name, _id, api_id, personal_name, plant_details} = plant;
 	const {watering} = plant_details;
-	const maxWater = waterDrops[watering.max];
+	const maxWater = watering ? waterDrops[watering.max] : waterDrops[2];
 
 	function selectPlant(e) {
 		dispatch(viewPlant(Number(idx)));
