@@ -2,6 +2,11 @@ export const accessCamera = () => ({
 	type: 'CAM_ON/OFF',
 });
 
+export const addPlantToGarden = (plant) => ({
+	type: 'INSERT',
+	payload: plant,
+});
+
 export const changePlantName = (text, idx) => ({
 	type: 'CHANGE_NAME',
 	payload: text,
@@ -22,6 +27,12 @@ export const viewPlant = (idx) => ({
 	type: 'SELECT_PLANT',
 	idx,
 });
+
 export const unselectPlant = () => ({
 	type: 'UNSELECT_PLANT',
+});
+
+export const storeFindings = (plants) => ({
+	type: 'STORE_FINDINGS',
+	plants,
 });

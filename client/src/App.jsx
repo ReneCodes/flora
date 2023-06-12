@@ -7,6 +7,7 @@ import Camera from './Components/Camera/Camera';
 import Navbar from './Components/Navbar/Navbar';
 import Homepage from './Components/Homepage/Homepage';
 import Garden from './Components/Garden/Garden';
+import Suggestions from './Components/Suggestions/Suggestions';
 
 import * as service from './service/APIClient';
 
@@ -31,6 +32,7 @@ function App() {
 				<div className="App-content">
 					{/* <Homepage></Homepage> */}
 					<Garden></Garden>
+					<Suggestions></Suggestions>
 					{/* Experimental BOXES for testing functionalities */}
 					{/* <TestSection></TestSection> */}
 				</div>

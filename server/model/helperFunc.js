@@ -43,6 +43,7 @@ exports.cleanPlantData = async (/* plant */) => {
 
 	plant.uploaded_datetime = new Date();
 	// DELETE not needed keys
+	plant['_id'] = plant.id;
 	deleteKeys(plant);
 
 	let {suggestions} = plant;
@@ -71,7 +72,7 @@ exports.cleanPlantData = async (/* plant */) => {
 
 // FOR CLEAN DATA
 function deleteKeys(plant) {
-	const keyList = ['custom_id', 'meta_data', 'finished_datetime', 'modifiers', 'secret'];
+	const keyList = ['id', 'custom_id', 'meta_data', 'finished_datetime', 'modifiers', 'secret'];
 
 	return keyList.forEach((key) => {
 		delete plant[key];

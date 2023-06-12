@@ -11,7 +11,7 @@ export async function getGarden() {
 		.then((data) => data.json())
 		.catch((error) => console.log('\n getGarden ERROR\n', error));
 
-	console.log(res);
+	// console.log(res);
 	return res;
 }
 
@@ -50,7 +50,7 @@ export async function savePlant(plant) {
 		headers: {
 			'Content-Type': 'application/json',
 		},
-		body: JSON.stringify(temp),
+		body: JSON.stringify(plant),
 	})
 		.then((data) => data.json())
 		.catch((error) => console.log('\n savePLant ERROR\n', error));
@@ -60,7 +60,6 @@ export async function savePlant(plant) {
 }
 
 // Update a plant
-// FIXME: fix data input
 export async function updatePlant(newData) {
 	const res = await fetch('http://127.0.0.1:4242/garden', {
 		method: 'PUT',

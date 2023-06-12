@@ -4,6 +4,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import {changePlantName, unselectPlant, attachPlantNote} from '../../actions';
 import {updatePlant} from '../../service/APIClient';
 import {WaterGuide, CareGuide} from '../Homepage/Homepage';
+import {waterDrops} from '../../service/helper.service';
 
 function Plant() {
 	const plantIDX = useSelector((state) => state.plant);
@@ -21,6 +22,7 @@ function Plant() {
 	} = plant_details;
 
 	const dispatch = useDispatch();
+	const maxWater = waterDrops[watering.max];
 	let inputfield = '';
 	let notefield = '';
 
@@ -30,7 +32,6 @@ function Plant() {
 
 	function writeNote(e) {
 		if (e.target.localName === 'button') {
-			console.log('wirite Note');
 			notefield.readOnly = false;
 			notefield.focus();
 			notefield.selectionStart = notefield.value.length;
@@ -73,7 +74,9 @@ function Plant() {
 				<section className="PlantHead">
 					<button onClick={goToGarden}>{'<-'}</button>
 					<div className="card-img plant">
-						<img src={images[0].url}></img>
+						<img
+							src={images[0].url}
+							alt={`picture of ${plant_name}`}></img>
 					</div>
 					<div className="input-garden">
 						<input
@@ -90,6 +93,19 @@ function Plant() {
 						<p>{plant_name}</p>
 					</div>
 				</section>
+				{/* Water info */}
+				<section>
+					<div className="plant-container">
+						{/* TODO insert edible_parts and propagation */}
+						<h3>Overview</h3>
+						<div className="water-garden">
+							<h3>{maxWater[0]}</h3>
+							<h4>{maxWater[1]}</h4>
+						</div>
+					</div>
+				</section>
+
+				{/* Notefield */}
 				<section>
 					<div className="plant-container">
 						<h3>Notes</h3>
@@ -107,6 +123,7 @@ function Plant() {
 						</div>
 					</div>
 				</section>
+				{/* Description */}
 				<section>
 					<div className="plant-container">
 						<h3>Description</h3>
@@ -120,13 +137,17 @@ function Plant() {
 					<div className="plant-container">
 						<p>Common Names</p>
 						<ul>
-							{common_names.map((elem) => (
-								<li
-									key={elem}
-									className="blob">
-									{' ' + elem}{' '}
-								</li>
-							))}
+							{common_names ? (
+								common_names.map((elem) => (
+									<li
+										key={elem}
+										className="blob">
+										{' ' + elem}{' '}
+									</li>
+								))
+							) : (
+								<li className="blob red">{' ' + 'none'} </li>
+							)}
 						</ul>
 					</div>
 				</section>

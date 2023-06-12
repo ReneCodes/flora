@@ -3,21 +3,17 @@ import {useEffect, useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {changePlantName, viewPlant, unselectPlant} from '../../actions';
 import {updatePlant} from '../../service/APIClient';
+import {waterDrops} from '../../service/helper.service';
 
 import Plant from '../Plant/Plant';
 
 function PlantTile({plant, idx}) {
 	const dispatch = useDispatch();
 
-	const waterGuide = {
-		1: ['💧', '10-14 days'],
-		2: ['💧💧', '5-7 days'],
-		3: ['💧💧💧', '2-3 days'],
-	};
 	// console.log('Plant:', idx);
 	const {plant_name, _id, personal_name, plant_details} = plant;
 	const {watering} = plant_details;
-	const maxWater = waterGuide[watering.max];
+	const maxWater = waterDrops[watering.max];
 
 	function selectPlant() {
 		dispatch(viewPlant(Number(idx)));
@@ -49,6 +45,7 @@ function PlantTile({plant, idx}) {
 				<div className="card-img garden">
 					<img
 						src={plant.images[0].url}
+						alt={`picture of ${plant_name}`}
 						onClick={selectPlant}></img>
 				</div>
 				<div className="card-box-garden">
@@ -88,9 +85,10 @@ function GardenTiles() {
 				<p className="section-icon">🪴</p>
 			</div>
 			{gardenList.map((plant, idx) => {
+				const identKey = plant._id ? plant._id : idx;
 				return (
 					<PlantTile
-						key={plant._id}
+						key={identKey}
 						idx={idx}
 						plant={plant}></PlantTile>
 				);

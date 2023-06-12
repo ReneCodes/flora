@@ -4,7 +4,7 @@
 	gap: 16px;
 }
 
-h3 {
+.plant-container h3 {
 	color: var(--primary);
 	margin-bottom: 4px;
 }
@@ -72,9 +72,13 @@ h3 {
 }
 .blob.grey {
 	background-color: var(--grey100);
+	color: var(--black);
 }
 .blob.blue {
 	background-color: var(--blue);
+}
+.blob.red {
+	background-color: var(--red);
 }
 
 .plant-container li {

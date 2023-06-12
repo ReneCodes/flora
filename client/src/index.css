@@ -22,7 +22,9 @@
 
 	--lavender: hsla(250, 99%, 29%, 0.371);
 	--lavender20: hsla(250, 99%, 29%, 0.126);
-	--green: rgba(150, 242, 214, 0.25);
+	--yellow: #ffca3770;
+	--red: rgba(174, 13, 13, 0.566);
+	--green: rgba(150, 242, 207, 0.433);
 	--blue: hsla(187, 80%, 42%, 0.25);
 	--grey100: #ebebeb;
 	--black: #313131;
