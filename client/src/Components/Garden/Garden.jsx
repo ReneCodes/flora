@@ -11,7 +11,7 @@ function PlantTile({plant, idx}) {
 	const dispatch = useDispatch();
 
 	// console.log('Plant:', idx);
-	const {plant_name, _id, personal_name, plant_details} = plant;
+	const {plant_name, _id, api_id, personal_name, plant_details} = plant;
 	const {watering} = plant_details;
 	const maxWater = waterDrops[watering.max];
 
@@ -34,7 +34,10 @@ function PlantTile({plant, idx}) {
 	function writeTrueFalse(e) {
 		const personal_name = e.target.value;
 		e.target.readOnly = !e.target.readOnly;
-		if (e.target.readOnly) updatePlant({_id, personal_name});
+		if (e.target.readOnly) {
+			if (plant._id) updatePlant({_id, personal_name});
+			else updatePlant({api_id, personal_name});
+		}
 	}
 
 	useEffect(() => {

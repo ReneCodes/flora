@@ -37,7 +37,6 @@ export async function findPlant(dataURL) {
 			console.error('Error: ', error);
 		});
 
-	console.log(res);
 	return identResult;
 }
 
@@ -77,14 +76,14 @@ export async function updatePlant(newData) {
 
 // Delete Plant
 // FIXME: fix data input
-export async function deletePlant(_id) {
-	const id = '648435fca70f131b5eaa2f5d';
+export async function deletePlant(_idObj) {
+	// const id = '648435fca70f131b5eaa2f5d';
 	const res = await fetch('http://127.0.0.1:4242/garden', {
 		method: 'DELETE',
 		headers: {
 			'Content-Type': 'application/json',
 		},
-		body: JSON.stringify({_id: id}),
+		body: JSON.stringify(_idObj),
 	})
 		.then((data) => data.json())
 		.catch((error) => console.log('\n savePLant ERROR\n', error));

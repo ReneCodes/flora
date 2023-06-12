@@ -2,7 +2,8 @@ import './Suggestions.css';
 import {useEffect, useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {waterDrops, cleanAndPushPlant} from '../../service/helper.service';
-import {addPlantToGarden} from '../../actions';
+import {addPlantToGarden, changeAppRoute} from '../../actions';
+import loader from '../../assets/loader.gif';
 
 function PlantDetector() {
 	const identPlants = useSelector((state) => state.identPlants);
@@ -46,6 +47,7 @@ function SinglePlant({suggestion, images}) {
 	function addToMyGarden() {
 		const cleanedPlant = cleanAndPushPlant(suggestion, images);
 		dispatch(addPlantToGarden(cleanedPlant));
+		dispatch(changeAppRoute('garden'));
 	}
 
 	return (
@@ -80,45 +82,60 @@ function SinglePlant({suggestion, images}) {
 	);
 }
 
-function Suggestions() {
+function SuggestionContainer() {
 	const identPlants = useSelector((state) => state.identPlants);
 	const {images, suggestions} = identPlants;
-
 	function plural(elem) {
 		if (elem.length > 1) return 's';
 	}
+	return (
+		<section className="suggestion-container">
+			<div className="plant-container">
+				<p>Your Photo{plural(images)}</p>
+				<div className="img-box">
+					{images.map((picture) => {
+						return (
+							<img
+								key={picture.file_name}
+								src={picture.url}></img>
+						);
+					})}
+				</div>
+			</div>
+			<PlantDetector />
+			{suggestions.map((single) => {
+				return (
+					<SinglePlant
+						key={single.id}
+						suggestion={single}
+						images={images}
+					/>
+				);
+			})}
+		</section>
+	);
+}
+
+function Loader() {
+	return (
+		<div className="loader">
+			<img src={loader}></img>
+		</div>
+	);
+}
+
+function Suggestions() {
+	const identPlants = useSelector((state) => state.identPlants);
 
 	console.log(identPlants);
 	return (
-		<>
+		<section className="suggestions">
 			<div className="section-title">
-				<h2>SUGGESTION{plural(suggestions)}</h2>
+				<h2>SUGGESTIONS</h2>
 				<p className="section-icon">📸</p>
 			</div>
-			<section className="suggestion-container">
-				<div className="plant-container">
-					<p>Your Photo{plural(images)}</p>
-					<div className="img-box">
-						{images.map((picture) => {
-							return (
-								<img
-									key={picture.file_name}
-									src={picture.url}></img>
-							);
-						})}
-					</div>
-				</div>
-				<PlantDetector></PlantDetector>
-				{suggestions.map((single) => {
-					return (
-						<SinglePlant
-							key={single.id}
-							suggestion={single}
-							images={images}></SinglePlant>
-					);
-				})}
-			</section>
-		</>
+			{identPlants ? <SuggestionContainer /> : <Loader />}
+		</section>
 	);
 }
 

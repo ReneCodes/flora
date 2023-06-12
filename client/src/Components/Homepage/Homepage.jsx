@@ -56,7 +56,7 @@ function PlantsInGarden({garden}) {
 				<button>{garden.length > 0 ? <ShowImage idx={0} /> : <p onClick={openCamera}>📸</p>}</button>
 			</div>
 			<div className="card-img">
-				<button>{garden.length > 0 ? <ShowImage idx={1} /> : <p onClick={openCamera}>📸</p>}</button>
+				<button>{garden.length > 1 ? <ShowImage idx={1} /> : <p onClick={openCamera}>📸</p>}</button>
 			</div>
 		</>
 	);

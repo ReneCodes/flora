@@ -8,7 +8,6 @@ function Navbar() {
 	const route = useSelector((state) => state.basicRouting);
 	const currentRoute = route[0];
 	const previousRoute = route[1];
-	console.log('Navbar', currentRoute);
 
 	function navigateRoute(e) {
 		const route = e.target.attributes.route.value;
@@ -57,7 +56,8 @@ function Navbar() {
 					</span>
 				)}
 				{((currentRoute === 'garden' && previousRoute === 'home') ||
-					(currentRoute === 'garden' && previousRoute === 'plantInfo')) && (
+					(currentRoute === 'garden' && previousRoute === 'plantInfo') ||
+					(currentRoute === 'garden' && previousRoute === 'identResult')) && (
 					<span
 						className="nav-icon"
 						route="home">

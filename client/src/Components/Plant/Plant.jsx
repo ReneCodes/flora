@@ -1,15 +1,16 @@
 import './Plant.css';
 import {useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {changePlantName, unselectPlant, attachPlantNote, changeAppRoute} from '../../actions';
-import {updatePlant} from '../../service/APIClient';
+import {changePlantName, unselectPlant, attachPlantNote, changeAppRoute, deletePlantFromGarden} from '../../actions';
+import {deletePlant, updatePlant} from '../../service/APIClient';
 import {WaterGuide, CareGuide} from '../Homepage/Homepage';
 import {waterDrops} from '../../service/helper.service';
 
 function Plant() {
 	const plantIDX = useSelector((state) => state.plant);
+	console.log('State Idx', plantIDX);
 	const garden = useSelector((state) => state.garden);
-	const {plant_name, personal_name, plant_details, _id, images, note} = garden[plantIDX];
+	const {plant_name, personal_name, plant_details, _id, api_id, images, note} = garden[plantIDX];
 	const {
 		wiki_description,
 		common_names,
@@ -61,6 +62,17 @@ function Plant() {
 			e.target.readOnly = !e.target.readOnly;
 			// update personal_name onBlur
 			if (e.target.readOnly) updatePlant({_id, personal_name});
+		}
+	}
+
+	async function deleteThisPlant() {
+		try {
+			await (_id ? deletePlant({_id}) : deletePlant({api_id})).then(() => {
+				dispatch(deletePlantFromGarden(Number(plantIDX)));
+				goToGarden();
+			});
+		} catch (error) {
+			console.log('Error deleting Plant', error);
 		}
 	}
 
@@ -170,10 +182,23 @@ function Plant() {
 						</ul>
 					</div>
 				</section>
+				{/* Danger Zone */}
+				<section>
+					<div className="plant-container ">
+						<h3>Danger Zone</h3>
+						<div className="danger">
+							<button
+								className="btn-delete blob"
+								onClick={deleteThisPlant}>
+								Delete Plant
+							</button>
+						</div>
+					</div>
+				</section>
 				{/* Articles */}
 				<section>
 					<div className="article-container">
-						<h3>Articles</h3>
+						<h2>Articles</h2>
 						<CareGuide></CareGuide>
 						<WaterGuide></WaterGuide>
 					</div>
