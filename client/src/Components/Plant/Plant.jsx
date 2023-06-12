@@ -26,10 +26,9 @@ function Plant() {
 	let inputfield = '';
 	let notefield = '';
 
-	function goToGarden(e) {
-		const route = e.target.attributes.route.value;
-		// dispatch(changeAppRoute(route));
+	function goToGarden() {
 		dispatch(unselectPlant());
+		dispatch(changeAppRoute('garden'));
 	}
 
 	function writeNote(e) {

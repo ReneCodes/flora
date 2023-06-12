@@ -80,6 +80,12 @@
 .blob.red {
 	background-color: var(--red);
 }
+.blob.yellow {
+	background-color: var(--yellow);
+}
+.blob.lavender {
+	background-color: var(--lavender20);
+}
 
 .plant-container li {
 	position: relative;

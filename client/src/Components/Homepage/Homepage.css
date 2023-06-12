@@ -4,6 +4,13 @@
 	gap: 24px;
 }
 
+.Homepage button {
+	border: none;
+	font-size: inherit;
+	color: inherit;
+	background-color: inherit;
+}
+
 .card {
 	display: flex;
 	flex-direction: column;
@@ -12,6 +19,11 @@
 
 	border: 1px solid;
 	border-radius: 25px;
+	overflow: hidden;
+}
+.card-info {
+	text-align: center;
+	margin-bottom: 16px;
 }
 
 .card-title {
@@ -51,13 +63,18 @@
 }
 
 .card-img {
+	text-align: center;
+	line-height: 160px;
+	font-size: 42px;
 	width: 160px;
 	max-width: 50%;
 	height: 160px;
 	border-radius: 20px;
 	overflow: hidden;
 	background-color: var(--primary);
+}
 
+.card-img button {
 	cursor: pointer;
 }
 
@@ -68,6 +85,7 @@
 
 .card-img img {
 	object-fit: cover;
+	object-position: center center;
 	width: 100%;
 	height: 100%;
 	scale: 1.01;
