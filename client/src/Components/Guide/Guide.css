@@ -1,0 +1,64 @@
+.guide-component {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+}
+
+.guide-component button {
+	border: none;
+	font-size: inherit;
+	color: inherit;
+	background-color: inherit;
+}
+
+.guide {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+}
+
+.guide .intro {
+	text-align: center;
+	line-height: 24px;
+	padding: 10px;
+	border-bottom: 1px solid var(--primary);
+}
+
+.instruction {
+	padding: 16px;
+	border: 1px solid;
+	border-radius: 12px;
+}
+
+.instruction h3 {
+	color: var(--primary);
+}
+.instruction ul {
+	padding: 16px 16px 0;
+	margin-left: 12px;
+}
+.instruction ul li {
+	list-style: decimal;
+	line-height: 24px;
+	margin-bottom: 12px;
+	margin-left: 12px;
+}
+
+.instruction ul li:last-child {
+	margin-bottom: 0;
+}
+
+.note {
+	background-color: var(--lavender20);
+	margin-top: 8px;
+	border-radius: 5px;
+}
+.note h3 {
+	color: inherit;
+	margin-bottom: 8px;
+}
+
+.info {
+	line-height: 24px;
+	padding: 0 16px 16px;
+}

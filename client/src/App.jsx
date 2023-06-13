@@ -8,6 +8,9 @@ import Navbar from './Components/Navbar/Navbar';
 import Homepage from './Components/Homepage/Homepage';
 import Garden from './Components/Garden/Garden';
 import Suggestions from './Components/Suggestions/Suggestions';
+import Guide from './Components/Guide/Guide';
+import CareGuide from './Components/Guide/CareGuide';
+import WaterGuide from './Components/Guide/WaterGuide';
 
 import * as service from './service/APIClient';
 
@@ -37,6 +40,10 @@ function App() {
 					{route[0] === 'home' && <Homepage />}
 					{(route[0] === 'garden' || route[0] === 'plantInfo') && <Garden />}
 					{route[0] === 'identResult' && <Suggestions />}
+					{route[0] === 'guides' && <Guide />}
+					{route[0] === 'careGuide' && <CareGuide />}
+					{route[0] === 'waterGuide' && <WaterGuide />}
+
 					{/* Experimental BOXES for testing functionalities */}
 					{/* <TestSection></TestSection> */}
 				</div>
