@@ -10,18 +10,18 @@ exports.identifyPlant = async (req, res) => {
 		// TODO: Uncomment for real API Identification => very limited API calls
 		// // Identify image(s)
 
-		// const data = helper.prepareIdentBody(dataURL);
-		// const identResult = await axios
-		// 	.post('https://api.plant.id/v2/identify', data)
-		// 	.then((res) => {
-		// 		console.log('Success:', res.data);
-		// 		return res.data;
-		// 	})
-		// 	.catch((error) => {
-		// 		console.error('Error: ', error);
-		// 	});
+		const data = helper.prepareIdentBody(dataURL);
+		const identResult = await axios
+			.post('https://api.plant.id/v2/identify', data)
+			.then((res) => {
+				console.log('Success:', res.data);
+				return res.data;
+			})
+			.catch((error) => {
+				console.error('Error: ', error);
+			});
 
-		const identResult = '';
+		// const identResult = '';
 
 		/* Clean Data */
 		// TODO: uncomment parameter

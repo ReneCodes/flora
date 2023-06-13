@@ -3,18 +3,18 @@ import {useRef, useEffect, useState} from 'react';
 import {findPlant} from '../../service/APIClient';
 import {useSelector, useDispatch} from 'react-redux';
 import {storeIdentResult, changeAppRoute, accessCamera} from '../../actions';
+import {Loader} from '../Suggestions/Suggestions';
 
 function Camera() {
+	const dispatch = useDispatch();
+	const camera = useSelector((state) => state.camera);
 	const videoRef = useRef(); // grabs video elem in HTML
 	const photoRef = useRef(); // grabs canvas elem in HTML
-	const camera = useSelector((state) => state.camera);
-
-	const dispatch = useDispatch();
 
 	const [hasPhoto, setHasPhoto] = useState(false);
 
 	// Get Camera Access
-	const getVideo = () => {
+	function getVideo() {
 		const height = 1024;
 
 		navigator.mediaDevices
@@ -33,11 +33,13 @@ function Camera() {
 			.catch((error) => {
 				console.log(error);
 			});
-	};
+	}
 
-	const takePhoto = () => {
+	async function takePhoto() {
 		const video = videoRef.current;
 		const photo = photoRef.current;
+		video.pause();
+		setHasPhoto(true);
 
 		photo.height = 1200;
 		photo.width = photo.height / (16 / 8.2);
@@ -45,23 +47,8 @@ function Camera() {
 		let ctx = photo.getContext('2d');
 		ctx.drawImage(video, 0, 0, photo.width, photo.height);
 
-		video.pause();
-
-		const imgDataUrl = photo.toDataURL('image/jpeg', 0.9); // convert image to string
-
-		// TODO: delete saveImage => only for testing
-		const saveImage = document.getElementById('canvasDownload');
-		saveImage.href = imgDataUrl;
-
-		setHasPhoto(true);
-	};
-
-	const closePhoto = async () => {
-		// const video = videoRef.current;
-		const photo = photoRef.current;
-		const ctx = photo.getContext('2d');
-
 		const imgDataUrl = photo.toDataURL('image/jpeg', 0.9);
+
 		try {
 			await findPlant(imgDataUrl).then((identResult) => {
 				dispatch(storeIdentResult(identResult));
@@ -74,7 +61,12 @@ function Camera() {
 		} catch (error) {
 			console.log('Error Identifying Plant', error);
 		}
-	};
+	}
+
+	function takeMeHome() {
+		dispatch(accessCamera());
+		dispatch(changeAppRoute('home'));
+	}
 
 	// Init video after rendering component
 	useEffect(() => {
@@ -104,37 +96,17 @@ function Camera() {
 				</button>
 				<button
 					className="btn-close btn-cam"
-					onClick={closePhoto}>
+					onClick={takeMeHome}>
 					{'<-'}
 				</button>
 			</div>
 
 			<div className={'result ' + (hasPhoto ? 'hasPhoto' : '')}>
 				<canvas ref={photoRef}></canvas>
-				<DownloadButton />
+				<Loader />
 			</div>
 		</div>
 	);
 }
-
-function DownloadButton() {
-	return (
-		<button className="btn-cam btn-save">
-			<a
-				id="canvasDownload"
-				href="#"
-				download="canvas-image.jpeg">
-				Download Image
-			</a>
-		</button>
-	);
-}
-
-/** Example to Download image
-		 <a id="canvasDownload" href='#' download="canvas-image.png"  >Download Image</a>
-		 const saveImage = document.getElementById('canvasDownload');
-		 const pngDataUrl = photo.toDataURL('image/png');
-		 saveImage.href = pngDataUrl;
-* */
 
 export default Camera;

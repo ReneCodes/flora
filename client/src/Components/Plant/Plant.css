@@ -76,9 +76,9 @@
 	letter-spacing: 2px;
 
 	padding: 8px;
-	background-color: var(--lavender20);
+	background-color: var(--lavender-pastel);
 
-	border: 1px solid var(--lavender20);
+	border: 1px solid var(--lavender);
 	border-radius: 5px;
 	outline: none;
 }

@@ -1,5 +1,4 @@
 import './Suggestions.css';
-import {useEffect, useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {waterDrops, cleanAndPushPlant} from '../../service/helper.service';
 import {addPlantToGarden, changeAppRoute} from '../../actions';
@@ -90,16 +89,12 @@ function SuggestionContainer() {
 	}
 	return (
 		<section className="suggestion-container">
-			<div className="plant-container">
+			<div className="plant-container middle">
 				<p>Your Photo{plural(images)}</p>
 				<div className="img-box">
-					{images.map((picture) => {
-						return (
-							<img
-								key={picture.file_name}
-								src={picture.url}></img>
-						);
-					})}
+					<img
+						key={images[0].file_name}
+						src={images[0].url}></img>
 				</div>
 			</div>
 			<PlantDetector />
@@ -116,7 +111,7 @@ function SuggestionContainer() {
 	);
 }
 
-function Loader() {
+export function Loader() {
 	return (
 		<div className="loader">
 			<img src={loader}></img>
@@ -127,7 +122,6 @@ function Loader() {
 function Suggestions() {
 	const identPlants = useSelector((state) => state.identPlants);
 
-	console.log(identPlants);
 	return (
 		<section className="suggestions">
 			<div className="section-title">

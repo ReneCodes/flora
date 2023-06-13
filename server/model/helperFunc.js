@@ -35,8 +35,8 @@ exports.prepareIdentBody = (base64dataURL) => {
 
 /* CLEAN DATA */
 // TODO: uncomment parameter
-exports.cleanPlantData = async (/*plant*/) => {
-	const plant = require('./Temp/noWater.js'); // for mock data reason
+exports.cleanPlantData = async (plant) => {
+	// const plant = require('./Temp/noWater.js'); // for mock data reason
 	// const plant = require('./Temp/plantID.example'); // for mock data reason
 	const scientificNames = [];
 	const wikiPlantData = [];

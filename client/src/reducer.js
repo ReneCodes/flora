@@ -56,11 +56,9 @@ const plant = (state = false, action) => {
 	}
 };
 
-const TEMP = identResponse;
 const identPlants = (state = '', action) => {
 	switch (action.type) {
 		case 'STORE_IDENT_RESULT':
-			console.log('STORING', action.payload);
 			state = action.payload;
 			return state;
 		default:
