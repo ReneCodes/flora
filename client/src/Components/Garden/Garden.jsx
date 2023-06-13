@@ -61,7 +61,6 @@ function PlantTile({plant, idx}) {
 							type={'text'}
 							id={`name-field-${_id}`}
 							value={personal_name}
-							placeholder={plant_name.split(' ')[0]}
 							onChange={changeName}
 							onDoubleClick={writeTrueFalse}
 							onBlur={writeTrueFalse}

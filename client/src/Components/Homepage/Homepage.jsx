@@ -2,32 +2,8 @@ import './Homepage.css';
 import {useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {changeAppRoute, accessCamera, viewPlant} from '../../actions';
-
-export function CareGuide({navigateRoute}) {
-	return (
-		<button onClick={() => navigateRoute('careGuide')}>
-			{' '}
-			<div className="card">
-				<div className="card-title">
-					<h2>CARE GUIDE</h2>
-					<p className="card-icon">🌱</p>
-				</div>
-			</div>
-		</button>
-	);
-}
-export function WaterGuide({navigateRoute}) {
-	return (
-		<button onClick={() => navigateRoute('waterGuide')}>
-			<div className="card">
-				<div className="card-title">
-					<h2>WATER GUIDE</h2>
-					<p className="card-icon">🌊</p>
-				</div>
-			</div>
-		</button>
-	);
-}
+import CareGuideLink from '../Navbar/CareGuideLink';
+import WaterGuideLink from '../Navbar/WaterGuideLink';
 
 function PlantsInGarden({garden}) {
 	const dispatch = useDispatch();
@@ -76,12 +52,12 @@ function Homepage() {
 		<>
 			<div className="logo">FLORA</div>
 
-			<div className="Homepage">
+			<div className="homepage-component">
 				<div className="card">
 					<button onClick={() => navigateRoute('garden')}>
 						<div className="card-title card-main">
 							<h2>GARDEN</h2>
-							<p className="card-icon">🪴</p>
+							<p className="card-icon wobble">🪴</p>
 						</div>
 					</button>
 					<div className="card-box">
@@ -93,8 +69,9 @@ function Homepage() {
 						</div>
 					)}
 				</div>
-				<CareGuide navigateRoute={navigateRoute} />
-				<WaterGuide navigateRoute={navigateRoute} />
+				{/* <CareGuideLink navigateRoute={navigateRoute} /> */}
+				<CareGuideLink />
+				<WaterGuideLink />
 			</div>
 		</>
 	);

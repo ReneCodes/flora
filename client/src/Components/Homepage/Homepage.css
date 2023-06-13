@@ -1,10 +1,10 @@
-.Homepage {
+.homepage-component {
 	display: flex;
 	flex-direction: column;
 	gap: 24px;
 }
 
-.Homepage button {
+.homepage-component button {
 	border: none;
 	font-size: inherit;
 	color: inherit;
@@ -90,4 +90,25 @@
 	height: 100%;
 	scale: 1.01;
 	transition: 0.6s;
+}
+
+.wobble:hover {
+	animation: wobble 2s;
+	animation-iteration-count: infinite;
+}
+
+@keyframes wobble {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	33% {
+		transform: rotate(10deg);
+	}
+	66% {
+		transform: rotate(-10deg);
+	}
+	100% {
+		transform: rotate(0deg);
+	}
 }

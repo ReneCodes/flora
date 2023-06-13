@@ -43,3 +43,10 @@
 
 	transform: translateX(-50%);
 }
+
+.scale {
+	transition: all 0.4s ease-out;
+}
+.scale:hover {
+	scale: 1.05;
+}

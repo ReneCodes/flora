@@ -3,7 +3,8 @@ import {useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {changePlantName, unselectPlant, attachPlantNote, changeAppRoute, deletePlantFromGarden} from '../../actions';
 import {deletePlant, updatePlant} from '../../service/APIClient';
-import {WaterGuide, CareGuide} from '../Homepage/Homepage';
+import CareGuideLink from '../Navbar/CareGuideLink';
+import WaterGuideLink from '../Navbar/WaterGuideLink';
 import {waterDrops} from '../../service/helper.service';
 
 function Plant() {
@@ -106,7 +107,6 @@ function Plant() {
 							type={'text'}
 							id={`name-field-${_id}`}
 							value={personal_name}
-							placeholder={plant_name.split(' ')[0]}
 							onChange={changeName}
 							onDoubleClick={writeTrueFalse}
 							onBlur={writeTrueFalse}
@@ -162,14 +162,14 @@ function Plant() {
 						<h3>Description</h3>
 						<p>Type</p>
 						<p className="blob blue">{wiki_description.value}</p>
-						<p>{wiki_description.extract}</p>
+						<p className="info">{wiki_description.extract}</p>
 					</div>
 				</section>
 				{/* Common Names */}
 				<section>
 					<div className="plant-container">
 						<p>Common Names</p>
-						<ul>
+						<ul className="info">
 							{common_names ? (
 								common_names.map((elem) => (
 									<li
@@ -188,7 +188,7 @@ function Plant() {
 				<section>
 					<div className="plant-container">
 						<p>Family</p>
-						<ul>
+						<ul className="info">
 							<li className="blob full">
 								<span className="blob green">Genus</span>
 								{' ' + structured_name.genus}
@@ -217,8 +217,8 @@ function Plant() {
 				<section>
 					<div className="article-container">
 						<h2>Articles</h2>
-						<CareGuide></CareGuide>
-						<WaterGuide></WaterGuide>
+						<CareGuideLink />
+						<WaterGuideLink />
 					</div>
 				</section>
 			</div>
