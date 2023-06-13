@@ -1,5 +1,6 @@
 import './Garden.css';
-import {useEffect, useState} from 'react';
+import {useEffect} from 'react';
+import toast, {Toaster} from 'react-hot-toast';
 import {useSelector, useDispatch} from 'react-redux';
 import {changePlantName, viewPlant, unselectPlant, changeAppRoute} from '../../actions';
 import {updatePlant} from '../../service/APIClient';
@@ -31,7 +32,7 @@ function PlantTile({plant, idx}) {
 		}
 	}
 
-	function writeTrueFalse(e) {
+	async function writeTrueFalse(e) {
 		const personal_name = e.target.value;
 		e.target.readOnly = !e.target.readOnly;
 		if (e.target.readOnly) {
@@ -56,7 +57,6 @@ function PlantTile({plant, idx}) {
 				</div>
 				<div className="card-box-garden">
 					<div className="input-garden">
-						{/* TODO setting state and stuff */}
 						<input
 							type={'text'}
 							id={`name-field-${_id}`}
@@ -66,7 +66,6 @@ function PlantTile({plant, idx}) {
 							onBlur={writeTrueFalse}
 							readOnly={true}
 						/>
-						{/* TODO onClick handler function */}
 						<button onClick={changeName}>🖋️</button>
 						<p>{plant_name}</p>
 					</div>
@@ -112,9 +111,21 @@ function Garden() {
 	const plantIDX = useSelector((state) => state.plant);
 
 	return (
-		<div className="Garden">
-			{typeof plantIDX === 'number' && currentRoute === 'plantInfo' ? <Plant></Plant> : <GardenTiles></GardenTiles>}
-		</div>
+		<>
+			<div>
+				<Toaster
+					containerStyle={{
+						position: 'relative',
+						top: 0,
+						left: 10,
+					}}
+				/>
+				<div className="garden">
+					{' '}
+					{typeof plantIDX === 'number' && currentRoute === 'plantInfo' ? <Plant></Plant> : <GardenTiles></GardenTiles>}
+				</div>
+			</div>
+		</>
 	);
 }
 

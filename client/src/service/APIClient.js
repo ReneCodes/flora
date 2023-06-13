@@ -1,5 +1,6 @@
 //
 import axios from 'axios';
+import toast from 'react-hot-toast';
 
 import cleanPlant1 from './TEMP/cleanPlant1';
 import cleanPlant2 from './TEMP/cleanPlant2';
@@ -16,7 +17,6 @@ export async function getGarden() {
 }
 
 // Send base64 img string to BE
-// FIXME: fix data input
 export async function findPlant(dataURL) {
 	let config = {
 		method: 'post',
@@ -30,10 +30,11 @@ export async function findPlant(dataURL) {
 	const identResult = await axios
 		.request(config)
 		.then((res) => {
-			console.log('Success:', res.data);
+			// console.log('Success:', res.data);
 			return res.data;
 		})
 		.catch((error) => {
+			errorToast(`Server Error`);
 			console.error('Error: ', error);
 		});
 
@@ -41,9 +42,9 @@ export async function findPlant(dataURL) {
 }
 
 // Send suggested plant to BE
-// FIXME: fix data input
+
 export async function savePlant(plant) {
-	const temp = cleanPlant3;
+	// const temp = cleanPlant3;
 	const res = await fetch('http://127.0.0.1:4242/garden', {
 		method: 'POST',
 		headers: {
@@ -51,8 +52,14 @@ export async function savePlant(plant) {
 		},
 		body: JSON.stringify(plant),
 	})
-		.then((data) => data.json())
-		.catch((error) => console.log('\n savePLant ERROR\n', error));
+		.then((data) => {
+			successToast('Successfully planted');
+			return data.json();
+		})
+		.catch((error) => {
+			errorToast(`Unable to plant it`);
+			console.log('\n savePLant ERROR\n', error);
+		});
 
 	console.log(res);
 	return res;
@@ -67,17 +74,20 @@ export async function updatePlant(newData) {
 		},
 		body: JSON.stringify(newData), // {_id , note, personal_name}
 	})
-		.then((data) => data.json())
-		.catch((error) => console.log('\n savePLant ERROR\n', error));
-
+		.then((data) => {
+			successToast(newData.note ? 'Note updated' : 'Name updated');
+			return data.json();
+		})
+		.catch((error) => {
+			errorToast('Error during update');
+			console.log('\n savePLant ERROR\n', error);
+		});
 	console.log(res);
 	return res;
 }
 
 // Delete Plant
-// FIXME: fix data input
 export async function deletePlant(_idObj) {
-	// const id = '648435fca70f131b5eaa2f5d';
 	const res = await fetch('http://127.0.0.1:4242/garden', {
 		method: 'DELETE',
 		headers: {
@@ -85,9 +95,32 @@ export async function deletePlant(_idObj) {
 		},
 		body: JSON.stringify(_idObj),
 	})
-		.then((data) => data.json())
-		.catch((error) => console.log('\n savePLant ERROR\n', error));
+		.then((data) => {
+			successToast('Plant deleted');
+			return data.json();
+		})
+		.catch((error) => {
+			errorToast(`Couldn't delete plant`);
+			console.log('\n savePLant ERROR\n', error);
+		});
 
 	console.log(res);
 	return res;
+}
+
+function successToast(msg) {
+	toast.success(msg, {
+		style: {
+			background: '#d0f7e8',
+		},
+		duration: 3000,
+	});
+}
+function errorToast(msg) {
+	toast.error(msg, {
+		style: {
+			background: '#cf8583',
+		},
+		duration: 3000,
+	});
 }
