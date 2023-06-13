@@ -41,6 +41,7 @@ const plantSchema = new mongoose.Schema({
 			max: Number,
 			min: Number,
 		},
+		watering_info: String,
 		language: String,
 		scientific_name: String,
 		structured_name: {

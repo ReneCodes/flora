@@ -12,12 +12,14 @@ function Plant() {
 	const {plant_name, personal_name, plant_details, _id, api_id, images, note} = garden[plantIDX];
 	const {
 		wiki_description,
+		wiki_image,
 		common_names,
 		taxonomy,
 		synonyms,
 		edible_parts,
 		structured_name,
 		watering,
+		watering_info,
 		propagation_methods,
 	} = plant_details;
 
@@ -82,15 +84,22 @@ function Plant() {
 
 	return (
 		<>
-			<div className="Plant">
+			<div className="plant-component">
 				<section className="PlantHead">
 					<button onClick={goToGarden}>
 						<span route="garden">{'<-'}</span>
 					</button>
-					<div className="card-img plant">
-						<img
-							src={images[0].url}
-							alt={`picture of ${plant_name}`}></img>
+					<div className="card-img-plant">
+						<div className="card-img">
+							<img
+								src={images[0].url}
+								alt={plant_name}></img>
+						</div>
+						<div className="card-img">
+							<img
+								src={wiki_image}
+								alt={plant_name}></img>
+						</div>
 					</div>
 					<div className="input-garden">
 						<input
@@ -118,6 +127,16 @@ function Plant() {
 						</div>
 					</div>
 				</section>
+				{/* Watering Info */}
+				{watering_info && (
+					<section>
+						<div className="plant-container center">
+							{/* TODO insert edible_parts and propagation */}
+							<p>Watering Tipp</p>
+							<p>{watering_info}</p>
+						</div>
+					</section>
+				)}
 
 				{/* Notefield */}
 				<section>

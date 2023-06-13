@@ -1,12 +1,33 @@
-.Plant {
+.plant-component {
 	display: flex;
 	flex-direction: column;
 	gap: 16px;
 }
 
+.card-img-plant {
+	display: flex;
+	justify-content: space-around;
+	width: 100%;
+
+	margin: 16px auto;
+}
+
+.card-img-plant .card-img {
+	border-radius: 8px;
+}
+
+/* .card-img-plant img {
+	width: 40%;
+	height: 160px;
+	object-fit: cover;
+} */
+
 .plant-container h3 {
 	color: var(--primary);
 	margin-bottom: 4px;
+}
+.plant-container.center {
+	text-align: center;
 }
 .article-container {
 	display: flex;
@@ -15,6 +36,7 @@
 }
 .article-container button {
 	border: none;
+	background-color: inherit;
 }
 
 .note-plant {

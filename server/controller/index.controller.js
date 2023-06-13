@@ -21,9 +21,11 @@ exports.identifyPlant = async (req, res) => {
 		// 		console.error('Error: ', error);
 		// 	});
 
+		const identResult = '';
+
 		/* Clean Data */
 		// TODO: uncomment parameter
-		const plantData = await helper.cleanPlantData(/*identResult*/);
+		const plantData = await helper.cleanPlantData(identResult);
 
 		res.status(200).send(plantData);
 	} catch (error) {
@@ -47,6 +49,7 @@ exports.savePlantToGarden = async (req, res) => {
 	const plant = {
 		...req.body,
 	};
+	console.log(plant);
 	try {
 		await Plant.create(plant);
 		res.status(201).send({result: 'planted in Garden'});
