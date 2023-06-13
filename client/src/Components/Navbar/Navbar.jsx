@@ -18,12 +18,13 @@ function Navbar() {
 		dispatch(accessCamera()); // turn on/Off
 	}
 	return (
-		<div className="Navbar">
+		<div className="navbar-component">
 			<button onClick={navigateRoute}>
 				{(currentRoute === 'home' ||
 					currentRoute === 'plantInfo' ||
 					currentRoute === 'careGuide' ||
 					currentRoute === 'waterGuide' ||
+					currentRoute === 'identResult' ||
 					currentRoute === 'garden') && (
 					<span
 						className="nav-icon scale"

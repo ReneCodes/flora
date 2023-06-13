@@ -48,7 +48,8 @@ function App() {
 					{/* <TestSection></TestSection> */}
 				</div>
 				{/* {!isCameraOn && <Navbar></Navbar>} */}
-				<Navbar />
+				{!isCameraOn && <Navbar />}
+				{/* <Navbar /> */}
 			</div>
 		</section>
 	);

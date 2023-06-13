@@ -86,8 +86,10 @@ function Plant() {
 	return (
 		<>
 			<div className="plant-component">
-				<section className="PlantHead">
-					<button onClick={goToGarden}>
+				<section className="plantHead">
+					<button
+						className="btn-back"
+						onClick={goToGarden}>
 						<span route="garden">{'<-'}</span>
 					</button>
 					<div className="card-img-plant">

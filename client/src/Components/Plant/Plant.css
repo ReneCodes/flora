@@ -5,6 +5,29 @@
 	line-height: 24px;
 }
 
+.btn-back {
+	height: 34px;
+	width: 34px;
+	font-size: 22px;
+	margin-top: 12px;
+	margin-left: 8px;
+	background-color: inherit;
+
+	border: 2px solid;
+	border-radius: 8px;
+
+	transition: 0.4s;
+	cursor: pointer;
+}
+.btn-back:hover {
+	scale: 1.05;
+	background-color: #209aaa;
+}
+.btn-back:active {
+	scale: 0.96;
+	background-color: #1b8391;
+}
+
 .card-img-plant {
 	display: flex;
 	justify-content: space-around;

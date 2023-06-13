@@ -70,7 +70,7 @@ function SinglePlant({suggestion, images}) {
 			</div>
 			<div className="propability-box description">
 				<h3>Description</h3>
-				<p>{wiki_description.value}</p>
+				<p className="blob green">{wiki_description.value}</p>
 				<p>{wiki_description.extract}</p>
 			</div>
 			<button

@@ -92,25 +92,25 @@ function Camera() {
 	}, [camera]);
 
 	return (
-		<div className="Camera">
+		<div className="camera-component">
 			{/*  */}
 
 			<div className="camera">
 				<video ref={videoRef}></video>
 				<button
-					className="btn-cam btn-snap"
+					className="btn-shot btn-cam"
 					onClick={takePhoto}>
-					SNAP
+					<p>[ ]</p>
+				</button>
+				<button
+					className="btn-close btn-cam"
+					onClick={closePhoto}>
+					{'<-'}
 				</button>
 			</div>
 
 			<div className={'result ' + (hasPhoto ? 'hasPhoto' : '')}>
 				<canvas ref={photoRef}></canvas>
-				<button
-					className="btn-cam btn-close"
-					onClick={closePhoto}>
-					CLOSE
-				</button>
 				<DownloadButton />
 			</div>
 		</div>

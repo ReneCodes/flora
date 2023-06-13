@@ -1,39 +1,42 @@
-.Navbar {
+.navbar-component {
 	position: absolute;
+	display: flex;
+	justify-content: space-evenly;
 	bottom: 0;
 	left: 0;
 	width: 100%;
-
-	display: flex;
-	justify-content: space-evenly;
-
 	height: 60px;
 
 	background-color: var(--primary);
+
+	border-top-left-radius: 16px;
+	border-top-right-radius: 16px;
 }
 
-.Navbar button {
+.navbar-component button {
 	position: relative;
 	height: 45px;
 	width: 45px;
 	font-size: 42px;
+	background-color: var(--white);
 
-	border-radius: 5px;
+	border-radius: 8px;
 	border: none;
 	margin: auto;
 
 	cursor: pointer;
 }
 
-.Navbar button:active {
+.navbar-component button:active {
 	background-color: var(--black);
 }
 
-.Navbar button:nth-child(2) {
+.navbar-component button:nth-child(2) {
 	top: -18px;
 	height: 70px;
 	width: 70px;
 	font-size: 60px;
+	box-shadow: 0 0 0 8px var(--primary);
 }
 
 .nav-icon {
