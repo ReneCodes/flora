@@ -98,6 +98,8 @@ function Navbar() {
 				)}
 				{((currentRoute === 'garden' && previousRoute === 'home') ||
 					(currentRoute === 'garden' && previousRoute === 'guides') ||
+					(currentRoute === 'garden' && previousRoute === 'waterGuide') ||
+					(currentRoute === 'garden' && previousRoute === 'careGuide') ||
 					(currentRoute === 'garden' && previousRoute === 'plantInfo') ||
 					(currentRoute === 'garden' && previousRoute === 'identResult')) && (
 					<span

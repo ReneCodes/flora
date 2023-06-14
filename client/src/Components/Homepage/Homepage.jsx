@@ -1,5 +1,4 @@
 import './Homepage.css';
-import {useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {changeAppRoute, accessCamera, viewPlant} from '../../actions';
 import CareGuideLink from '../Navbar/CareGuideLink';

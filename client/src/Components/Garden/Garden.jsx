@@ -1,6 +1,5 @@
 import './Garden.css';
 import {useEffect} from 'react';
-import toast, {Toaster} from 'react-hot-toast';
 import {useSelector, useDispatch} from 'react-redux';
 import {changePlantName, viewPlant, unselectPlant, changeAppRoute} from '../../actions';
 import {updatePlant} from '../../service/APIClient';
@@ -113,13 +112,6 @@ function Garden() {
 	return (
 		<>
 			<div>
-				<Toaster
-					containerStyle={{
-						position: 'relative',
-						top: 0,
-						left: 10,
-					}}
-				/>
 				<div className="garden">
 					{' '}
 					{typeof plantIDX === 'number' && currentRoute === 'plantInfo' ? <Plant></Plant> : <GardenTiles></GardenTiles>}

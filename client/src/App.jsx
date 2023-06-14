@@ -2,6 +2,7 @@ import './App.css';
 import {useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {storeGarden} from './actions';
+import {Toaster} from 'react-hot-toast';
 
 import Camera from './Components/Camera/Camera';
 import Navbar from './Components/Navbar/Navbar';
@@ -33,10 +34,21 @@ function App() {
 	}, []);
 
 	return (
-		<section className="App-Container">
-			<div className="App">
+		<section className="app-component">
+			<div className="app">
 				{isCameraOn && <Camera />}
-				<div className="App-content">
+
+				<div className="toaster fixed">
+					<Toaster
+						containerStyle={{
+							position: 'relative',
+							top: 50,
+							left: 10,
+							width: '300px',
+						}}
+					/>
+				</div>
+				<div className="app-content">
 					{route[0] === 'home' && <Homepage />}
 					{(route[0] === 'garden' || route[0] === 'plantInfo') && <Garden />}
 					{route[0] === 'identResult' && <Suggestions />}

@@ -134,7 +134,7 @@ function Plant() {
 					<section>
 						<div className="plant-container center">
 							{/* TODO insert edible_parts and propagation */}
-							<p>Watering Tipp</p>
+							<p>Watering Tip</p>
 							<p>{watering_info}</p>
 						</div>
 					</section>
