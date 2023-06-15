@@ -34,10 +34,10 @@ exports.prepareIdentBody = (base64dataURL) => {
 };
 
 /* CLEAN DATA */
-// TODO: uncomment parameter
-exports.cleanPlantData = async (/*plant*/) => {
-	// const plant = require('./Temp/noWater.js'); // for mock data reason
-	const plant = require('./Temp/plantID.example'); // for mock data reason
+// TODO: remove temp data for production
+exports.cleanPlantData = async (identResult) => {
+	const plant = identResult ? identResult : require('./Temp/searchResult.example.two.js'); // for mock data reason
+	// const plant = identResult ? identResult : require('./Temp/searchResult.example.one'); // for mock data reason
 	const scientificNames = [];
 	const wikiPlantData = [];
 	let temp_idx = 0;
@@ -65,7 +65,7 @@ exports.cleanPlantData = async (/*plant*/) => {
 		wikiPlantData.push(getWiki);
 	}
 
-	// TODO: Fetch More Wiki mobile Data	=> // TODO: Strip out HTML tags
+	// TODO: Fetch More Wiki mobile Data	=> // TODO: Strip out HTML tags => https://en.wikipedia.org/api/rest_v1/#/Mobile/getSectionsRemaining
 
 	updateSuggestions(suggestions, wikiPlantData);
 

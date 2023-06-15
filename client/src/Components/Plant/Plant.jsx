@@ -121,7 +121,6 @@ function Plant() {
 				{/* Water info */}
 				<section>
 					<div className="plant-container">
-						{/* TODO insert edible_parts and propagation */}
 						<h3>Overview</h3>
 						<div className="water-garden">
 							<h3>{maxWater[0]}</h3>

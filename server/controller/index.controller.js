@@ -2,29 +2,41 @@ const axios = require('axios');
 const Plant = require('../model/Plant.model');
 const helper = require('../model/helperFunc'); // TODO: Maybe rename to Ident.service
 
+// // TODO: Uncomment for real API Identification => very limited API calls
+// // HOT WIRE START
+// exports.identifyPlant = async (req, res) => {
+// 	const {dataURL} = req.body;
+
+// 	try {
+// 		const data = helper.prepareIdentBody(dataURL);
+// 		const identResult = await axios
+// 			.post('https://api.plant.id/v2/identify', data)
+// 			.then((res) => {
+// 				console.log('Success:', res.data);
+// 				return res.data;
+// 			})
+// 			.catch((error) => {
+// 				console.error('Error: ', error);
+// 			});
+
+// 		/* Clean Data */
+// 		const plantData = await helper.cleanPlantData(identResult);
+
+// 		res.status(200).send(plantData);
+// 	} catch (error) {
+// 		res.status(417);
+// 		console.log(error);
+// 		res.send({result: 'Error during identification', error});
+// 	}
+// };
+
+// TODO: Uncomment for using Fake data as response
+// COLD START
 exports.identifyPlant = async (req, res) => {
-	const {dataURL} = req.body;
-	// console.log(dataURL);
-	// console.log('Identify Plant:', dataURL);
 	try {
-		// TODO: Uncomment for real API Identification => very limited API calls
-		// // Identify image(s)
-
-		// const data = helper.prepareIdentBody(dataURL);
-		// const identResult = await axios
-		// 	.post('https://api.plant.id/v2/identify', data)
-		// 	.then((res) => {
-		// 		console.log('Success:', res.data);
-		// 		return res.data;
-		// 	})
-		// 	.catch((error) => {
-		// 		console.error('Error: ', error);
-		// 	});
-
-		const identResult = '';
+		const identResult = false; // for cold calls
 
 		/* Clean Data */
-		// TODO: uncomment parameter
 		const plantData = await helper.cleanPlantData(identResult);
 
 		res.status(200).send(plantData);

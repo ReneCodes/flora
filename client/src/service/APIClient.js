@@ -30,7 +30,7 @@ export async function findPlant(dataURL) {
 	const identResult = await axios
 		.request(config)
 		.then((res) => {
-			// console.log('Success:', res.data);
+			console.log('Success:', res.data);
 			return res.data;
 		})
 		.catch((error) => {

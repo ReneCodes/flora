@@ -1,0 +1,265 @@
+module.exports = {
+	uploaded_datetime: '2023-06-12T19:23:10.707Z',
+	images: [
+		{
+			file_name: '1cc71acf86aa4fb4a6e0ac4b98e83da4.jpg',
+			url: 'https://plant.id/media/images/1cc71acf86aa4fb4a6e0ac4b98e83da4.jpg',
+		},
+	],
+	suggestions: [
+		{
+			id: 477704037,
+			plant_name: 'Nuphar advena',
+			plant_details: {
+				common_names: ['spatterdock', 'cow lily', 'yellow pond-lily'],
+				url: 'https://en.m.wikipedia.org/wiki/Nuphar_advena',
+				wiki_description: {
+					value: 'Species of aquatic plant',
+					extract:
+						'Nuphar advena is a species of Nuphar native throughout the eastern United States and in some parts of Canada, such as Nova Scotia. It is similar to the Eurasian species N. lutea, and is treated as a subspecies of it by some botanists, though differing significantly in genetics.',
+				},
+				taxonomy: {
+					class: 'Magnoliopsida',
+					family: 'Nymphaeaceae',
+					genus: 'Nuphar',
+					kingdom: 'Plantae',
+					order: 'Nymphaeales',
+					phylum: 'Magnoliophyta',
+				},
+				wiki_image: 'https://upload.wikimedia.org/wikipedia/commons/e/e2/American_Spatterdock.jpg',
+				synonyms: [
+					'Castalia advena',
+					'Nenuphar advena',
+					'Nuphar advena subsp. ozarkana',
+					'Nuphar advena subsp. typica',
+					'Nuphar advena var. cubana',
+				],
+				gbif_id: '6434985',
+				edible_parts: ['seeds'],
+				propagation_methods: ['seeds'],
+				watering: null,
+				language: 'en',
+				scientific_name: 'Nuphar advena',
+				structured_name: {
+					genus: 'nuphar',
+					species: 'advena',
+				},
+			},
+			probability: 0.2153280051107497,
+		},
+		{
+			id: 477704038,
+			plant_name: 'Hemionitis triangularis',
+			plant_details: {
+				common_names: ['goldback fern'],
+				url: 'https://en.m.wikipedia.org/wiki/Pentagramma_triangularis',
+				wiki_description: {
+					value: 'Species of fern',
+					extract:
+						'Pentagramma triangularis, commonly known as the gold fern or the goldback fern, is a species of fern in the family Pteridaceae, native to Western North America, with highest abundance in the state of California. Its common name "goldback" refers to the light yellow color of the fern\'s protective coating which inhibits moisture loss. The gold texture appears as a dry powder that is excreted on the underside of the fern. The Latin specific epithet Pentagramma derives from "five lines" or "stripes" while triangularis derives from "three sided", describing the shape of the fern\'s broad triangular fronds.',
+				},
+				taxonomy: {
+					class: 'Polypodiopsida',
+					family: 'Pteridaceae',
+					genus: 'Hemionitis',
+					kingdom: 'Plantae',
+					order: 'Polypodiales',
+					phylum: 'Magnoliophyta',
+				},
+				wiki_image: 'https://upload.wikimedia.org/wikipedia/commons/9/97/Pentagramma_triangularis_1.jpg',
+				synonyms: [
+					'Ceropteris triangularis',
+					'Gymnogramma triangularis',
+					'Gymnopteris triangularis',
+					'Neurogramma triangularis',
+					'Pentagramma triangularis',
+				],
+				gbif_id: '9697787',
+				edible_parts: null,
+				propagation_methods: null,
+				watering: null,
+				language: 'en',
+				scientific_name: 'Hemionitis triangularis',
+				structured_name: {
+					genus: 'hemionitis',
+					species: 'triangularis',
+				},
+			},
+			probability: 0.039436012244590986,
+		},
+		{
+			id: 477704039,
+			plant_name: 'Nigella damascena',
+			plant_details: {
+				common_names: ['love-in-a-mist', 'Devil-in-a-bush', 'Bishop wort', 'ragged lady', 'devil in the bush'],
+				url: 'https://en.m.wikipedia.org/wiki/Nigella_damascena',
+				wiki_description: {
+					value: 'Species of flowering plant in the buttercup family Ranunculaceae',
+					extract:
+						'Nigella damascena, love-in-a-mist, or devil in the bush, is an annual garden flowering plant, belonging to the buttercup family Ranunculaceae. \nIt is native to southern Europe, north Africa and southwest Asia, where it is found on neglected, damp patches of land.',
+				},
+				taxonomy: {
+					class: 'Magnoliopsida',
+					family: 'Ranunculaceae',
+					genus: 'Nigella',
+					kingdom: 'Plantae',
+					order: 'Ranunculales',
+					phylum: 'Magnoliophyta',
+				},
+				wiki_image: 'https://upload.wikimedia.org/wikipedia/commons/1/1f/2007-10-25Nigella_damascena_10.jpg',
+				synonyms: [
+					'Erobathos coarctatum',
+					'Erobathos damascenum',
+					'Melanthium damascenum',
+					'Nigella bithynica',
+					'Nigella bourgaei',
+				],
+				gbif_id: '5371702',
+				edible_parts: ['leaves', 'seeds'],
+				propagation_methods: ['seeds'],
+				watering: {
+					max: 2,
+					min: 2,
+				},
+				language: 'en',
+				scientific_name: 'Nigella damascena',
+				structured_name: {
+					genus: 'nigella',
+					species: 'damascena',
+				},
+			},
+			probability: 0.03283471640295956,
+		},
+		{
+			id: 477704040,
+			plant_name: 'Hyacinthus orientalis',
+			plant_details: {
+				common_names: ['common hyacinth', 'garden hyacinth', 'Dutch hyacinth'],
+				url: 'https://en.m.wikipedia.org/wiki/Hyacinthus_orientalis',
+				wiki_description: {
+					value: 'Species of flowering plant',
+					extract:
+						'Hyacinthus orientalis, the common hyacinth, garden hyacinth or Dutch hyacinth, is a species of flowering plant in the family Asparagaceae, subfamily Scilloideae, native to southwestern Asia, southern and central Turkey, northwestern Syria, Lebanon and northern Israel. It was introduced to Europe in the 16th century. It is widely cultivated everywhere in the temperate world for its strongly fragrant flowers which appear exceptionally early in the season, and frequently forced to flower at Christmas time.',
+				},
+				taxonomy: {
+					class: 'Magnoliopsida',
+					family: 'Asparagaceae',
+					genus: 'Hyacinthus',
+					kingdom: 'Plantae',
+					order: 'Asparagales',
+					phylum: 'Magnoliophyta',
+				},
+				wiki_image:
+					'https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Hyacinth_flower.jpg/3072px-Hyacinth_flower.jpg',
+				synonyms: ['Scilla coronaria'],
+				gbif_id: '2772666',
+				edible_parts: null,
+				propagation_methods: null,
+				watering: {
+					max: 2,
+					min: 2,
+				},
+				language: 'en',
+				scientific_name: 'Hyacinthus orientalis',
+				structured_name: {
+					genus: 'hyacinthus',
+					species: 'orientalis',
+				},
+			},
+			probability: 0.02811052716059978,
+		},
+		{
+			id: 477704041,
+			plant_name: 'Carya ovata',
+			plant_details: {
+				common_names: ['shagbark hickory'],
+				url: 'https://en.m.wikipedia.org/wiki/Carya_ovata',
+				wiki_description: {
+					value: 'Species of tree',
+					extract:
+						'Carya ovata, the shagbark hickory, is a common hickory in the Eastern United States and southeast Canada. It is a large, deciduous tree, growing well over 100 ft (30 m) tall, and can live more than 350 years. The tallest measured shagbark, located in Savage Gulf, Tennessee, is over 150 ft (46 m) tall. Mature shagbarks are easy to recognize because, as their name implies, they have shaggy bark. This characteristic is, however, only found on mature trees; young specimens have smooth bark.',
+				},
+				taxonomy: {
+					class: 'Magnoliopsida',
+					family: 'Juglandaceae',
+					genus: 'Carya',
+					kingdom: 'Plantae',
+					order: 'Fagales',
+					phylum: 'Magnoliophyta',
+				},
+				wiki_image:
+					'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/2021-03-03_10_34_58_Shagbark_Hickory_trunk_within_the_woodlands_along_the_West_Branch_Shabakunk_Creek_in_Ewing_Township%2C_Mercer_County%2C_New_Jersey.jpg/3024px-2021-03-03_10_34_58_Shagbark_Hickory_trunk_within_the_woodlands_along_the_West_Branch_Shabakunk_Creek_in_Ewing_Township%2C_Mercer_County%2C_New_Jersey.jpg',
+				synonyms: [
+					'Carya alba subsp. ovata',
+					'Carya borealis',
+					'Carya ovalis f. ellipsoidalis',
+					'Carya ovalis f. fraxinifolia',
+					'Carya ovalis f. nuttallii',
+				],
+				gbif_id: '3054296',
+				edible_parts: ['nuts', 'seeds'],
+				propagation_methods: null,
+				watering: {
+					max: 2,
+					min: 2,
+				},
+				language: 'en',
+				scientific_name: 'Carya ovata',
+				structured_name: {
+					genus: 'carya',
+					species: 'ovata',
+				},
+			},
+			probability: 0.02786125690093809,
+		},
+		{
+			id: 477704042,
+			plant_name: 'Diospyros virginiana',
+			plant_details: {
+				common_names: ['American persimmon', 'common persimmon', 'eastern persimmon', 'simmon', 'possumwood'],
+				url: 'https://en.m.wikipedia.org/wiki/Diospyros_virginiana',
+				wiki_description: {
+					value: 'Species of tree',
+					extract:
+						'Diospyros virginiana is a persimmon species commonly called the American persimmon, common persimmon, eastern persimmon, simmon, possumwood, possum apples, or sugar plum. It ranges from southern Connecticut to Florida, and west to Texas, Louisiana, Oklahoma, Kansas, and Iowa. The tree grows wild but has been cultivated for its fruit and wood since prehistoric times by Native Americans.',
+				},
+				taxonomy: {
+					class: 'Magnoliopsida',
+					family: 'Ebenaceae',
+					genus: 'Diospyros',
+					kingdom: 'Plantae',
+					order: 'Ericales',
+					phylum: 'Magnoliophyta',
+				},
+				wiki_image: 'https://upload.wikimedia.org/wikipedia/commons/f/f5/Diospyros_virginiana_BB-1913.png',
+				synonyms: [
+					'Diospyros angustifolia',
+					'Diospyros calycina',
+					'Diospyros caroliniana',
+					'Diospyros ciliata',
+					'Diospyros concolor',
+				],
+				gbif_id: '3032986',
+				edible_parts: ['fruit'],
+				propagation_methods: ['cuttings', 'seeds', 'suckers'],
+				watering: {
+					max: 2,
+					min: 1,
+				},
+				language: 'en',
+				scientific_name: 'Diospyros virginiana',
+				structured_name: {
+					genus: 'diospyros',
+					species: 'virginiana',
+				},
+			},
+			probability: 0.024987767533884462,
+		},
+	],
+	fail_cause: null,
+	countable: true,
+	feedback: null,
+	is_plant_probability: 0.5497692404000001,
+	is_plant: true,
+	id: 86818527,
+};

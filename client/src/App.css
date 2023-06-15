@@ -1,14 +1,14 @@
-.App-Container {
+.app-component {
 	max-width: 410px;
 	height: 100vh;
 	max-height: 900px;
 	background-color: var(--black);
-	margin: auto;
+	margin: 40px auto 0;
 	padding: 25px 8px 40px;
 
 	border-radius: 10px;
 }
-.App {
+.app {
 	position: relative;
 
 	max-width: 400px;
@@ -19,7 +19,7 @@
 	border-radius: 10px;
 	overflow: hidden;
 }
-.App-content {
+.app-content {
 	position: relative;
 	display: flex;
 	gap: 24px;
@@ -38,7 +38,13 @@
 	overflow-y: scroll;
 }
 
-.App-content::-webkit-scrollbar {
+.toaster {
+	position: absolute;
+	top: 0px;
+	left: 40px;
+}
+
+.app-content::-webkit-scrollbar {
 	display: none;
 }
 
