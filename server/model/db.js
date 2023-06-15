@@ -1,5 +1,9 @@
 const mongoose = require('mongoose');
+<<<<<<< HEAD
 const { DB_OWNER, DB_PASS, VAULT, DB_NAME, CLUSTER_EXT } = require('../config');
+=======
+const {DB_OWNER, DB_PASS, VAULT, DB_NAME, CLUSTER_EXT} = require('../config');
+>>>>>>> acbe31212c3d3b7bb15b9b613309c62dbdf12af3
 
 mongoose.connect(`mongodb+srv://${DB_OWNER}:${DB_PASS}@${VAULT}.${CLUSTER_EXT}.mongodb.net/${DB_NAME}`, {
 	useNewUrlParser: true,
