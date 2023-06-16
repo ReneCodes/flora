@@ -56,6 +56,7 @@ const plant = (state = false, action) => {
 	}
 };
 
+//need to properly declare state and reinitialize on ts conversion.
 const identPlants = (state, action) => {
 	switch (action.type) {
 		case 'STORE_IDENT_RESULT':
