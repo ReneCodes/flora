@@ -56,7 +56,9 @@ const plant = (state = false, action) => {
 	}
 };
 
-const identPlants = (state = '', action) => {
+//need to properly declare state and reinitialize on ts conversion. null is only acting as a
+//quick fix here until we convert.
+const identPlants = (state= null, action) => {
 	switch (action.type) {
 		case 'STORE_IDENT_RESULT':
 			state = action.payload;

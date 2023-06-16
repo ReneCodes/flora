@@ -3,9 +3,13 @@ import {useSelector, useDispatch} from 'react-redux';
 import {waterDrops, cleanAndPushPlant} from '../../service/helper.service';
 import {addPlantToGarden, changeAppRoute} from '../../actions';
 import loader from '../../assets/loader.gif';
+import { RootState } from '../../store';
+import React from 'react';
+import { IdentResponse } from '../../Types';
 
+//**ONCE REDUCER HAS BEEN CONVERTED TO TYPESCRIPT, PLEASE REMOVE NULL FROM TYPE FROM LINES 12, 89, AND 127 */
 function PlantDetector() {
-	const identPlants = useSelector((state) => state.identPlants);
+	const identPlants: IdentResponse | null = useSelector((state: RootState) => state.identPlants);
 	const {is_plant, is_plant_probability} = identPlants;
 	if (!is_plant)
 		return (
@@ -27,7 +31,7 @@ function PlantDetector() {
 	);
 }
 
-function PlantProbability({probability}) {
+function PlantProbability({probability}:{probability:number}) {
 	const percent = Math.round(probability * 100);
 
 	if (probability < 0.2) return <h2 className="blob red">Low {percent}%</h2>;
@@ -82,7 +86,7 @@ function SinglePlant({suggestion, images}) {
 }
 
 function SuggestionContainer() {
-	const identPlants = useSelector((state) => state.identPlants);
+	const identPlants:IdentResponse | null = useSelector((state: RootState) => state.identPlants);
 	const {images, suggestions} = identPlants;
 	function plural(elem) {
 		if (elem.length > 1) return 's';
@@ -120,7 +124,7 @@ export function Loader() {
 }
 
 function Suggestions() {
-	const identPlants = useSelector((state) => state.identPlants);
+	const identPlants: IdentResponse | null = useSelector((state: RootState) => state.identPlants);
 
 	return (
 		<section className="suggestions">
