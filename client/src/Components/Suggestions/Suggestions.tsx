@@ -1,3 +1,4 @@
+/// <reference path="../../index.d.ts" />
 import './Suggestions.css';
 import {useSelector, useDispatch} from 'react-redux';
 import {waterDrops, cleanAndPushPlant} from '../../service/helper.service';
