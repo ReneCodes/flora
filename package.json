@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/ReneCodes/flora/issues"
   },
-  "homepage": "https://github.com/ReneCodes/flora#readme"
+  "homepage": "https://github.com/ReneCodes/flora#readme",
+  "dependencies": {
+    "@types/react-redux": "^7.1.25"
+  }
 }
