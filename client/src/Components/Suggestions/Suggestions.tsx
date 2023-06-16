@@ -7,7 +7,7 @@ import { RootState } from '../../store';
 import React from 'react';
 
 function PlantDetector() {
-	const identPlants: IdentResponse = useSelector((state: RootState) => state.identPlants);
+	const identPlants: IdentResponse  = useSelector((state: RootState) => state.identPlants);
 	const {is_plant, is_plant_probability} = identPlants;
 	if (!is_plant)
 		return (
