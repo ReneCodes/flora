@@ -56,7 +56,7 @@ const plant = (state = false, action) => {
 	}
 };
 
-const identPlants = (state = {}, action) => {
+const identPlants = (state, action) => {
 	switch (action.type) {
 		case 'STORE_IDENT_RESULT':
 			state = action.payload;
