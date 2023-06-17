@@ -1,4 +1,4 @@
-import { Route, Plant, Idx, Note, Garden } from "./Types";
+import { Route, Plant, Idx, Note /*,Garden*/ } from "./Types";
 
 
 export const changeAppRoute = (route: Route) => ({
@@ -27,17 +27,17 @@ export const attachPlantNote = (note: Note, idx: Idx) => ({
 	idx,
 });
 
-export const storeGarden = (garden: Garden) => ({
+export const storeGarden = (garden: Plant[]) => ({
 	type: 'STORE_GARDEN' as const,
-	garden,
+	payload: garden,
 });
 
-export const viewPlant = (idx) => ({
+export const viewPlant = (idx:Idx) => ({
 	type: 'SELECT_PLANT' as const,
 	idx,
 });
 
-export const deletePlantFromGarden = (plantIDX) => ({
+export const deletePlantFromGarden = (plantIDX:number) => ({
 	type: 'DELETE_PLANT' as const,
 	payload: plantIDX,
 });
@@ -46,7 +46,7 @@ export const unselectPlant = () => ({
 	type: 'UNSELECT_PLANT' as const,
 });
 
-export const storeIdentResult = (plants) => ({
+export const storeIdentResult = (plants: Plant[]) => ({
 	type: 'STORE_IDENT_RESULT' as const,
 	payload: plants,
 });
