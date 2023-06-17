@@ -1,9 +1,12 @@
-const router = require('express').Router();
+import { Router, Request, Response } from 'express'
+
+const router: Router = Router();
+
 const controller = require('./controller/index.controller');
 
 // TEST Routes
-router.get('/', (req, res) => {
-	res.status(200).send({text: 'Welcome to my Garden'});
+router.get('/', (req: Request, res: Response) => {
+	res.status(200).send({ text: 'Welcome to my Garden' });
 });
 // router.post('/', (req, res) => {
 // 	res.status(200).send({text: "I've received POST", ...req.body});

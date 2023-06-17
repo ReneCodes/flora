@@ -2,7 +2,7 @@
   "name": "flora",
   "version": "1.0.0",
   "description": "Identify, track and care for your plant-friends",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
     "test": "test"
   },

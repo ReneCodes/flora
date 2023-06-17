@@ -1,6 +1,7 @@
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
+import mongoose, { Schema } from "mongoose";
 
-const plantSchema = new mongoose.Schema({
+const plantSchema: Schema = new mongoose.Schema({
 	plant_name: {
 		type: String,
 		required: [true, 'Plant Name is missing?'],
@@ -35,8 +36,8 @@ const plantSchema = new mongoose.Schema({
 		wiki_image: String,
 		synonyms: [String],
 		gbif_id: String,
-		edible_parts: mongoose.Mixed,
-		propagation_methods: mongoose.Mixed,
+		edible_parts: mongoose.Schema.Types.Mixed,
+		propagation_methods: mongoose.Schema.Types.Mixed,
 		watering: {
 			max: Number,
 			min: Number,
@@ -55,4 +56,4 @@ const plantSchema = new mongoose.Schema({
 
 const Plant = mongoose.model('Plant', plantSchema);
 
-module.exports = Plant;
+export default Plant;
