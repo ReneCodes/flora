@@ -1,3 +1,4 @@
+import { Image, SuggestionType } from '../Types';
 import {savePlant} from './APIClient';
 
 export const waterDrops:{1: string[], 2: string[], 3: string[]} = {
@@ -11,7 +12,7 @@ export const wateringInfo: {1: string, 2: string, 3: string} = {
 	3: `Plants that need a lot of water also need excess water to run out somewhere. Always make sure that your plant is planted in a pot with holes.`,
 };
 
-export const cleanAndPushPlant = (suggestion, images) => {
+export const cleanAndPushPlant = (suggestion:SuggestionType, images:Image[]) => {
 	const {plant_details} = suggestion;
 	let {watering} = plant_details;
 	if (!watering) {
@@ -21,7 +22,7 @@ export const cleanAndPushPlant = (suggestion, images) => {
 			min: 2,
 		};
 	}
-	plant_details['watering_info'] = wateringInfo[plant_details.watering.max];
+	plant_details['watering_info'] = wateringInfo[plant_details.watering!.max];
 	suggestion['note'] = '';
 	suggestion['images'] = images;
 	suggestion['personal_name'] = '';

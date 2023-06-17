@@ -6,7 +6,7 @@ import {addPlantToGarden, changeAppRoute} from '../../actions';
 import loader from '../../assets/loader.gif';
 import { RootState } from '../../store';
 import React from 'react';
-import { IdentResponse } from '../../Types';
+import { IdentResponse, Image, SuggestionType } from '../../Types';
 
 //**ONCE REDUCER HAS BEEN CONVERTED TO TYPESCRIPT, PLEASE REMOVE NULL FROM TYPE FROM LINES 12, 89, AND 127 */
 function PlantDetector() {
@@ -33,7 +33,7 @@ function PlantDetector() {
 }
 
 function PlantProbability({probability}:{probability:number}) {
-	const percent = Math.round(probability * 100);
+	const percent:number = Math.round(probability * 100);
 
 	if (probability < 0.2) return <h2 className="blob red">Low {percent}%</h2>;
 	if (probability < 0.6 && probability >= 0.2) {
@@ -42,7 +42,7 @@ function PlantProbability({probability}:{probability:number}) {
 	return <h2 className="blob green">High {percent}%</h2>;
 }
 
-function SinglePlant({suggestion, images}) {
+function SinglePlant({suggestion, images}:{suggestion:SuggestionType, images:Image[] }): React.JSX.Element {
 	const dispatch = useDispatch();
 	const {plant_name, plant_details, probability} = suggestion;
 	const {common_names, wiki_image, wiki_description, watering} = plant_details;
@@ -65,7 +65,7 @@ function SinglePlant({suggestion, images}) {
 			</div>
 			<div className="propability-box">
 				<h3>Propability</h3>
-				<PlantProbability probability={probability}></PlantProbability>
+				<PlantProbability probability={probability!}></PlantProbability>
 			</div>
 			<div className="propability-box">
 				<h3>Watering</h3>
@@ -86,9 +86,9 @@ function SinglePlant({suggestion, images}) {
 	);
 }
 
-function SuggestionContainer() {
+function SuggestionContainer(): React.JSX.Element {
 	const identPlants:IdentResponse | null = useSelector((state: RootState) => state.identPlants);
-	const {images, suggestions} = identPlants;
+	const {images, suggestions}:{images:Image[], suggestions: SuggestionType[]} = identPlants;
 	function plural(elem) {
 		if (elem.length > 1) return 's';
 	}
@@ -116,7 +116,7 @@ function SuggestionContainer() {
 	);
 }
 
-export function Loader() {
+export function Loader(): React.JSX.Element {
 	return (
 		<div className="loader">
 			<img src={loader}></img>
@@ -124,7 +124,7 @@ export function Loader() {
 	);
 }
 
-function Suggestions() {
+function Suggestions(): React.JSX.Element {
 	const identPlants: IdentResponse | null = useSelector((state: RootState) => state.identPlants);
 
 	return (
