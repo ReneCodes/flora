@@ -92,7 +92,7 @@ function getIdField(body: BodyType) { //replace any with type
 exports.updatePlant = async (req: Request, res: Response) => {
 	try {
 		const plant = await Plant.findOneAndUpdate(getIdField(req.body), req.body, { new: true }); // new:true => returns updated plant
-		res.status(201).send({ result: `plant ${plant._id} visited`, plant });
+		res.status(201).send({ result: `plant ${plant?._id} visited`, plant });
 	} catch (error) {
 		res.status(417);
 		res.send({ result: 'Error locating plant', error });
@@ -103,7 +103,7 @@ exports.removePlant = async (req: Request, res: Response) => {
 	// const {_id} = req.body;
 	try {
 		const plant = await Plant.findOneAndRemove(getIdField(req.body)); // returns removed plant
-		res.status(200).send({ result: `Plant ${plant._id} Removed` });
+		res.status(200).send({ result: `Plant ${plant?._id} Removed` });
 	} catch (error) {
 		console.log(error);
 		res.status(417);
