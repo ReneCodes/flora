@@ -8,7 +8,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-const axios = require('axios');
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const axios_1 = __importDefault(require("axios"));
 const fs = require('fs');
 // secret variables
 const { PLANT_ID } = require('../config');
@@ -75,9 +79,14 @@ exports.cleanPlantData = (identResult) => __awaiter(void 0, void 0, void 0, func
 // FOR CLEAN DATA
 function deleteKeys(plant) {
     const keyList = ['id', 'custom_id', 'meta_data', 'finished_datetime', 'modifiers', 'secret'];
-    return keyList.forEach((key) => {
+    //until I am sure it wasn't necessary, just making a note this function originally returned
+    // this before a refactor.
+    // return keyList.forEach((key: keyof Plant) => {
+    // 	delete plant[key];
+    for (const key of keyList) {
         delete plant[key];
-    });
+    }
+    ;
 }
 // FOR CLEAN DATA
 function cleanSuggestions(suggestions, scientificNames) {
@@ -95,15 +104,27 @@ function cleanSuggestions(suggestions, scientificNames) {
 // FOR CLEAN DATA //  TODO: include user pref language option
 const wikiSummary = (plant_name, lang = 'en') => __awaiter(void 0, void 0, void 0, function* () {
     const url = `https://${lang}.wikipedia.org/api/rest_v1/page/summary/${plant_name}`;
-    return yield axios.get(url).then((response) => {
-        const { description, extract, originalimage, content_urls } = response.data;
+    try {
+        const response = yield axios_1.default.get(url);
+        const { description, extract, originalimage, content_urls, } = response.data;
+        // .then((response) => {
+        // 	const {description, extract, originalimage, content_urls} = response.data;
         return {
             description,
             extract,
             url: content_urls.mobile.page,
             originalimage: originalimage.source,
         };
-    });
+    }
+    catch (err) {
+        console.error(`Error fetching wiki summary for ${plant_name}:`, err);
+        return {
+            description: '',
+            extract: '',
+            url: '',
+            originalimage: '',
+        };
+    }
 });
 // FOR CLEAN DATA
 function updateSuggestions(suggestions, wikiPlantData) {

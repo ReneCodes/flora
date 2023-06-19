@@ -14,15 +14,18 @@ import CareGuide from './Components/Guide/CareGuide';
 import WaterGuide from './Components/Guide/WaterGuide';
 
 import * as service from './service/APIClient';
+import { RootState } from './store';
+import React from 'react';
+import {Plant} from './Types'
 
 function App() {
-	const isCameraOn = useSelector((state) => state.camera);
-	const route = useSelector((state) => state.basicRouting);
+	const isCameraOn:boolean = useSelector((state: RootState) => state.camera);
+	const route:string[] = useSelector((state:RootState) => state.basicRouting);
 	const dispatch = useDispatch();
 
-	async function fetchGarden() {
+	async function fetchGarden():Promise<void> {
 		try {
-			const garden = await service.getGarden();
+			const garden:Plant[] = await service.getGarden();
 			dispatch(storeGarden(garden));
 		} catch (error) {
 			console.log('Error fetching Garden', error);
