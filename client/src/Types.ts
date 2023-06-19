@@ -27,11 +27,11 @@ export interface Plant {
       gbif_id: string,
       edible_parts: ("bulb" | "flowers" | "frond" | "fruit" | "gum" | "leaves" | "lichen" | "mushroom" | "nectar" | "nuts" | "seaweed" | "seeds" | "shoots" | "stems" | "tubers")[]| null,
       propagation_methods: ("cuttings" | "division" | "grafting" | "seeds" | "spores" | "suckers")[] | null,
-      watering: {
+      watering?: {
         max: number,
         min: number,
       },
-      watering_info: string,
+      watering_info?: string,
       language: string,
       scientific_name: string,
       structured_name: {
@@ -39,8 +39,8 @@ export interface Plant {
         species: string,
       },
     },
-    note: string,
-    api_id: string,
+    note?: string,
+    api_id?: number,
 }
 
 // export interface Idx {
@@ -95,6 +95,7 @@ export interface SuggestionType {
       max: number,
       min: number,
     },
+    watering_info?:string,
     language: string //could possibly get a list of available language abreviations from the api
     scientific_name: string,
     structured_name: {

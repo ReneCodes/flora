@@ -3,7 +3,6 @@ import plant1 from './service/TEMP/cleanPlant1';
 import plant2 from './service/TEMP/cleanPlant2';
 import plant3 from './service/TEMP/cleanPlant3';
 import identResponse from './service/TEMP/identResponse';
-import { RootState } from './store';
 import { Action, IdentResponse, Plant } from './Types';
 
 const camera = (state:boolean = false, action: Action) => {
@@ -58,8 +57,6 @@ const plant = (state:boolean | number = false, action:Action) => {
 	}
 };
 
-//need to properly declare state and reinitialize on ts conversion. null is only acting as a
-//quick fix here until we convert.
 const identPlants = (state: IdentResponse = {
   uploaded_datetime: "",
   images: [],
@@ -82,6 +79,10 @@ const identPlants = (state: IdentResponse = {
 };
 
 const basicRouting = (state: string[] = ['home', ''], action: Action) => {
+	//I understand what this is trying to do, however in the switch cases the state argument is used,
+	//not the state below, and I'm not sure why its saying the one below is not used when it is
+	//uncommented.
+	
 	// state => ['current Route','previous Route']
 	switch (action.type) {
 		case 'NEW_ROUTE':
