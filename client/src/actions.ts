@@ -10,16 +10,16 @@ export const changeAppRoute = (route: Route) => ({
 export const accessCamera = () => ({
 	type: 'CAM_ON/OFF' as const,
 	payload: null,
-	idx:null
+	idx: null
 });
 
 export const addPlantToGarden = (plant: Plant) => ({
 	type: 'INSERT' as const,
 	payload: plant,
-	idx:null
+	idx: null
 });
 
-export const changePlantName = (text: Text, idx: number) => ({
+export const changePlantName = (text: string, idx: number) => ({
 	type: 'CHANGE_NAME' as const,
 	payload: text,
 	idx,
@@ -34,7 +34,7 @@ export const attachPlantNote = (note: Note, idx: number) => ({
 export const storeGarden = (garden: Plant[]) => ({
 	type: 'STORE_GARDEN' as const,
 	payload: garden,
-	idx:null
+	idx: null
 });
 
 export const viewPlant = (idx: number) => ({
@@ -43,10 +43,10 @@ export const viewPlant = (idx: number) => ({
 	idx,
 });
 
-export const deletePlantFromGarden = (plantIDX:number) => ({
+export const deletePlantFromGarden = (plantIDX: number) => ({
 	type: 'DELETE_PLANT' as const,
 	payload: plantIDX,
-	idx:null
+	idx: null
 });
 
 export const unselectPlant = () => ({
@@ -58,5 +58,5 @@ export const unselectPlant = () => ({
 export const storeIdentResult = (plants: Plant[]) => ({
 	type: 'STORE_IDENT_RESULT' as const,
 	payload: plants,
-	idx:null
+	idx: null
 });

@@ -5,7 +5,7 @@ import { findPlant } from '../../service/APIClient';
 import { useSelector, useDispatch } from 'react-redux';
 import { storeIdentResult, changeAppRoute, accessCamera } from '../../actions';
 import { Loader } from '../Suggestions/Suggestions';
-import { RootState, AppDispatch } from '../../store';
+import { RootState } from '../../store';
 
 function Camera() {
 	const dispatch = useDispatch();

@@ -5,10 +5,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { changePlantName, viewPlant, unselectPlant, changeAppRoute } from '../../actions';
 import { updatePlant } from '../../service/APIClient';
 import { waterDrops } from '../../service/helper.service';
-import { AppDispatch } from '../../store';
-import Plant from '../Plant/Plant';
+import { AppDispatch, RootState } from '../../store';
+import PlantComponent from '../Plant/Plant';
+import { MouseEvent } from 'react';
+import { Plant } from '../../Types';
 
-function PlantTile({ plant, idx }) {
+function PlantTile({ plant, idx }: { plant: Plant, idx: number }) {
 	const dispatch = useDispatch();
 
 	// console.log('Plant:', idx);
@@ -16,26 +18,27 @@ function PlantTile({ plant, idx }) {
 	const { watering } = plant_details;
 	const maxWater = watering ? waterDrops[watering.max] : waterDrops[2];
 
-	function selectPlant(e) {
+	function selectPlant(e: React.MouseEvent<HTMLImageElement, globalThis.MouseEvent>) {
 		dispatch(viewPlant(Number(idx)));
-		const route = e.target.attributes.route.value;
-		dispatch(changeAppRoute(route));
+		dispatch(changeAppRoute('plantInfo'));
 	}
 
-	function changeName(e) {
-		if (e.target.localName === 'button') {
+	function changeName(e: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) {
+		if ((e.target as HTMLElement).localName === 'button') {
 			const input = document.getElementById(`name-field-${_id}`) as HTMLInputElement;
 			input.readOnly = false;
 			input.focus();
 		} else {
-			dispatch(changePlantName(e.target.value, idx));
+			dispatch(changePlantName((e.target as HTMLInputElement).value, idx));
 		}
 	}
 
-	async function writeTrueFalse(e) {
-		const personal_name: string = e.target.value;
-		e.target.readOnly = !e.target.readOnly;
-		if (e.target.readOnly) {
+	async function writeTrueFalse(e: React.FocusEvent<HTMLInputElement, Element> | React.MouseEvent<HTMLInputElement, globalThis.MouseEvent>) {
+		const inputElement = e.target as HTMLInputElement;
+		const personal_name: string = inputElement.value;
+		inputElement.readOnly = !inputElement.readOnly;
+
+		if (inputElement.readOnly) {
 			if (plant._id) updatePlant({ _id, personal_name });
 			else updatePlant({ api_id, personal_name });
 		}
@@ -52,7 +55,6 @@ function PlantTile({ plant, idx }) {
 					<img
 						src={plant.images[0].url}
 						alt={`picture of ${plant_name}`}
-						route="plantInfo"
 						onClick={selectPlant}></img>
 				</div>
 				<div className="card-box-garden">
@@ -80,7 +82,7 @@ function PlantTile({ plant, idx }) {
 }
 
 function GardenTiles() {
-	const gardenList = useSelector((state) => state.garden);
+	const gardenList = useSelector((state: RootState) => state.garden);
 
 	return (
 		<>
@@ -106,16 +108,16 @@ function GardenTiles() {
 }
 
 function Garden() {
-	const route = useSelector((state) => state.basicRouting);
-	const currentRoute = route[0];
-	const plantIDX = useSelector((state) => state.plant);
+	const route = useSelector((state: RootState) => state.basicRouting);
+	const currentRoute: string = route[0];
+	const plantIDX = useSelector((state: RootState) => state.plant);
 
 	return (
 		<>
 			<div>
 				<div className="garden">
 					{' '}
-					{typeof plantIDX === 'number' && currentRoute === 'plantInfo' ? <Plant></Plant> : <GardenTiles></GardenTiles>}
+					{typeof plantIDX === 'number' && currentRoute === 'plantInfo' ? <PlantComponent></PlantComponent> : <GardenTiles></GardenTiles>}
 				</div>
 			</div>
 		</>
