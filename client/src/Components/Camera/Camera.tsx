@@ -1,17 +1,18 @@
+import React from 'react';
 import './Camera.css';
-import {useRef, useEffect, useState} from 'react';
-import {findPlant} from '../../service/APIClient';
-import {useSelector, useDispatch} from 'react-redux';
-import {storeIdentResult, changeAppRoute, accessCamera} from '../../actions';
-import {Loader} from '../Suggestions/Suggestions';
+import { useRef, useEffect, useState } from 'react';
+import { findPlant } from '../../service/APIClient';
+import { useSelector, useDispatch } from 'react-redux';
+import { storeIdentResult, changeAppRoute, accessCamera } from '../../actions';
+import { Loader } from '../Suggestions/Suggestions';
 
 function Camera() {
 	const dispatch = useDispatch();
 	const camera = useSelector((state) => state.camera);
-	const videoRef = useRef(); // grabs video elem in HTML
-	const photoRef = useRef(); // grabs canvas elem in HTML
+	const videoRef = useRef<HTMLVideoElement>(); // grabs video elem in HTML
+	const photoRef = useRef<HTMLCanvasElement>(); // grabs canvas elem in HTML
 
-	const [hasPhoto, setHasPhoto] = useState(false);
+	const [hasPhoto, setHasPhoto] = useState<boolean>(false);
 
 	// Get Camera Access
 	function getVideo() {
@@ -25,7 +26,7 @@ function Camera() {
 				},
 			})
 			.then((stream) => {
-				const video = videoRef.current;
+				const video: HTMLVideoElement | undefined = videoRef.current;
 				video.srcObject = stream;
 				// play once the stream is attached
 				if (video.srcObject) video.play();
