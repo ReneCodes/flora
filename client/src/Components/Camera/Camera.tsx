@@ -10,8 +10,8 @@ import { RootState } from '../../store';
 function Camera() {
 	const dispatch = useDispatch();
 	const camera = useSelector((state: RootState) => state.camera);
-	const videoRef = useRef<HTMLVideoElement>(); // grabs video elem in HTML
-	const photoRef = useRef<HTMLCanvasElement>(); // grabs canvas elem in HTML
+	const videoRef = useRef<HTMLVideoElement>(null); // grabs video elem in HTML
+	const photoRef = useRef<HTMLCanvasElement>(null); // grabs canvas elem in HTML
 
 	const [hasPhoto, setHasPhoto] = useState<boolean>(false);
 
@@ -27,8 +27,8 @@ function Camera() {
 				},
 			})
 			.then((stream: MediaStream) => {
-				const video: HTMLVideoElement | undefined = videoRef.current;
-				if (video === undefined) {
+				const video = videoRef.current;
+				if (video === null) {
 					return
 				}
 				video.srcObject = stream;
@@ -41,13 +41,13 @@ function Camera() {
 	}
 
 	async function takePhoto() {
-		const video: HTMLVideoElement | undefined = videoRef.current;
-		const photo: HTMLCanvasElement | undefined = photoRef.current;
+		const video = videoRef.current;
+		const photo = photoRef.current;
 
 		video?.pause();
 		setHasPhoto(true);
 
-		if (photo !== undefined) {
+		if (photo !== null) {
 			photo.height = 1200;
 			photo.width = photo.height / (16 / 8.2);
 		} else {
@@ -83,7 +83,7 @@ function Camera() {
 
 	// Init video after rendering component
 	useEffect(() => {
-		const video: HTMLVideoElement | undefined = videoRef.current;
+		const video = videoRef.current;
 		if (video) {
 			video.load();
 			getVideo();
@@ -92,7 +92,7 @@ function Camera() {
 
 	// Pause Camera when not needed
 	useEffect(() => {
-		let video: HTMLVideoElement | undefined = videoRef.current;
+		let video = videoRef.current;
 		camera ? video?.play() : video?.pause();
 	}, [camera]);
 
