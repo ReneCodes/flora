@@ -15,7 +15,7 @@ connection.on('connected', () => {
 connection.on('disconnected', () => {
 	console.log('disconnected to db');
 });
-connection.on('error', (error) => {
+connection.on('error', (error: Error) => {
 	console.log('error with db', error);
 });
 
