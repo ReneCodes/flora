@@ -20,12 +20,12 @@ const garden = (state: Plant[] = [], action: Action) => {
 		case 'INSERT':
 			return [...state, action.payload];
 		case 'CHANGE_NAME':
-			state[action.idx].personal_name = action.payload;
+			state[`${action.idx}`].personal_name = action.payload;
 			// console.log('CHANGE_NAME', state[idx].personal_name);
 			state = [...state];
 			return state;
 		case 'ATTACH_NOTE':
-			state[action.idx].note = action.payload;
+			state[`${action.idx}`].note = action.payload;
 			// console.log('ATTACH_NOTE', state[idx].note);
 			state = [...state];
 			return state;

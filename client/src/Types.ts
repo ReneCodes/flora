@@ -61,8 +61,8 @@ export interface Note {
 
 export interface Action {
   type: string,
-  payload?: Route | Plant | Note | /*Garden*/Plant[] | number | string,
-  idx?: number,
+  payload: Route | Plant | Note | /*Garden*/Plant[] | number | string |null,
+  idx: number | null,
 }
 
 //******CANNOT FIND NON-NULL EXAMPLES  OF FAIL_CAUSE OR FEEDBACK HERE OR IN API DOCS, SO LEAVING THEM
