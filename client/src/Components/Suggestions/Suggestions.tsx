@@ -6,11 +6,11 @@ import {addPlantToGarden, changeAppRoute} from '../../actions';
 import loader from '../../assets/loader.gif';
 import { RootState } from '../../store';
 import React from 'react';
-import { IdentResponse, Image, SuggestionType } from '../../Types';
+import { IdentResponse, Image, Plant, SuggestionType } from '../../Types';
 
 //**ONCE REDUCER HAS BEEN CONVERTED TO TYPESCRIPT, PLEASE REMOVE NULL FROM TYPE FROM LINES 12, 89, AND 127 */
 function PlantDetector() {
-	const identPlants: IdentResponse | null = useSelector((state: RootState) => state.identPlants);
+	const identPlants: IdentResponse = useSelector((state: RootState) => state.identPlants);
 	const {is_plant, is_plant_probability} = identPlants;
 	if (!is_plant)
 		return (
@@ -49,7 +49,10 @@ function SinglePlant({suggestion, images}:{suggestion:SuggestionType, images:Ima
 	const maxWater = watering ? waterDrops[watering.max] : waterDrops[2];
 
 	function addToMyGarden() {
-		const cleanedPlant = cleanAndPushPlant(suggestion, images);
+		const cleanedPlant:Plant = cleanAndPushPlant(suggestion, images);
+		//in theory, what is causing the error below is covered in the helperfunction
+		//but I will need to double check the ability to add properties to a type
+		//I may need to add them initialized to null from the start.
 		dispatch(addPlantToGarden(cleanedPlant));
 		dispatch(changeAppRoute('garden'));
 	}
@@ -87,7 +90,7 @@ function SinglePlant({suggestion, images}:{suggestion:SuggestionType, images:Ima
 }
 
 function SuggestionContainer(): React.JSX.Element {
-	const identPlants:IdentResponse | null = useSelector((state: RootState) => state.identPlants);
+	const identPlants:IdentResponse  = useSelector((state: RootState) => state.identPlants);
 	const {images, suggestions}:{images:Image[], suggestions: SuggestionType[]} = identPlants;
 	function plural(elem) {
 		if (elem.length > 1) return 's';
