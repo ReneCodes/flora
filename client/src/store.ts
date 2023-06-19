@@ -1,4 +1,4 @@
-import {legacy_createStore as createStore, applyMiddleware, CombinedState} from 'redux';
+import { legacy_createStore as createStore, applyMiddleware, CombinedState } from 'redux';
 import rootReducer from './reducer';
 import { composeWithDevTools } from '@redux-devtools/extension'
 
@@ -6,6 +6,6 @@ const store = createStore(rootReducer, composeWithDevTools && composeWithDevTool
 
 export type RootState = ReturnType<typeof store.getState>
 
-export type appDispatch = typeof store.dispatch;
+export type AppDispatch = typeof store.dispatch;
 
 export default store;

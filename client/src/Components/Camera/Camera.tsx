@@ -5,10 +5,11 @@ import { findPlant } from '../../service/APIClient';
 import { useSelector, useDispatch } from 'react-redux';
 import { storeIdentResult, changeAppRoute, accessCamera } from '../../actions';
 import { Loader } from '../Suggestions/Suggestions';
+import { RootState, AppDispatch } from '../../store';
 
 function Camera() {
 	const dispatch = useDispatch();
-	const camera = useSelector((state) => state.camera);
+	const camera = useSelector((state: RootState) => state.camera);
 	const videoRef = useRef<HTMLVideoElement>(); // grabs video elem in HTML
 	const photoRef = useRef<HTMLCanvasElement>(); // grabs canvas elem in HTML
 
@@ -25,8 +26,11 @@ function Camera() {
 					width: height / (16 / 6),
 				},
 			})
-			.then((stream) => {
+			.then((stream: MediaStream) => {
 				const video: HTMLVideoElement | undefined = videoRef.current;
+				if (video === undefined) {
+					return
+				}
 				video.srcObject = stream;
 				// play once the stream is attached
 				if (video.srcObject) video.play();
@@ -37,18 +41,24 @@ function Camera() {
 	}
 
 	async function takePhoto() {
-		const video = videoRef.current;
-		const photo = photoRef.current;
-		video.pause();
+		const video: HTMLVideoElement | undefined = videoRef.current;
+		const photo: HTMLCanvasElement | undefined = photoRef.current;
+
+		video?.pause();
 		setHasPhoto(true);
 
-		photo.height = 1200;
-		photo.width = photo.height / (16 / 8.2);
+		if (photo !== undefined) {
+			photo.height = 1200;
+			photo.width = photo.height / (16 / 8.2);
+		} else {
+			return
+		}
 
-		let ctx = photo.getContext('2d');
-		ctx.drawImage(video, 0, 0, photo.width, photo.height);
-
-		const imgDataUrl = photo.toDataURL('image/jpeg', 0.9);
+		let ctx: CanvasRenderingContext2D | null = photo.getContext('2d');
+		if (video) {
+			ctx?.drawImage(video, 0, 0, photo.width, photo.height);
+		}
+		const imgDataUrl: string = photo.toDataURL('image/jpeg', 0.9);
 
 		try {
 			await findPlant(imgDataUrl).then((identResult) => {
@@ -56,7 +66,9 @@ function Camera() {
 				dispatch(changeAppRoute('identResult'));
 				dispatch(accessCamera()); // turn on/Off
 				//  clear Canvas
-				ctx.clearRect(0, 0, photo.width, photo.height);
+
+				ctx?.clearRect(0, 0, photo.width, photo.height);
+
 			});
 			setHasPhoto(false);
 		} catch (error) {
@@ -71,7 +83,7 @@ function Camera() {
 
 	// Init video after rendering component
 	useEffect(() => {
-		const video = videoRef.current;
+		const video: HTMLVideoElement | undefined = videoRef.current;
 		if (video) {
 			video.load();
 			getVideo();
@@ -80,8 +92,8 @@ function Camera() {
 
 	// Pause Camera when not needed
 	useEffect(() => {
-		let video = videoRef.current;
-		camera ? video.play() : video.pause();
+		let video: HTMLVideoElement | undefined = videoRef.current;
+		camera ? video?.play() : video?.pause();
 	}, [camera]);
 
 	return (

@@ -1,18 +1,19 @@
 import './Garden.css';
-import {useEffect} from 'react';
-import {useSelector, useDispatch} from 'react-redux';
-import {changePlantName, viewPlant, unselectPlant, changeAppRoute} from '../../actions';
-import {updatePlant} from '../../service/APIClient';
-import {waterDrops} from '../../service/helper.service';
-
+import React from 'react';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { changePlantName, viewPlant, unselectPlant, changeAppRoute } from '../../actions';
+import { updatePlant } from '../../service/APIClient';
+import { waterDrops } from '../../service/helper.service';
+import { AppDispatch } from '../../store';
 import Plant from '../Plant/Plant';
 
-function PlantTile({plant, idx}) {
+function PlantTile({ plant, idx }) {
 	const dispatch = useDispatch();
 
 	// console.log('Plant:', idx);
-	const {plant_name, _id, api_id, personal_name, plant_details} = plant;
-	const {watering} = plant_details;
+	const { plant_name, _id, api_id, personal_name, plant_details } = plant;
+	const { watering } = plant_details;
 	const maxWater = watering ? waterDrops[watering.max] : waterDrops[2];
 
 	function selectPlant(e) {
@@ -23,7 +24,7 @@ function PlantTile({plant, idx}) {
 
 	function changeName(e) {
 		if (e.target.localName === 'button') {
-			const input = document.getElementById(`name-field-${_id}`);
+			const input = document.getElementById(`name-field-${_id}`) as HTMLInputElement;
 			input.readOnly = false;
 			input.focus();
 		} else {
@@ -32,11 +33,11 @@ function PlantTile({plant, idx}) {
 	}
 
 	async function writeTrueFalse(e) {
-		const personal_name = e.target.value;
+		const personal_name: string = e.target.value;
 		e.target.readOnly = !e.target.readOnly;
 		if (e.target.readOnly) {
-			if (plant._id) updatePlant({_id, personal_name});
-			else updatePlant({api_id, personal_name});
+			if (plant._id) updatePlant({ _id, personal_name });
+			else updatePlant({ api_id, personal_name });
 		}
 	}
 
