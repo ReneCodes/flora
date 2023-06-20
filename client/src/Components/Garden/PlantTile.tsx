@@ -10,7 +10,7 @@ import { waterDrops } from '../../service/helper.service';
 import { Plant } from '../../Types';
 
 
-function GardenTile({ plant, idx }: { plant: Plant, idx: number }) {
+function PlantTile({ plant, idx }: { plant: Plant, idx: number }) {
     const dispatch = useDispatch();
 
     // console.log('Plant:', idx);
@@ -18,7 +18,7 @@ function GardenTile({ plant, idx }: { plant: Plant, idx: number }) {
     const { watering } = plant_details;
     const maxWater = watering ? waterDrops[watering.max] : waterDrops[2];
 
-    function selectPlant(e: React.MouseEvent<HTMLImageElement, globalThis.MouseEvent>) {
+    function selectPlant() {
         dispatch(viewPlant(Number(idx)));
         dispatch(changeAppRoute('plantInfo'));
     }
@@ -82,4 +82,4 @@ function GardenTile({ plant, idx }: { plant: Plant, idx: number }) {
 }
 
 
-export default GardenTile
+export default PlantTile

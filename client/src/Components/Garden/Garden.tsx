@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../store';
 import PlantComponent from '../Plant/Plant';
 // import { Plant } from '../../Types';
-import GardenTile from './GardenTile'
+import GardenTile from './PlantTile'
 
 // function GardenTiles() {
 // 	const gardenList = useSelector((state: RootState) => state.garden);
