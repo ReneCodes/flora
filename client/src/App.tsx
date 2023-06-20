@@ -17,6 +17,7 @@ import * as service from './service/APIClient';
 import { RootState } from './store';
 import React from 'react';
 import { Plant } from './Types'
+import PlantInfo from './Components/Plant/PlantInfo';
 
 function App() {
 	const isCameraOn: boolean = useSelector((state: RootState) => state.camera);
@@ -53,7 +54,8 @@ function App() {
 				</div>
 				<div className="app-content">
 					{route[0] === 'home' && <Homepage />}
-					{(route[0] === 'garden' || route[0] === 'plantInfo') && <Garden />}
+					{route[0] === 'plantInfo' && <PlantInfo />}
+					{route[0] === 'garden' && <Garden />}
 					{route[0] === 'identResult' && <Suggestions />}
 					{route[0] === 'guides' && <Guide />}
 					{route[0] === 'careGuide' && <CareGuide />}
@@ -70,44 +72,44 @@ function App() {
 	);
 }
 
-function TestSection() {
-	return (
-		<>
-			<div className="block">YELLOW BOX</div>
-			<div className="block">
-				{/* <button
-							className="btn-API"
-							onClick={service.getGarden}>
-							GET Garden
-						</button> */}
-				<button
-					className="btn-API"
-					onClick={service.findPlant}>
-					FIND PLant
-				</button>
-			</div>
-			<div className="block">
-				<button
-					className="btn-API"
-					onClick={service.savePlant}>
-					SAVE PLant
-				</button>
-			</div>
-			<div className="block">
-				{' '}
-				<button
-					className="btn-API"
-					onClick={() => /*service.updatePlant*/console.log("Hello there")}>
-					UPDATE PLant
-				</button>
-				<button
-					className="btn-API"
-					onClick={e => service.deletePlant(e)}>
-					DELETE PLant
-				</button>
-			</div>
-		</>
-	);
-}
+// function TestSection() {
+// 	return (
+// 		<>
+// 			<div className="block">YELLOW BOX</div>
+// 			<div className="block">
+// 				{/* <button
+// 							className="btn-API"
+// 							onClick={service.getGarden}>
+// 							GET Garden
+// 						</button> */}
+// 				<button
+// 					className="btn-API"
+// 					onClick={service.findPlant}>
+// 					FIND PLant
+// 				</button>
+// 			</div>
+// 			<div className="block">
+// 				<button
+// 					className="btn-API"
+// 					onClick={service.savePlant}>
+// 					SAVE PLant
+// 				</button>
+// 			</div>
+// 			<div className="block">
+// 				{' '}
+// 				<button
+// 					className="btn-API"
+// 					onClick={() => /*service.updatePlant*/console.log("Hello there")}>
+// 					UPDATE PLant
+// 				</button>
+// 				<button
+// 					className="btn-API"
+// 					onClick={e => service.deletePlant(e)}>
+// 					DELETE PLant
+// 				</button>
+// 			</div>
+// 		</>
+// 	);
+// }
 
 export default App;

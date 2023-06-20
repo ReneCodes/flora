@@ -1,41 +1,42 @@
 import './Homepage.css';
-import {useSelector, useDispatch} from 'react-redux';
-import {changeAppRoute, accessCamera, viewPlant} from '../../actions';
+import { useSelector, useDispatch } from 'react-redux';
+import { changeAppRoute, accessCamera, viewPlant } from '../../actions';
 import CareGuideLink from '../Navbar/CareGuideLink';
 import WaterGuideLink from '../Navbar/WaterGuideLink';
 
-function PlantsInGarden({garden}) {
-	const dispatch = useDispatch();
-	function openCamera() {
-		dispatch(accessCamera()); // turn on/Off
-	}
+// function PlantsInGarden({ garden }) {
+// 	const dispatch = useDispatch();
+// 	function openCamera() {
+// 		dispatch(accessCamera()); // turn on/Off
+// 	}
 
-	function goToPlant(idx, route) {
-		dispatch(viewPlant(Number(idx)));
-		dispatch(changeAppRoute(route));
-	}
+// 	function goToPlant(idx, route) {
+// 		dispatch(viewPlant(Number(idx)));
+// 		dispatch(changeAppRoute(route));
+// 	}
 
-	function ShowImage({idx}) {
-		const image = garden[idx].images[0].url;
-		return (
-			<img
-				src={image}
-				alt=""
-				onClick={() => goToPlant(idx, 'plantInfo')}></img>
-		);
-	}
+// 	function ShowImage({ idx }) {
+// 		const image = garden[idx].images[0].url;
+// 		return (
+// 			<img
+// 				src={image}
+// 				alt=""
+// 				onClick={() => goToPlant(idx, 'plantInfo')}></img>
+// 		);
+// 	}
 
-	return (
-		<>
-			<div className="card-img">
-				<button>{garden.length > 0 ? <ShowImage idx={0} /> : <p onClick={openCamera}>📸</p>}</button>
-			</div>
-			<div className="card-img">
-				<button>{garden.length > 1 ? <ShowImage idx={1} /> : <p onClick={openCamera}>📸</p>}</button>
-			</div>
-		</>
-	);
-}
+// 	return (
+
+// 		<>
+// 			<div className="card-img">
+// 				<button>{garden[0] ? <ShowImage idx={0} /> : <p onClick={openCamera}>📸</p>}</button>
+// 			</div>
+// 			<div className="card-img">
+// 				<button>{garden[1] ? <ShowImage idx={1} /> : <p onClick={openCamera}>📸</p>}</button>
+// 			</div>
+// 		</>
+// 	);
+// }
 
 function Homepage() {
 	const dispatch = useDispatch();
@@ -45,6 +46,22 @@ function Homepage() {
 	function navigateRoute(switchRoute) {
 		console.log(switchRoute);
 		dispatch(changeAppRoute(switchRoute));
+	}
+
+	//moved function to component
+	function ShowImage({ idx }) {
+		const image = garden[idx].images[0].url;
+		return (
+			<img
+				src={image}
+				alt=""
+				onClick={() => goToPlant(idx, 'plantInfo')}></img>
+		);
+	}
+
+	function goToPlant(idx, route) {
+		dispatch(viewPlant(Number(idx)));
+		dispatch(changeAppRoute(route));
 	}
 
 	return (
@@ -60,7 +77,14 @@ function Homepage() {
 						</div>
 					</button>
 					<div className="card-box">
-						<PlantsInGarden garden={garden} />
+
+						{garden.slice(0, 2).map(plant => (
+							<div className="card-img">
+								<ShowImage idx={garden.indexOf(plant)} />
+							</div>
+						))}
+
+						{/* <PlantsInGarden garden={garden} /> */}
 					</div>
 					{!garden && (
 						<div className="card-info">
