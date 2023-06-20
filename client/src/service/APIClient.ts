@@ -1,14 +1,15 @@
 //
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import { IdentResponse, Plant, SuggestionType } from '../Types'
 
 import cleanPlant1 from './TEMP/cleanPlant1';
 import cleanPlant2 from './TEMP/cleanPlant2';
 import cleanPlant3 from './TEMP/cleanPlant3';
 
 // Fetch garden data
-export async function getGarden() {
-	const res = await fetch('http://127.0.0.1:4242/garden')
+export async function getGarden():Promise<Plant[]> {
+	const res: Plant[] = await fetch('http://127.0.0.1:4242/garden')
 		.then((data) => data.json())
 		.catch((error) => console.log('\n getGarden ERROR\n', error));
 
@@ -17,7 +18,7 @@ export async function getGarden() {
 }
 
 // Send base64 img string to BE
-export async function findPlant(dataURL) {
+export async function findPlant(dataURL):Promise<IdentResponse> {
 	let config = {
 		method: 'post',
 		maxBodyLength: Infinity,
@@ -27,7 +28,7 @@ export async function findPlant(dataURL) {
 		},
 		data: {dataURL},
 	};
-	const identResult = await axios
+	const identResult:IdentResponse = await axios
 		.request(config)
 		.then((res) => {
 			console.log('Success:', res.data);
@@ -43,9 +44,9 @@ export async function findPlant(dataURL) {
 
 // Send suggested plant to BE
 
-export async function savePlant(plant) {
+export async function savePlant(plant: SuggestionType | React.MouseEvent<HTMLButtonElement, MouseEvent>): Promise<Plant> {
 	// const temp = cleanPlant3;
-	const res = await fetch('http://127.0.0.1:4242/garden', {
+	const res: Plant = await fetch('http://127.0.0.1:4242/garden', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
@@ -66,8 +67,8 @@ export async function savePlant(plant) {
 }
 
 // Update a plant
-export async function updatePlant(newData) {
-	const res = await fetch('http://127.0.0.1:4242/garden', {
+export async function updatePlant(newData:{_id?: string, api_id?: number,  personal_name?:string, note?: string}): Promise<{ result: string, plant: Plant }> {
+	const res: { result: string, plant: Plant } = await fetch('http://127.0.0.1:4242/garden', {
 		method: 'PUT',
 		headers: {
 			'Content-Type': 'application/json',
@@ -82,13 +83,13 @@ export async function updatePlant(newData) {
 			errorToast('Error during update');
 			console.log('\n savePLant ERROR\n', error);
 		});
-	console.log(res);
+	// console.log(res);
 	return res;
 }
 
 // Delete Plant
-export async function deletePlant(_idObj) {
-	const res = await fetch('http://127.0.0.1:4242/garden', {
+export async function deletePlant(_idObj: number | string | React.MouseEvent<HTMLButtonElement, MouseEvent>): Promise<string> {
+	const res: string = await fetch('http://127.0.0.1:4242/garden', {
 		method: 'DELETE',
 		headers: {
 			'Content-Type': 'application/json',
