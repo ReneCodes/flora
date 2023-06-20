@@ -10,7 +10,7 @@ import { waterDrops } from '../../service/helper.service';
 import { Plant } from '../../Types';
 
 
-function PlantTile({ plant, idx }: { plant: Plant, idx: number }) {
+function GardenTile({ plant, idx }: { plant: Plant, idx: number }) {
     const dispatch = useDispatch();
 
     // console.log('Plant:', idx);
@@ -82,4 +82,4 @@ function PlantTile({ plant, idx }: { plant: Plant, idx: number }) {
 }
 
 
-export default PlantTile
+export default GardenTile
