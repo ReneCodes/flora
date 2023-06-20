@@ -70,44 +70,44 @@ function App() {
 	);
 }
 
-function TestSection() {
-	return (
-		<>
-			<div className="block">YELLOW BOX</div>
-			<div className="block">
-				{/* <button
-							className="btn-API"
-							onClick={service.getGarden}>
-							GET Garden
-						</button> */}
-				<button
-					className="btn-API"
-					onClick={service.findPlant}>
-					FIND PLant
-				</button>
-			</div>
-			<div className="block">
-				<button
-					className="btn-API"
-					onClick={service.savePlant}>
-					SAVE PLant
-				</button>
-			</div>
-			<div className="block">
-				{' '}
-				<button
-					className="btn-API"
-					onClick={() => /*service.updatePlant*/console.log("Hello there")}>
-					UPDATE PLant
-				</button>
-				<button
-					className="btn-API"
-					onClick={e => service.deletePlant(e)}>
-					DELETE PLant
-				</button>
-			</div>
-		</>
-	);
-}
+// function TestSection() {
+// 	return (
+// 		<>
+// 			<div className="block">YELLOW BOX</div>
+// 			<div className="block">
+// 				{/* <button
+// 							className="btn-API"
+// 							onClick={service.getGarden}>
+// 							GET Garden
+// 						</button> */}
+// 				<button
+// 					className="btn-API"
+// 					onClick={service.findPlant}>
+// 					FIND PLant
+// 				</button>
+// 			</div>
+// 			<div className="block">
+// 				<button
+// 					className="btn-API"
+// 					onClick={service.savePlant}>
+// 					SAVE PLant
+// 				</button>
+// 			</div>
+// 			<div className="block">
+// 				{' '}
+// 				<button
+// 					className="btn-API"
+// 					onClick={() => /*service.updatePlant*/console.log("Hello there")}>
+// 					UPDATE PLant
+// 				</button>
+// 				<button
+// 					className="btn-API"
+// 					onClick={e => service.deletePlant(e)}>
+// 					DELETE PLant
+// 				</button>
+// 			</div>
+// 		</>
+// 	);
+// }
 
 export default App;
