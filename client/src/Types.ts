@@ -5,7 +5,7 @@ export interface Route {
 export interface Plant {
   plant_name: string,
   personal_name: string,
-  uploaded_datetime: Date,
+  uploaded_datetime: string,
   images: Image[]
   plant_details: {
     common_names: string[],
