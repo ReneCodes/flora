@@ -51,7 +51,7 @@ function Garden() {
 				</div>
 				<div className="garden">
 					{' '}
-					{typeof plantIDX === 'number' && currentRoute === 'plantInfo' ? <PlantComponent></PlantComponent> : gardenList ? (
+					{gardenList ? (
 						gardenList.map((plant, idx) => {
 							const identKey = plant._id ? plant._id : idx;
 							return (
