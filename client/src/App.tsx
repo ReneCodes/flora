@@ -97,12 +97,12 @@ function TestSection() {
 				{' '}
 				<button
 					className="btn-API"
-					onClick={service.updatePlant}>
+					onClick={() => /*service.updatePlant*/console.log("Hello there")}>
 					UPDATE PLant
 				</button>
 				<button
 					className="btn-API"
-					onClick={service.deletePlant}>
+					onClick={e => service.deletePlant(e)}>
 					DELETE PLant
 				</button>
 			</div>

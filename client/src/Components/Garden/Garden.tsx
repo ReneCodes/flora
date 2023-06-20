@@ -5,9 +5,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { changePlantName, viewPlant, unselectPlant, changeAppRoute } from '../../actions';
 import { updatePlant } from '../../service/APIClient';
 import { waterDrops } from '../../service/helper.service';
-import { AppDispatch, RootState } from '../../store';
+import { RootState } from '../../store';
 import PlantComponent from '../Plant/Plant';
-import { MouseEvent } from 'react';
 import { Plant } from '../../Types';
 
 function PlantTile({ plant, idx }: { plant: Plant, idx: number }) {
