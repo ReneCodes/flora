@@ -6,9 +6,9 @@ import { useSelector, useDispatch } from 'react-redux';
 // import { updatePlant } from '../../service/APIClient';
 // import { waterDrops } from '../../service/helper.service';
 import { RootState } from '../../store';
-import PlantInfo from '../Plant/PlantInfo';
+// import PlantInfo from '../Plant/PlantInfo';
 // import { Plant } from '../../Types';
-import GardenTile from './PlantTile'
+import PlantTile from './PlantTile'
 
 // function GardenTiles() {
 // 	const gardenList = useSelector((state: RootState) => state.garden);
@@ -55,10 +55,10 @@ function Garden() {
 						gardenList.map((plant, idx) => {
 							const identKey = plant._id ? plant._id : idx;
 							return (
-								<GardenTile
+								<PlantTile
 									key={identKey}
 									idx={idx}
-									plant={plant}></GardenTile>
+									plant={plant}></PlantTile>
 							);
 						})
 					) : (

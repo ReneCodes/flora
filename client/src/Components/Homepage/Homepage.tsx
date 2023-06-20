@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { changeAppRoute, accessCamera, viewPlant } from '../../actions';
 import CareGuideLink from '../Navbar/CareGuideLink';
 import WaterGuideLink from '../Navbar/WaterGuideLink';
+import { RootState } from '../../store';
 
 // function PlantsInGarden({ garden }) {
 // 	const dispatch = useDispatch();
@@ -40,17 +41,16 @@ import WaterGuideLink from '../Navbar/WaterGuideLink';
 
 function Homepage() {
 	const dispatch = useDispatch();
-	const garden = useSelector((state) => state.garden);
+	const garden = useSelector((state: RootState) => state.garden);
 	// const garden = ''; //TODO: delete this variable
 
-	function navigateRoute(switchRoute) {
-		console.log(switchRoute);
+	function navigateRoute(switchRoute: string) {
 		dispatch(changeAppRoute(switchRoute));
 	}
 
 	//moved function to component
-	function ShowImage({ idx }) {
-		const image = garden[idx].images[0].url;
+	function ShowImage({ idx }: { idx: number }) {
+		const image: string = garden[idx].images[0].url;
 		return (
 			<img
 				src={image}
@@ -59,7 +59,7 @@ function Homepage() {
 		);
 	}
 
-	function goToPlant(idx, route) {
+	function goToPlant(idx: number, route: string) {
 		dispatch(viewPlant(Number(idx)));
 		dispatch(changeAppRoute(route));
 	}

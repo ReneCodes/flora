@@ -28,8 +28,8 @@ export interface Plant {
     edible_parts: ("bulb" | "flowers" | "frond" | "fruit" | "gum" | "leaves" | "lichen" | "mushroom" | "nectar" | "nuts" | "seaweed" | "seeds" | "shoots" | "stems" | "tubers")[] | null,
     propagation_methods: ("cuttings" | "division" | "grafting" | "seeds" | "spores" | "suckers")[] | null,
     watering?: {
-      max: number,
-      min: number,
+      max: 1 | 2 | 3,
+      min: 1 | 2 | 3,
     },
     watering_info?: string,
     language: string,
@@ -93,8 +93,8 @@ export interface SuggestionType {
     edible_parts: ("bulb" | "flowers" | "frond" | "fruit" | "gum" | "leaves" | "lichen" | "mushroom" | "nectar" | "nuts" | "seaweed" | "seeds" | "shoots" | "stems" | "tubers")[] | null,
     propagation_methods: ("cuttings" | "division" | "grafting" | "seeds" | "spores" | "suckers")[] | null,
     watering?: {
-      max: number,
-      min: number,
+      max: 1 | 2 | 3,
+      min: 1 | 2 | 3,
     },
     watering_info?: string,
     language: string //could possibly get a list of available language abreviations from the api

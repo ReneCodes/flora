@@ -66,7 +66,6 @@ function Camera() {
 				dispatch(changeAppRoute('identResult'));
 				dispatch(accessCamera()); // turn on/Off
 				//  clear Canvas
-
 				ctx?.clearRect(0, 0, photo.width, photo.height);
 
 			});
