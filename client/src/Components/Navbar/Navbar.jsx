@@ -1,7 +1,7 @@
 import './Navbar.css';
-import {useDispatch, useSelector} from 'react-redux';
-import {accessCamera} from '../../actions';
-import {changeAppRoute} from '../../actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { accessCamera } from '../../actions';
+import { changeAppRoute } from '../../actions';
 
 function Navbar() {
 	const dispatch = useDispatch();
@@ -26,23 +26,23 @@ function Navbar() {
 					currentRoute === 'waterGuide' ||
 					currentRoute === 'identResult' ||
 					currentRoute === 'garden') && (
-					<span
-						className="nav-icon scale"
-						route="guides">
-						🧑‍🌾
-					</span>
-				)}
+						<span
+							className="nav-icon scale"
+							route="guides">
+							🧑‍🌾
+						</span>
+					)}
 				{((currentRoute === 'guides' && previousRoute === 'home') ||
 					(currentRoute === 'guides' && previousRoute === 'waterGuide') ||
 					(currentRoute === 'guides' && previousRoute === 'plantInfo') ||
 					(currentRoute === 'guides' && previousRoute === 'careGuide') ||
 					(currentRoute === 'guides' && previousRoute === 'garden')) && (
-					<span
-						className="nav-icon scale"
-						route="home">
-						🏡
-					</span>
-				)}
+						<span
+							className="nav-icon scale"
+							route="home">
+							🏡
+						</span>
+					)}
 				{/* <span
 					className="nav-icon"
 					route="guides">
@@ -61,12 +61,12 @@ function Navbar() {
 					(currentRoute === 'guides' && previousRoute === 'home') ||
 					(currentRoute === 'careGuide' && previousRoute === 'home') ||
 					(currentRoute === 'waterGuide' && previousRoute === 'home')) && (
-					<span
-						className="nav-icon scale"
-						route="garden">
-						🪴
-					</span>
-				)}
+						<span
+							className="nav-icon scale"
+							route="garden">
+							🪴
+						</span>
+					)}
 				{currentRoute === 'identResult' && (
 					<span
 						className="nav-icon scale"
@@ -79,53 +79,53 @@ function Navbar() {
 					(currentRoute === 'plantInfo' && previousRoute === 'waterGuide') ||
 					(currentRoute === 'plantInfo' && previousRoute === 'careGuide') ||
 					(currentRoute === 'plantInfo' && previousRoute === 'guides')) && (
-					<span
-						className="nav-icon scale"
-						route="garden">
-						🪴
-					</span>
-				)}
+						<span
+							className="nav-icon scale"
+							route="garden">
+							🪴
+						</span>
+					)}
 				{((currentRoute === 'guides' && previousRoute === 'home') ||
 					(currentRoute === 'guides' && previousRoute === 'waterGuide') ||
 					(currentRoute === 'guides' && previousRoute === 'careGuide') ||
 					(currentRoute === 'guides' && previousRoute === 'plantInfo') ||
 					(currentRoute === 'guides' && previousRoute === 'garden')) && (
-					<span
-						className="nav-icon scale"
-						route="garden">
-						🪴
-					</span>
-				)}
+						<span
+							className="nav-icon scale"
+							route="garden">
+							🪴
+						</span>
+					)}
 				{((currentRoute === 'garden' && previousRoute === 'home') ||
 					(currentRoute === 'garden' && previousRoute === 'guides') ||
 					(currentRoute === 'garden' && previousRoute === 'waterGuide') ||
 					(currentRoute === 'garden' && previousRoute === 'careGuide') ||
 					(currentRoute === 'garden' && previousRoute === 'plantInfo') ||
 					(currentRoute === 'garden' && previousRoute === 'identResult')) && (
-					<span
-						className="nav-icon scale"
-						route="home">
-						🏡
-					</span>
-				)}
+						<span
+							className="nav-icon scale"
+							route="home">
+							🏡
+						</span>
+					)}
 				{((currentRoute === 'waterGuide' && previousRoute === 'home') ||
 					(currentRoute === 'waterGuide' && previousRoute === 'plantInfo') ||
 					(currentRoute === 'waterGuide' && previousRoute === 'guides')) && (
-					<span
-						className="nav-icon scale"
-						route="garden">
-						🪴
-					</span>
-				)}
+						<span
+							className="nav-icon scale"
+							route="garden">
+							🪴
+						</span>
+					)}
 				{((currentRoute === 'careGuide' && previousRoute === 'home') ||
 					(currentRoute === 'careGuide' && previousRoute === 'plantInfo') ||
 					(currentRoute === 'careGuide' && previousRoute === 'guides')) && (
-					<span
-						className="nav-icon scale"
-						route="garden">
-						🪴
-					</span>
-				)}
+						<span
+							className="nav-icon scale"
+							route="garden">
+							🪴
+						</span>
+					)}
 			</button>
 		</div>
 	);
