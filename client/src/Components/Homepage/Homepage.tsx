@@ -1,48 +1,13 @@
 import './Homepage.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { changeAppRoute, accessCamera, viewPlant } from '../../actions';
+import { changeAppRoute, viewPlant } from '../../actions';
 import CareGuideLink from '../Navbar/CareGuideLink';
 import WaterGuideLink from '../Navbar/WaterGuideLink';
 import { RootState } from '../../store';
 
-// function PlantsInGarden({ garden }) {
-// 	const dispatch = useDispatch();
-// 	function openCamera() {
-// 		dispatch(accessCamera()); // turn on/Off
-// 	}
-
-// 	function goToPlant(idx, route) {
-// 		dispatch(viewPlant(Number(idx)));
-// 		dispatch(changeAppRoute(route));
-// 	}
-
-// 	function ShowImage({ idx }) {
-// 		const image = garden[idx].images[0].url;
-// 		return (
-// 			<img
-// 				src={image}
-// 				alt=""
-// 				onClick={() => goToPlant(idx, 'plantInfo')}></img>
-// 		);
-// 	}
-
-// 	return (
-
-// 		<>
-// 			<div className="card-img">
-// 				<button>{garden[0] ? <ShowImage idx={0} /> : <p onClick={openCamera}>📸</p>}</button>
-// 			</div>
-// 			<div className="card-img">
-// 				<button>{garden[1] ? <ShowImage idx={1} /> : <p onClick={openCamera}>📸</p>}</button>
-// 			</div>
-// 		</>
-// 	);
-// }
-
 function Homepage() {
 	const dispatch = useDispatch();
 	const garden = useSelector((state: RootState) => state.garden);
-	// const garden = ''; //TODO: delete this variable
 
 	function navigateRoute(switchRoute: string) {
 		dispatch(changeAppRoute(switchRoute));
@@ -83,8 +48,6 @@ function Homepage() {
 								<ShowImage idx={garden.indexOf(plant)} />
 							</div>
 						))}
-
-						{/* <PlantsInGarden garden={garden} /> */}
 					</div>
 					{!garden && (
 						<div className="card-info">
