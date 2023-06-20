@@ -1,8 +1,8 @@
 import './App.css';
-import {useEffect} from 'react';
-import {useSelector, useDispatch} from 'react-redux';
-import {storeGarden} from './actions';
-import {Toaster} from 'react-hot-toast';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { storeGarden } from './actions';
+import { Toaster } from 'react-hot-toast';
 
 import Camera from './Components/Camera/Camera';
 import Navbar from './Components/Navbar/Navbar';
@@ -16,16 +16,16 @@ import WaterGuide from './Components/Guide/WaterGuide';
 import * as service from './service/APIClient';
 import { RootState } from './store';
 import React from 'react';
-import {Plant} from './Types'
+import { Plant } from './Types'
 
 function App() {
-	const isCameraOn:boolean = useSelector((state: RootState) => state.camera);
-	const route:string[] = useSelector((state:RootState) => state.basicRouting);
+	const isCameraOn: boolean = useSelector((state: RootState) => state.camera);
+	const route: string[] = useSelector((state: RootState) => state.basicRouting);
 	const dispatch = useDispatch();
 
-	async function fetchGarden():Promise<void> {
+	async function fetchGarden(): Promise<void> {
 		try {
-			const garden:Plant[] = await service.getGarden();
+			const garden: Plant[] = await service.getGarden();
 			dispatch(storeGarden(garden));
 		} catch (error) {
 			console.log('Error fetching Garden', error);
