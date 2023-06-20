@@ -2,6 +2,7 @@ import './Guide.css';
 import {useDispatch, useSelector} from 'react-redux';
 import CareGuideLink from '../Navbar/CareGuideLink';
 import WaterGuideLink from '../Navbar/WaterGuideLink';
+import React from 'react';
 
 function Guide() {
 	return (
