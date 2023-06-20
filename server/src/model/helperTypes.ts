@@ -29,7 +29,7 @@ interface Plant {
     },
     wiki_image: string,
     synonyms: string[],
-    gbif_id: string,
+    gbif_id: string | null,
     edible_parts: ("bulb" | "flowers" | "frond" | "fruit" | "gum" | "leaves" | "lichen" | "mushroom" | "nectar" | "nuts" | "seaweed" | "seeds" | "shoots" | "stems" | "tubers")[]| null,
     propagation_methods: ("cuttings" | "division" | "grafting" | "seeds" | "spores" | "suckers")[] | null,
     watering?: {
