@@ -1,4 +1,4 @@
-import './Plant.css';
+import './PlantInfo.css';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { changePlantName, unselectPlant, attachPlantNote, changeAppRoute, deletePlantFromGarden } from '../../actions';

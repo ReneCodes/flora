@@ -17,7 +17,7 @@ import * as service from './service/APIClient';
 import { RootState } from './store';
 import React from 'react';
 import { Plant } from './Types'
-import PlantInfo from './Components/Plant/Plant';
+import PlantInfo from './Components/Plant/PlantInfo';
 
 function App() {
 	const isCameraOn: boolean = useSelector((state: RootState) => state.camera);

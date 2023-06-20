@@ -6,7 +6,7 @@ import { changePlantName, viewPlant, unselectPlant, changeAppRoute } from '../..
 import { updatePlant } from '../../service/APIClient';
 import { waterDrops } from '../../service/helper.service';
 // import { RootState } from '../../store';
-// import PlantComponent from '../Plant/Plant';
+// import PlantInfo from '../Plant/Plant';
 import { Plant } from '../../Types';
 
 
