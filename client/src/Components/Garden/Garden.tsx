@@ -80,43 +80,60 @@ function PlantTile({ plant, idx }: { plant: Plant, idx: number }) {
 	);
 }
 
-function GardenTiles() {
-	const gardenList = useSelector((state: RootState) => state.garden);
+// function GardenTiles() {
+// 	const gardenList = useSelector((state: RootState) => state.garden);
 
-	return (
-		<>
-			<div className="section-title">
-				<h2>GARDEN</h2>
-				<p className="section-icon">🪴</p>
-			</div>
-			{gardenList ? (
-				gardenList.map((plant, idx) => {
-					const identKey = plant._id ? plant._id : idx;
-					return (
-						<PlantTile
-							key={identKey}
-							idx={idx}
-							plant={plant}></PlantTile>
-					);
-				})
-			) : (
-				<h3>No plant in Garden</h3>
-			)}
-		</>
-	);
-}
+// 	return (
+// 		<>
+// 			<div className="section-title">
+// 				<h2>GARDEN</h2>
+// 				<p className="section-icon">🪴</p>
+// 			</div>
+// 			{gardenList ? (
+// 				gardenList.map((plant, idx) => {
+// 					const identKey = plant._id ? plant._id : idx;
+// 					return (
+// 						<PlantTile
+// 							key={identKey}
+// 							idx={idx}
+// 							plant={plant}></PlantTile>
+// 					);
+// 				})
+// 			) : (
+// 				<h3>No plant in Garden</h3>
+// 			)}
+// 		</>
+// 	);
+// }
 
 function Garden() {
 	const route = useSelector((state: RootState) => state.basicRouting);
 	const currentRoute: string = route[0];
 	const plantIDX = useSelector((state: RootState) => state.plant);
+	const gardenList = useSelector((state: RootState) => state.garden);
 
 	return (
 		<>
 			<div>
+				<div className="section-title">
+					<h2>GARDEN</h2>
+					<p className="section-icon">🪴</p>
+				</div>
 				<div className="garden">
 					{' '}
-					{typeof plantIDX === 'number' && currentRoute === 'plantInfo' ? <PlantComponent></PlantComponent> : <GardenTiles></GardenTiles>}
+					{typeof plantIDX === 'number' && currentRoute === 'plantInfo' ? <PlantComponent></PlantComponent> : gardenList ? (
+						gardenList.map((plant, idx) => {
+							const identKey = plant._id ? plant._id : idx;
+							return (
+								<PlantTile
+									key={identKey}
+									idx={idx}
+									plant={plant}></PlantTile>
+							);
+						})
+					) : (
+						<h3>No plant in Garden</h3>
+					)}
 				</div>
 			</div>
 		</>

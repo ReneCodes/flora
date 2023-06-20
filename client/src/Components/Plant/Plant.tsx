@@ -1,16 +1,16 @@
 import './Plant.css';
-import {useEffect} from 'react';
-import {useSelector, useDispatch} from 'react-redux';
-import {changePlantName, unselectPlant, attachPlantNote, changeAppRoute, deletePlantFromGarden} from '../../actions';
-import {deletePlant, updatePlant} from '../../service/APIClient';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { changePlantName, unselectPlant, attachPlantNote, changeAppRoute, deletePlantFromGarden } from '../../actions';
+import { deletePlant, updatePlant } from '../../service/APIClient';
 import CareGuideLink from '../Navbar/CareGuideLink';
 import WaterGuideLink from '../Navbar/WaterGuideLink';
-import {waterDrops} from '../../service/helper.service';
+import { waterDrops } from '../../service/helper.service';
 
 function Plant() {
 	const plantIDX = useSelector((state) => state.plant);
 	const garden = useSelector((state) => state.garden);
-	const {plant_name, personal_name, plant_details, _id, api_id, images, note} = garden[plantIDX];
+	const { plant_name, personal_name, plant_details, _id, api_id, images, note } = garden[plantIDX];
 	const {
 		wiki_description,
 		wiki_image,
@@ -57,19 +57,19 @@ function Plant() {
 			const note = e.target.value;
 			e.target.readOnly = !e.target.readOnly;
 			// update note onBlur
-			if (e.target.readOnly) updatePlant({_id, note});
+			if (e.target.readOnly) updatePlant({ _id, note });
 		}
 		if (e.target.localName === 'input') {
 			const personal_name = e.target.value;
 			e.target.readOnly = !e.target.readOnly;
 			// update personal_name onBlur
-			if (e.target.readOnly) updatePlant({_id, personal_name});
+			if (e.target.readOnly) updatePlant({ _id, personal_name });
 		}
 	}
 
 	async function deleteThisPlant() {
 		try {
-			await (_id ? deletePlant({_id}) : deletePlant({api_id})).then(() => {
+			await (_id ? deletePlant({ _id }) : deletePlant({ api_id })).then(() => {
 				dispatch(deletePlantFromGarden(Number(plantIDX)));
 				goToGarden();
 			});
