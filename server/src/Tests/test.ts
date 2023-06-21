@@ -3,13 +3,16 @@ import { Mocks }  from './Mocks';
 const supertest = require('supertest');
 import Plant from '../model/Plant.model';
 const app = require('../app')
+import mongoose from 'mongoose'
 
+beforeAll(done => done());
+afterAll(async () => {
+  await mongoose.connection.close()
+})
 describe("Integration backend tests", () => {
 
   afterEach(async () => {
-    //I have removed every other db reference from this file because it should,
-    //in theory, not talk to the db, but I think I need this one???
-    await Plant.deleteMany();
+    await mongoose.connection.db.dropDatabase();
   })
 
   it('should save a plant to the database', async (): Promise<void> => {
