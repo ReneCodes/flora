@@ -42,7 +42,7 @@ function PlantProbability({ probability }: { probability: number }) {
 	return <h2 className="blob green">High {percent}%</h2>;
 }
 
-function SinglePlant({ suggestion, images }: { suggestion: SuggestionType, images: Image[] }): React.JSX.Element {
+function SinglePlant({ suggestion, images }: { suggestion: Plant, images: Image[] }): React.JSX.Element {
 	const dispatch = useDispatch();
 	const { plant_name, plant_details, probability } = suggestion;
 	const { common_names, wiki_image, wiki_description, watering } = plant_details;
@@ -91,7 +91,7 @@ function SinglePlant({ suggestion, images }: { suggestion: SuggestionType, image
 
 function SuggestionContainer(): React.JSX.Element {
 	const identPlants: IdentResponse = useSelector((state: RootState) => state.identPlants);
-	const { images, suggestions }: { images: Image[], suggestions: SuggestionType[] } = identPlants;
+	const { images, suggestions }: { images: Image[], suggestions: Plant[] } = identPlants;
 	function plural(elem) {
 		if (elem.length > 1) return 's';
 	}

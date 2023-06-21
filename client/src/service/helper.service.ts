@@ -1,4 +1,4 @@
-import { Image, SuggestionType } from '../Types';
+import { Image, SuggestionType, Plant } from '../Types';
 import { savePlant } from './APIClient';
 
 export const waterDrops: { 1: string[], 2: string[], 3: string[] } = {
@@ -12,8 +12,8 @@ export const wateringInfo: { 1: string, 2: string, 3: string } = {
 	3: `Plants that need a lot of water also need excess water to run out somewhere. Always make sure that your plant is planted in a pot with holes.`,
 };
 
-export const cleanAndPushPlant = (suggestion: SuggestionType, images: Image[]) => {
-	const { plant_details } = suggestion;
+export const cleanAndPushPlant = (plant: Plant, images: Image[]) => {
+	const { plant_details } = plant;
 	let { watering } = plant_details;
 	if (!watering) {
 		delete plant_details['watering'];
@@ -23,13 +23,13 @@ export const cleanAndPushPlant = (suggestion: SuggestionType, images: Image[]) =
 		};
 	}
 	plant_details['watering_info'] = wateringInfo[plant_details.watering!.max];
-	suggestion['note'] = '';
-	suggestion['images'] = images;
-	suggestion['personal_name'] = '';
-	suggestion['api_id'] = suggestion['id'];
-	delete suggestion['probability'];
-	delete suggestion['id'];
-	savePlant(suggestion); // send to BE
-	console.log('Save to BE', suggestion);
-	return suggestion;
+	plant['note'] = '';
+	plant['images'] = images;
+	plant['personal_name'] = '';
+	plant['api_id'] = plant['id'];
+	delete plant['probability'];
+	delete plant['id'];
+	savePlant(plant); // send to BE
+	console.log('Save to BE', plant);
+	return plant;
 };

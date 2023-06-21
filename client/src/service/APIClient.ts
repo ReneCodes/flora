@@ -44,7 +44,7 @@ export async function findPlant(dataURL: string): Promise<IdentResponse> {
 
 // Send suggested plant to BE
 
-export async function savePlant(plant: SuggestionType | React.MouseEvent<HTMLButtonElement, MouseEvent>): Promise<Plant> {
+export async function savePlant(plant: Plant | React.MouseEvent<HTMLButtonElement, MouseEvent>): Promise<Plant> {
 	// const temp = cleanPlant3;
 	const res: Plant = await fetch('http://127.0.0.1:4242/garden', {
 		method: 'POST',
