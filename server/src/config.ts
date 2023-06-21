@@ -8,5 +8,4 @@ module.exports = {
 	DB_NAME: process.env.MONGO_DB_NAME,
 	PLANT_ID: process.env.PLANT_ID_V,
 	CLUSTER_EXT: process.env.MONGO_DB_CLUSTER_EXT,
-	TEST_DB_NAME: process.env.MONGO_DB_TEST_NAME,
 };

@@ -45,7 +45,7 @@ interface Plant {
     },
   },
   note?: string,
-  api_id?: number,
+  api_id?: string,
   custom_id?:string,
   id?:number,
   meta_data?: any,

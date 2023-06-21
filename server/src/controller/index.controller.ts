@@ -67,7 +67,9 @@ exports.savePlantToGarden = async (req: Request, res: Response) => {
 	};
 	console.log(plant);
 	try {
+		console.log('pre-create')
 		await Plant.create(plant);
+		console.log('post-create')
 		res.status(201).send({ result: 'planted in Garden' });
 	} catch (error) {
 		res.status(503);

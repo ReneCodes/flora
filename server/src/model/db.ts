@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const { DB_OWNER, DB_PASS, VAULT, DB_NAME, CLUSTER_EXT } = require('../config');
 
-mongoose.connect(`mongodb+srv://${DB_OWNER}:${DB_PASS}@${VAULT}.${CLUSTER_EXT}.mongodb.net/${DB_NAME}`, {
+mongoose.connect(process.env.NODE_ENV === 'TEST' ? 'mongodb://localhost:27017/legacy_testing' :`mongodb+srv://${DB_OWNER}:${DB_PASS}@${VAULT}.${CLUSTER_EXT}.mongodb.net/${DB_NAME}`, {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
 });

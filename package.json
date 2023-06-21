@@ -4,7 +4,7 @@
   "description": "Identify, track and care for your plant-friends",
   "main": "index.ts",
   "scripts": {
-    "test": "jest"
+    "test": "NODE_ENV=TEST jest"
   },
   "repository": {
     "type": "git",

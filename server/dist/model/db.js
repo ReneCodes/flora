@@ -5,6 +5,7 @@ mongoose.connect(`mongodb+srv://${DB_OWNER}:${DB_PASS}@${VAULT}.${CLUSTER_EXT}.m
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
+
 const connection = mongoose.connection;
 // Check connection
 connection.on('connected', () => {
