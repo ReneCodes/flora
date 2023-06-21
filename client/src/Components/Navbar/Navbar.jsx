@@ -1,7 +1,7 @@
 import './Navbar.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { accessCamera } from '../../actions';
-import { changeAppRoute } from '../../actions';
+import { accessCamera } from '../../reduxFiles/actions';
+import { changeAppRoute } from '../../reduxFiles/actions';
 
 function Navbar() {
 	const dispatch = useDispatch();

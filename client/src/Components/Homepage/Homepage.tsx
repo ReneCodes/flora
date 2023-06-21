@@ -1,9 +1,9 @@
 import './Homepage.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { changeAppRoute, viewPlant } from '../../actions';
+import { changeAppRoute, viewPlant } from '../../reduxFiles/actions';
 import CareGuideLink from '../Navbar/CareGuideLink';
 import WaterGuideLink from '../Navbar/WaterGuideLink';
-import { RootState } from '../../store';
+import { RootState } from '../../reduxFiles/store';
 
 function Homepage() {
 	const dispatch = useDispatch();

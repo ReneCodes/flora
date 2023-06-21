@@ -2,7 +2,7 @@ import './Garden.css';
 import React from 'react';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { changePlantName, viewPlant, unselectPlant, changeAppRoute } from '../../actions';
+import { changePlantName, viewPlant, unselectPlant, changeAppRoute } from '../../reduxFiles/actions';
 import { updatePlant } from '../../service/APIClient';
 import { waterDrops } from '../../service/helper.service';
 // import { RootState } from '../../store';

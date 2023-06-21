@@ -1,7 +1,7 @@
 import './App.css';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { storeGarden } from './actions';
+import { storeGarden } from './reduxFiles/actions';
 import { Toaster } from 'react-hot-toast';
 
 import Camera from './Components/Camera/Camera';
@@ -14,7 +14,7 @@ import CareGuide from './Components/Guide/CareGuide';
 import WaterGuide from './Components/Guide/WaterGuide';
 
 import * as service from './service/APIClient';
-import { RootState } from './store';
+import { RootState } from './reduxFiles/store';
 import React from 'react';
 import { Plant } from './Types'
 import PlantInfo from './Components/Plant/PlantInfo';
