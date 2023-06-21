@@ -4,6 +4,7 @@ import plant2 from '../service/TEMP/cleanPlant2';
 import plant3 from '../service/TEMP/cleanPlant3';
 import identResponse from '../service/TEMP/identResponse';
 import { Action, IdentResponse, Plant } from '../Types';
+import PlantInfo from '../Components/Plant/PlantInfo';
 
 const camera = (state: boolean = false, action: Action) => {
 	switch (action.type) {
@@ -18,16 +19,37 @@ const garden = (state: Plant[] = [], action: Action) => {
 	switch (action.type) {
 		case 'INSERT':
 			return [...state, action.payload as Plant];
+
+		// case 'CHANGE_NAME':
+		// 	state[`${action.idx}`].personal_name = action.payload;
+		// 	// console.log('CHANGE_NAME', state[idx].personal_name);
+		// 	state = [...state];
+		// 	return state;
 		case 'CHANGE_NAME':
-			state[`${action.idx}`].personal_name = action.payload;
+			const updatedStateWithName = state.map(plant => {
+				if (plant._id === action._id) {
+					return { ...plant, personal_name: action.payload }
+				}
+				return plant
+			})
 			// console.log('CHANGE_NAME', state[idx].personal_name);
-			state = [...state];
+			state = updatedStateWithName as Plant[];
 			return state;
+
+		// case 'ATTACH_NOTE':
+		// 	state[`${action.idx}`].note = action.payload;
+		// 	state = [...state];
+		// 	return state;
 		case 'ATTACH_NOTE':
-			state[`${action.idx}`].note = action.payload;
-			// console.log('ATTACH_NOTE', state[idx].note);
-			state = [...state];
+			const updatedStateWithNote = state.map(plant => {
+				if (plant._id === action._id) {
+					return { ...plant, note: action.payload }
+				}
+				return plant
+			})
+			state = updatedStateWithNote as Plant[];
 			return state;
+
 		case 'STORE_GARDEN':
 			return (state = action.payload as Plant[]);
 		case 'DELETE_PLANT':
@@ -46,10 +68,10 @@ const garden = (state: Plant[] = [], action: Action) => {
 	}
 };
 
-const plant = (state: boolean | number = false, action: Action) => {
+const plant = (state: boolean | string = false, action: Action) => {
 	switch (action.type) {
 		case 'SELECT_PLANT':
-			return (state = action.idx as number);
+			return (state = action._id as string);
 		case 'UNSELECT_PLANT':
 			return (state = false);
 		default:

@@ -23,8 +23,8 @@ function SinglePlant({ suggestion, images }: { suggestion: Plant, images: Image[
     const { common_names, wiki_image, wiki_description, watering } = plant_details;
     const maxWater = watering ? waterDrops[watering.max] : waterDrops[2];
 
-    function addToMyGarden() {
-        const cleanedPlant: Plant = cleanAndPushPlant(suggestion, images);
+    async function addToMyGarden() {
+        const cleanedPlant: Plant = await cleanAndPushPlant(suggestion, images);
         //in theory, what is causing the error below is covered in the helperfunction
         //but I will need to double check the ability to add properties to a type
         //I may need to add them initialized to null from the start.

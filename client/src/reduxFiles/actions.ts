@@ -37,7 +37,7 @@ export const storeGarden = (garden: Plant[]) => ({
 	_id: null
 });
 
-export const viewPlant = (_id: number) => ({
+export const viewPlant = (_id: string) => ({
 	type: 'SELECT_PLANT' as const,
 	payload: null,
 	_id,
