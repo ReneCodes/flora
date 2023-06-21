@@ -67,10 +67,9 @@ exports.getGarden = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
 });
 exports.savePlantToGarden = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const plant = Object.assign({}, req.body);
-    console.log(plant);
     try {
-        yield Plant_model_1.default.create(plant);
-        res.status(201).send({ result: 'planted in Garden' });
+        const newplant = yield Plant_model_1.default.create(plant);
+        res.status(201).send({ result: 'planted in Garden', plant: newplant });
     }
     catch (error) {
         res.status(503);

@@ -42,7 +42,7 @@ function Plant() {
 			notefield.focus();
 			notefield.selectionStart = notefield.value.length;
 		} else {
-			dispatch(attachPlantNote((e.target as HTMLTextAreaElement).value, plantIDX));
+			dispatch(attachPlantNote((e.target as HTMLTextAreaElement).value, _id));
 		}
 	}
 
@@ -52,7 +52,7 @@ function Plant() {
 			inputfield.readOnly = false;
 			inputfield.focus();
 		} else {
-			dispatch(changePlantName((e.target as HTMLInputElement).value, plantIDX));
+			dispatch(changePlantName((e.target as HTMLInputElement).value, _id));
 		}
 	}
 

@@ -3,7 +3,7 @@ export interface Route {
 }
 
 export interface Plant {
-  _id?: string,
+  _id: string,
   plant_name: string,
   personal_name: string,
   uploaded_datetime: string,
@@ -51,7 +51,7 @@ export interface Plant {
 export interface Action {
   type: string, //'INSERT', 'CHANGE_NAME', etc
   payload: Route | Plant | Plant[] | number | string | null,
-  idx: number | null,
+  _id: string | null,
 }
 
 //******CANNOT FIND NON-NULL EXAMPLES  OF FAIL_CAUSE OR FEEDBACK HERE OR IN API DOCS, SO LEAVING THEM

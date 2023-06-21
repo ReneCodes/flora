@@ -19,28 +19,28 @@ export const addPlantToGarden = (plant: Plant) => ({
 	idx: null
 });
 
-export const changePlantName = (text: string, idx: number) => ({
+export const changePlantName = (text: string, _id: string) => ({
 	type: 'CHANGE_NAME' as const,
 	payload: text,
-	idx,
+	_id,
 });
 
-export const attachPlantNote = (note: string, idx: number) => ({
+export const attachPlantNote = (note: string, _id: number) => ({
 	type: 'ATTACH_NOTE' as const,
 	payload: note,
-	idx,
+	_id,
 });
 
 export const storeGarden = (garden: Plant[]) => ({
 	type: 'STORE_GARDEN' as const,
 	payload: garden,
-	idx: null
+	_id: null
 });
 
-export const viewPlant = (idx: number) => ({
+export const viewPlant = (_id: number) => ({
 	type: 'SELECT_PLANT' as const,
 	payload: null,
-	idx,
+	_id,
 });
 
 export const deletePlantFromGarden = (plantIDX: number) => ({

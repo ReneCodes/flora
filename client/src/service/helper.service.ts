@@ -12,7 +12,7 @@ export const wateringInfo: { 1: string, 2: string, 3: string } = {
 	3: `Plants that need a lot of water also need excess water to run out somewhere. Always make sure that your plant is planted in a pot with holes.`,
 };
 
-export const cleanAndPushPlant = (plant: Plant, images: Image[]) => {
+export const cleanAndPushPlant = async (plant: Plant, images: Image[]) => {
 	const { plant_details } = plant;
 	let { watering } = plant_details;
 	if (!watering) {
@@ -29,7 +29,7 @@ export const cleanAndPushPlant = (plant: Plant, images: Image[]) => {
 	plant['api_id'] = plant['id'];
 	delete plant['probability'];
 	delete plant['id'];
-	savePlant(plant); // send to BE
-	console.log('Save to BE', plant);
-	return plant;
+	const savedPlant = await savePlant(plant); // send to BE
+	console.log('Save to BE', savedPlant);
+	return savedPlant.plant as Plant;
 };

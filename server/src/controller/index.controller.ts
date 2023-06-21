@@ -66,8 +66,8 @@ exports.savePlantToGarden = async (req: Request, res: Response) => {
 		...req.body,
 	};
 	try {
-		await Plant.create(plant);
-		res.status(201).send({ result: 'planted in Garden' });
+		const newplant = await Plant.create(plant);
+		res.status(201).send({ result: 'planted in Garden', plant: newplant });
 	} catch (error) {
 		res.status(503);
 		res.send({ result: 'Error planting plant', error });
