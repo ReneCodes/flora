@@ -6,10 +6,11 @@ import { deletePlant, updatePlant } from '../../service/APIClient';
 import CareGuideLink from '../Navbar/CareGuideLink';
 import WaterGuideLink from '../Navbar/WaterGuideLink';
 import { waterDrops } from '../../service/helper.service';
+import { RootState } from '../../reduxFiles/store';
 
 function Plant() {
-	const plantIDX = useSelector((state) => state.plant);
-	const garden = useSelector((state) => state.garden);
+	const plantIDX = useSelector((state: RootState) => state.plant);
+	const garden = useSelector((state: RootState) => state.garden);
 	const { plant_name, personal_name, plant_details, _id, api_id, images, note } = garden[plantIDX];
 	const {
 		wiki_description,
@@ -34,25 +35,30 @@ function Plant() {
 		dispatch(changeAppRoute('garden'));
 	}
 
-	function writeNote(e) {
-		if (e.target.localName === 'button') {
+	function writeNote(e: React.ChangeEvent<HTMLTextAreaElement> | React.MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) {
+		const notefield = document.getElementById(`plant-note-${_id}`) as HTMLTextAreaElement
+		if ((e.target as HTMLButtonElement).localName === 'button') {
 			notefield.readOnly = false;
 			notefield.focus();
 			notefield.selectionStart = notefield.value.length;
 		} else {
-			dispatch(attachPlantNote(e.target.value, plantIDX));
+			dispatch(attachPlantNote((e.target as HTMLTextAreaElement).value, plantIDX));
 		}
 	}
 
-	function changeName(e) {
-		if (e.target.localName === 'button') {
+	function changeName(e: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) {
+		if ((e.target as HTMLElement).localName === 'button') {
+			const inputfield = document.getElementById(`name-field-${_id}`) as HTMLInputElement;
 			inputfield.readOnly = false;
 			inputfield.focus();
 		} else {
-			dispatch(changePlantName(e.target.value, plantIDX));
+			dispatch(changePlantName((e.target as HTMLInputElement).value, plantIDX));
 		}
 	}
-	function writeTrueFalse(e) {
+
+
+	function writeTrueFalse(e: React.FocusEvent<HTMLTextAreaElement | HTMLInputElement> | React.MouseEvent<HTMLTextAreaElement | HTMLInputElement>
+	) {
 		if (e.target.localName === 'textarea') {
 			const note = e.target.value;
 			e.target.readOnly = !e.target.readOnly;
@@ -104,6 +110,7 @@ function Plant() {
 								alt={plant_name}></img>
 						</div>
 					</div>
+
 					<div className="input-garden">
 						<input
 							type={'text'}

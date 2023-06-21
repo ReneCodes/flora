@@ -1,7 +1,6 @@
 /// <reference path="../../index.d.ts" />
 import './Suggestions.css';
 import { useSelector, useDispatch } from 'react-redux';
-
 import loader from '../../assets/loader.gif';
 import { RootState } from '../../reduxFiles/store';
 import React from 'react';

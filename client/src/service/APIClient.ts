@@ -67,7 +67,7 @@ export async function savePlant(plant: Plant | React.MouseEvent<HTMLButtonElemen
 }
 
 // Update a plant
-export async function updatePlant(newData: { _id?: string, api_id?: number, personal_name?: string, note?: string }): Promise<{ result: string, plant: Plant }> {
+export async function updatePlant(newData: { _id?: string, api_id?: string, personal_name?: string, note?: string }): Promise<{ result: string, plant: Plant }> {
 	const res: { result: string, plant: Plant } = await fetch('http://127.0.0.1:4242/garden', {
 		method: 'PUT',
 		headers: {

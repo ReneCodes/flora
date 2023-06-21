@@ -49,7 +49,7 @@ export interface Plant {
 
 
 export interface Action {
-  type: string,
+  type: string, //'INSERT', 'CHANGE_NAME', etc
   payload: Route | Plant | Plant[] | number | string | null,
   idx: number | null,
 }
