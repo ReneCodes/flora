@@ -1,4 +1,4 @@
-import { Image, SuggestionType, Plant } from '../Types';
+import { Image, Plant } from '../Types';
 import { savePlant } from './APIClient';
 
 export const waterDrops: { 1: string[], 2: string[], 3: string[] } = {

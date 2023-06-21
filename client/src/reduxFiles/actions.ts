@@ -1,4 +1,4 @@
-import { Route, Plant, /*Idx,*/ Note /*,Garden*/ } from "../Types";
+import { Route, Plant, IdentResponse } from "../Types";
 
 
 export const changeAppRoute = (route: Route) => ({
@@ -25,7 +25,7 @@ export const changePlantName = (text: string, idx: number) => ({
 	idx,
 });
 
-export const attachPlantNote = (note: Note, idx: number) => ({
+export const attachPlantNote = (note: string, idx: number) => ({
 	type: 'ATTACH_NOTE' as const,
 	payload: note,
 	idx,
@@ -55,8 +55,8 @@ export const unselectPlant = () => ({
 	idx: null
 });
 
-export const storeIdentResult = (plants: Plant[]) => ({
+export const storeIdentResult = (identResult: IdentResponse) => ({
 	type: 'STORE_IDENT_RESULT' as const,
-	payload: plants,
+	payload: identResult,
 	idx: null
 });

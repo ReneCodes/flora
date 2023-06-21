@@ -47,25 +47,10 @@ export interface Plant {
 
 }
 
-// export interface Idx {
-
-// }
-
-// export interface Text {
-
-// }
-
-export interface Note {
-
-}
-
-// export interface Garden {
-
-// }
 
 export interface Action {
   type: string,
-  payload: Route | Plant | Note | /*Garden*/Plant[] | number | string | null,
+  payload: Route | Plant | Plant[] | number | string | null,
   idx: number | null,
 }
 

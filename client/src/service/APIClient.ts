@@ -1,11 +1,11 @@
 //
 import axios from 'axios';
 import toast from 'react-hot-toast';
-import { IdentResponse, Plant, SuggestionType } from '../Types'
+import { IdentResponse, Plant } from '../Types'
 
-import cleanPlant1 from './TEMP/cleanPlant1';
-import cleanPlant2 from './TEMP/cleanPlant2';
-import cleanPlant3 from './TEMP/cleanPlant3';
+// import cleanPlant1 from './TEMP/cleanPlant1';
+// import cleanPlant2 from './TEMP/cleanPlant2';
+// import cleanPlant3 from './TEMP/cleanPlant3';
 
 // Fetch garden data
 export async function getGarden(): Promise<Plant[]> {
@@ -109,7 +109,7 @@ export async function deletePlant(_idObj: number | string | React.MouseEvent<HTM
 	return res;
 }
 
-function successToast(msg) {
+function successToast(msg: string) {
 	toast.success(msg, {
 		style: {
 			background: '#d0f7e8',
@@ -117,7 +117,7 @@ function successToast(msg) {
 		duration: 3000,
 	});
 }
-function errorToast(msg) {
+function errorToast(msg: string) {
 	toast.error(msg, {
 		style: {
 			background: '#cf8583',

@@ -99,7 +99,6 @@ function Camera() {
 	return (
 		<div className="camera-component">
 			{/*  */}
-
 			<div className="camera">
 				<video ref={videoRef}></video>
 				<button
