@@ -1,7 +1,4 @@
-// import Plant from "../model/Plant.model";
-
 const plant1: Plant = {
-	// _id: '6485a740b549e40929570696',
 	plant_name: 'Phlebodium aureum',
 	personal_name: '',
 	uploaded_datetime: '2023-06-08T21:42:11.462Z',
@@ -52,7 +49,6 @@ const plant1: Plant = {
 };
 
 const plant2: Plant = {
-	// _id: '6485a7a4b549e40929570699',
 	plant_name: 'Oxalis triangularis',
 	personal_name: '',
 	uploaded_datetime: '2023-06-08T21:42:11.462Z',
@@ -105,7 +101,6 @@ const plant2: Plant = {
 };
 
 const plant3: Plant = {
-	// _id: '6485a7adb549e4092957069c',
 	plant_name: 'Dracaena trifasciata',
 	personal_name: '',
 	uploaded_datetime: '2023-06-08T21:42:11.462Z',
