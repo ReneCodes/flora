@@ -3,9 +3,10 @@ import './Camera.css';
 import { useRef, useEffect, useState } from 'react';
 import { findPlant } from '../../service/APIClient';
 import { useSelector, useDispatch } from 'react-redux';
-import { storeIdentResult, changeAppRoute, accessCamera } from '../../actions';
+import { storeIdentResult, changeAppRoute, accessCamera } from '../../reduxFiles/actions';
 import { Loader } from '../Suggestions/Suggestions';
-import { RootState } from '../../store';
+import { RootState } from '../../reduxFiles/store';
+import { IdentResponse } from '../../Types';
 
 function Camera() {
 	const dispatch = useDispatch();
@@ -61,7 +62,7 @@ function Camera() {
 		const imgDataUrl: string = photo.toDataURL('image/jpeg', 0.9);
 
 		try {
-			await findPlant(imgDataUrl).then((identResult) => {
+			await findPlant(imgDataUrl).then((identResult: IdentResponse) => {
 				dispatch(storeIdentResult(identResult));
 				dispatch(changeAppRoute('identResult'));
 				dispatch(accessCamera()); // turn on/Off

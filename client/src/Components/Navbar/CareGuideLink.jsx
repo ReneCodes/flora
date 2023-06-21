@@ -1,5 +1,5 @@
-import {useSelector, useDispatch} from 'react-redux';
-import {changeAppRoute} from '../../actions';
+import { useSelector, useDispatch } from 'react-redux';
+import { changeAppRoute } from '../../reduxFiles/actions';
 
 export default function CareGuideLink() {
 	const dispatch = useDispatch();

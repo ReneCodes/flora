@@ -1,4 +1,4 @@
-import { Route, Plant, /*Idx,*/ Note /*,Garden*/ } from "./Types";
+import { Route, Plant, /*Idx,*/ Note /*,Garden*/ } from "../Types";
 
 
 export const changeAppRoute = (route: Route) => ({

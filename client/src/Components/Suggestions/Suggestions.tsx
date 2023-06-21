@@ -1,17 +1,17 @@
 /// <reference path="../../index.d.ts" />
 import './Suggestions.css';
-import {useSelector, useDispatch} from 'react-redux';
-import {waterDrops, cleanAndPushPlant} from '../../service/helper.service';
-import {addPlantToGarden, changeAppRoute} from '../../actions';
+import { useSelector, useDispatch } from 'react-redux';
+import { waterDrops, cleanAndPushPlant } from '../../service/helper.service';
+import { addPlantToGarden, changeAppRoute } from '../../reduxFiles/actions';
 import loader from '../../assets/loader.gif';
-import { RootState } from '../../store';
+import { RootState } from '../../reduxFiles/store';
 import React from 'react';
 import { IdentResponse, Image, Plant, SuggestionType } from '../../Types';
 
 //**ONCE REDUCER HAS BEEN CONVERTED TO TYPESCRIPT, PLEASE REMOVE NULL FROM TYPE FROM LINES 12, 89, AND 127 */
 function PlantDetector() {
 	const identPlants: IdentResponse = useSelector((state: RootState) => state.identPlants);
-	const {is_plant, is_plant_probability} = identPlants;
+	const { is_plant, is_plant_probability } = identPlants;
 	if (!is_plant)
 		return (
 			<div className="banner-box red">
@@ -32,8 +32,8 @@ function PlantDetector() {
 	);
 }
 
-function PlantProbability({probability}:{probability:number}) {
-	const percent:number = Math.round(probability * 100);
+function PlantProbability({ probability }: { probability: number }) {
+	const percent: number = Math.round(probability * 100);
 
 	if (probability < 0.2) return <h2 className="blob red">Low {percent}%</h2>;
 	if (probability < 0.6 && probability >= 0.2) {
@@ -42,14 +42,14 @@ function PlantProbability({probability}:{probability:number}) {
 	return <h2 className="blob green">High {percent}%</h2>;
 }
 
-function SinglePlant({suggestion, images}:{suggestion:SuggestionType, images:Image[] }): React.JSX.Element {
+function SinglePlant({ suggestion, images }: { suggestion: SuggestionType, images: Image[] }): React.JSX.Element {
 	const dispatch = useDispatch();
-	const {plant_name, plant_details, probability} = suggestion;
-	const {common_names, wiki_image, wiki_description, watering} = plant_details;
+	const { plant_name, plant_details, probability } = suggestion;
+	const { common_names, wiki_image, wiki_description, watering } = plant_details;
 	const maxWater = watering ? waterDrops[watering.max] : waterDrops[2];
 
 	function addToMyGarden() {
-		const cleanedPlant:Plant = cleanAndPushPlant(suggestion, images);
+		const cleanedPlant: Plant = cleanAndPushPlant(suggestion, images);
 		//in theory, what is causing the error below is covered in the helperfunction
 		//but I will need to double check the ability to add properties to a type
 		//I may need to add them initialized to null from the start.
@@ -90,8 +90,8 @@ function SinglePlant({suggestion, images}:{suggestion:SuggestionType, images:Ima
 }
 
 function SuggestionContainer(): React.JSX.Element {
-	const identPlants:IdentResponse  = useSelector((state: RootState) => state.identPlants);
-	const {images, suggestions}:{images:Image[], suggestions: SuggestionType[]} = identPlants;
+	const identPlants: IdentResponse = useSelector((state: RootState) => state.identPlants);
+	const { images, suggestions }: { images: Image[], suggestions: SuggestionType[] } = identPlants;
 	function plural(elem) {
 		if (elem.length > 1) return 's';
 	}

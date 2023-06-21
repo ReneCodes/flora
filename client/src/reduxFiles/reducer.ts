@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
-import plant1 from './service/TEMP/cleanPlant1';
-import plant2 from './service/TEMP/cleanPlant2';
-import plant3 from './service/TEMP/cleanPlant3';
-import identResponse from './service/TEMP/identResponse';
-import { Action, IdentResponse, Plant } from './Types';
+import plant1 from '../service/TEMP/cleanPlant1';
+import plant2 from '../service/TEMP/cleanPlant2';
+import plant3 from '../service/TEMP/cleanPlant3';
+import identResponse from '../service/TEMP/identResponse';
+import { Action, IdentResponse, Plant } from '../Types';
 
 const camera = (state: boolean = false, action: Action) => {
 	switch (action.type) {

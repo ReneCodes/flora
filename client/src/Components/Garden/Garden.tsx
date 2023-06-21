@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 // import { changePlantName, viewPlant, unselectPlant, changeAppRoute } from '../../actions';
 // import { updatePlant } from '../../service/APIClient';
 // import { waterDrops } from '../../service/helper.service';
-import { RootState } from '../../store';
+import { RootState } from '../../reduxFiles/store';
 // import PlantInfo from '../Plant/PlantInfo';
 // import { Plant } from '../../Types';
 import PlantTile from './PlantTile'

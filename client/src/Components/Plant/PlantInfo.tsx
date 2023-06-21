@@ -1,7 +1,7 @@
 import './PlantInfo.css';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { changePlantName, unselectPlant, attachPlantNote, changeAppRoute, deletePlantFromGarden } from '../../actions';
+import { changePlantName, unselectPlant, attachPlantNote, changeAppRoute, deletePlantFromGarden } from '../../reduxFiles/actions';
 import { deletePlant, updatePlant } from '../../service/APIClient';
 import CareGuideLink from '../Navbar/CareGuideLink';
 import WaterGuideLink from '../Navbar/WaterGuideLink';
