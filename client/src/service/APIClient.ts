@@ -8,7 +8,7 @@ import cleanPlant2 from './TEMP/cleanPlant2';
 import cleanPlant3 from './TEMP/cleanPlant3';
 
 // Fetch garden data
-export async function getGarden():Promise<Plant[]> {
+export async function getGarden(): Promise<Plant[]> {
 	const res: Plant[] = await fetch('http://127.0.0.1:4242/garden')
 		.then((data) => data.json())
 		.catch((error) => console.log('\n getGarden ERROR\n', error));
@@ -18,7 +18,7 @@ export async function getGarden():Promise<Plant[]> {
 }
 
 // Send base64 img string to BE
-export async function findPlant(dataURL):Promise<IdentResponse> {
+export async function findPlant(dataURL: string): Promise<IdentResponse> {
 	let config = {
 		method: 'post',
 		maxBodyLength: Infinity,
@@ -26,9 +26,9 @@ export async function findPlant(dataURL):Promise<IdentResponse> {
 		headers: {
 			'Content-Type': 'application/json',
 		},
-		data: {dataURL},
+		data: { dataURL },
 	};
-	const identResult:IdentResponse = await axios
+	const identResult: IdentResponse = await axios
 		.request(config)
 		.then((res) => {
 			console.log('Success:', res.data);
@@ -67,7 +67,7 @@ export async function savePlant(plant: SuggestionType | React.MouseEvent<HTMLBut
 }
 
 // Update a plant
-export async function updatePlant(newData:{_id?: string, api_id?: number,  personal_name?:string, note?: string}): Promise<{ result: string, plant: Plant }> {
+export async function updatePlant(newData: { _id?: string, api_id?: number, personal_name?: string, note?: string }): Promise<{ result: string, plant: Plant }> {
 	const res: { result: string, plant: Plant } = await fetch('http://127.0.0.1:4242/garden', {
 		method: 'PUT',
 		headers: {
