@@ -28,7 +28,8 @@ afterAll(() => __awaiter(void 0, void 0, void 0, function* () {
     it('should save a plant to the database', () => __awaiter(void 0, void 0, void 0, function* () {
         const res = yield supertest(app).post('/garden').send(Mocks_1.Mocks.plant1);
         (0, globals_1.expect)(res.status).toStrictEqual(201);
-        (0, globals_1.expect)(res.body).toStrictEqual({ result: 'planted in Garden' });
+        (0, globals_1.expect)(res.body.result).toBe('planted in Garden');
+        (0, globals_1.expect)(res.body.plant.plant_name).toBe('Phlebodium aureum');
     }));
     it('should fetch plants from the database', () => __awaiter(void 0, void 0, void 0, function* () {
         yield supertest(app).post('/garden').send(Mocks_1.Mocks.plant1);
@@ -57,7 +58,6 @@ afterAll(() => __awaiter(void 0, void 0, void 0, function* () {
         yield supertest(app).post('/garden').send(Mocks_1.Mocks.plant1);
         const res1 = yield supertest(app).get("/garden");
         const res2 = yield supertest(app).put("/garden").send({ _id: res1.body[0]._id, personal_name: personal_name, note: note });
-        console.log("res2: ", res2.body);
         (0, globals_1.expect)(res2.status).toBe(201);
         (0, globals_1.expect)(res2.body.result).toBe(`plant ${res1.body[0]._id} visited`);
         (0, globals_1.expect)(res2.body.plant.personal_name).toBe(personal_name);

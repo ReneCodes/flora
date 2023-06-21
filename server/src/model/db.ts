@@ -13,7 +13,7 @@ connection.on('connected', () => {
 	console.log('connected to db');
 });
 connection.on('disconnected', () => {
-	console.log('disconnected to db');
+	console.log('disconnected from db');
 });
 connection.on('error', (error: Error) => {
 	console.log('error with db', error);
