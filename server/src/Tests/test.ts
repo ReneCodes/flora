@@ -1,7 +1,6 @@
 import {describe, expect, test} from '@jest/globals';
 import { Mocks }  from './Mocks';
 const supertest = require('supertest');
-import Plant from '../model/Plant.model';
 const app = require('../app')
 import mongoose from 'mongoose'
 
@@ -19,7 +18,8 @@ describe("Integration backend tests", () => {
     const res = await supertest(app).post('/garden').send(Mocks.plant1)
 
     expect(res.status).toStrictEqual(201);
-    expect(res.body).toStrictEqual({ result: 'planted in Garden' });
+    expect(res.body.result).toStrictEqual('planted in Garden' );
+    expect(res.body.plant.plant_name).toBe("Phlebodium aureum")
   })
   
   it('should fetch plants from the database', async (): Promise<void> => {
@@ -51,11 +51,9 @@ describe("Integration backend tests", () => {
   it('should update a plant in the database', async (): Promise<void> => {
     const personal_name:string = "hot pocket"
     const note:string = "pure deliciousness"
-
     await supertest(app).post('/garden').send(Mocks.plant1)
     const res1 = await supertest(app).get("/garden");
     const res2 = await supertest(app).put("/garden").send({_id:res1.body[0]._id, personal_name:personal_name, note: note })
-    console.log("res2: ",res2.body);
 
     expect(res2.status).toBe(201);
     expect(res2.body.result).toBe(`plant ${res1.body[0]._id} visited`);
