@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import plant1 from '../service/TEMP/cleanPlant1';
-import plant2 from '../service/TEMP/cleanPlant2';
-import plant3 from '../service/TEMP/cleanPlant3';
-import identResponse from '../service/TEMP/identResponse';
+// import plant1 from '../service/TEMP/cleanPlant1';
+// import plant2 from '../service/TEMP/cleanPlant2';
+// import plant3 from '../service/TEMP/cleanPlant3';
+// import identResponse from '../service/TEMP/identResponse';
 import { Action, IdentResponse, Plant } from '../Types';
 import PlantInfo from '../Components/Plant/PlantInfo';
 
@@ -21,7 +21,7 @@ const garden = (state: Plant[] = [], action: Action) => {
 			return [...state, action.payload as Plant];
 
 		// case 'CHANGE_NAME':
-		// 	state[`${action.idx}`].personal_name = action.payload;
+		// 	state[`${action._id}`].personal_name = action.payload;
 		// 	// console.log('CHANGE_NAME', state[idx].personal_name);
 		// 	state = [...state];
 		// 	return state;
@@ -37,7 +37,7 @@ const garden = (state: Plant[] = [], action: Action) => {
 			return state;
 
 		// case 'ATTACH_NOTE':
-		// 	state[`${action.idx}`].note = action.payload;
+		// 	state[`${action._id}`].note = action.payload;
 		// 	state = [...state];
 		// 	return state;
 		case 'ATTACH_NOTE':
@@ -52,9 +52,11 @@ const garden = (state: Plant[] = [], action: Action) => {
 
 		case 'STORE_GARDEN':
 			return (state = action.payload as Plant[]);
+
 		case 'DELETE_PLANT':
 			const index = action.payload as number;
 			console.log(action.payload);
+
 			if (index == 0) return state.slice(1);
 			if (index == state.length - 1) return state.slice(0, -1);
 			else {

@@ -4,19 +4,19 @@ import { Route, Plant, IdentResponse } from "../Types";
 export const changeAppRoute = (route: Route) => ({
 	type: 'NEW_ROUTE' as const,
 	payload: route,
-	idx: null
+	_id: null
 });
 
 export const accessCamera = () => ({
 	type: 'CAM_ON/OFF' as const,
 	payload: null,
-	idx: null
+	_id: null
 });
 
 export const addPlantToGarden = (plant: Plant) => ({
 	type: 'INSERT' as const,
 	payload: plant,
-	idx: null
+	_id: null
 });
 
 export const changePlantName = (text: string, _id: string) => ({
@@ -25,7 +25,7 @@ export const changePlantName = (text: string, _id: string) => ({
 	_id,
 });
 
-export const attachPlantNote = (note: string, _id: number) => ({
+export const attachPlantNote = (note: string, _id: string) => ({
 	type: 'ATTACH_NOTE' as const,
 	payload: note,
 	_id,
@@ -52,11 +52,11 @@ export const deletePlantFromGarden = (plantIDX: number) => ({
 export const unselectPlant = () => ({
 	type: 'UNSELECT_PLANT' as const,
 	payload: null,
-	idx: null
+	_id: null
 });
 
 export const storeIdentResult = (identResult: IdentResponse) => ({
 	type: 'STORE_IDENT_RESULT' as const,
 	payload: identResult,
-	idx: null
+	_id: null
 });

@@ -19,7 +19,7 @@ function PlantTile({ plant, idx }: { plant: Plant, idx: number }) {
     const maxWater = watering ? waterDrops[watering.max] : waterDrops[2];
 
     function selectPlant() {
-        dispatch(viewPlant(Number(idx)));
+        dispatch(viewPlant((idx)));
         dispatch(changeAppRoute('plantInfo'));
     }
 
@@ -29,7 +29,7 @@ function PlantTile({ plant, idx }: { plant: Plant, idx: number }) {
             input.readOnly = false;
             input.focus();
         } else {
-            dispatch(changePlantName((e.target as HTMLInputElement).value, idx));
+            dispatch(changePlantName((e.target as HTMLInputElement).value, _id));
         }
     }
 

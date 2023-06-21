@@ -7,8 +7,9 @@ import CareGuideLink from '../Navbar/CareGuideLink';
 import WaterGuideLink from '../Navbar/WaterGuideLink';
 import { waterDrops } from '../../service/helper.service';
 import { RootState } from '../../reduxFiles/store';
+import { Plant } from '../../Types';
 
-function Plant() {
+function PlantInfo() {
 	const plantIDX = useSelector((state: RootState) => state.plant);
 	const garden = useSelector((state: RootState) => state.garden);
 	const { plant_name, personal_name, plant_details, _id, api_id, images, note } = garden[plantIDX];
@@ -57,26 +58,26 @@ function Plant() {
 	}
 
 
-	function writeTrueFalse(e: React.FocusEvent<HTMLTextAreaElement | HTMLInputElement> | React.MouseEvent<HTMLTextAreaElement | HTMLInputElement>
-	) {
-		if (e.target.localName === 'textarea') {
-			const note = e.target.value;
-			e.target.readOnly = !e.target.readOnly;
+	function writeTrueFalse(e: React.FocusEvent<HTMLTextAreaElement | HTMLInputElement> | React.MouseEvent<HTMLTextAreaElement | HTMLInputElement>) {
+		const inputElement = e.target as HTMLInputElement
+		if (inputElement.localName === 'textarea') {
+			const note: string = inputElement.value;
+			inputElement.readOnly = !inputElement.readOnly;
 			// update note onBlur
-			if (e.target.readOnly) updatePlant({ _id, note });
+			if (inputElement.readOnly) updatePlant({ _id, note });
 		}
-		if (e.target.localName === 'input') {
-			const personal_name = e.target.value;
-			e.target.readOnly = !e.target.readOnly;
+		if (inputElement.localName === 'input') {
+			const personal_name: string = inputElement.value;
+			inputElement.readOnly = !inputElement.readOnly;
 			// update personal_name onBlur
-			if (e.target.readOnly) updatePlant({ _id, personal_name });
+			if (inputElement.readOnly) updatePlant({ _id, personal_name });
 		}
 	}
 
 	async function deleteThisPlant() {
 		try {
 			await (_id ? deletePlant({ _id }) : deletePlant({ api_id })).then(() => {
-				dispatch(deletePlantFromGarden(Number(plantIDX)));
+				dispatch(deletePlantFromGarden(plantIDX));
 				goToGarden();
 			});
 		} catch (error) {
@@ -179,7 +180,7 @@ function Plant() {
 						<p>Common Names</p>
 						<ul className="info">
 							{common_names ? (
-								common_names.map((elem) => (
+								common_names.map((elem: string) => (
 									<li
 										key={elem}
 										className="blob">
@@ -234,4 +235,4 @@ function Plant() {
 	);
 }
 
-export default Plant;
+export default PlantInfo;
