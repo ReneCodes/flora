@@ -2,7 +2,7 @@ import './Garden.css';
 import React from 'react';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { changePlantName, viewPlant, unselectPlant, changeAppRoute } from '../../reduxFiles/actions';
+import { changePlantName, selectPlant, unselectPlant, changeAppRoute } from '../../reduxFiles/actions';
 import { updatePlant } from '../../service/APIClient';
 import { waterDrops } from '../../service/helper.service';
 // import { RootState } from '../../store';
@@ -10,16 +10,15 @@ import { waterDrops } from '../../service/helper.service';
 import { Plant } from '../../Types';
 
 
-function PlantTile({ plant, idx }: { plant: Plant, idx: number }) {
+function PlantTile({ plant, plantIndex }: { plant: Plant, plantIndex: number }) {
     const dispatch = useDispatch();
 
-    // console.log('Plant:', idx);
     const { plant_name, _id, api_id, personal_name, plant_details } = plant;
     const { watering } = plant_details;
     const maxWater = watering ? waterDrops[watering.max] : waterDrops[2];
 
-    function selectPlant() {
-        dispatch(viewPlant((idx)));
+    function viewPlant() {
+        dispatch(selectPlant(plantIndex));
         dispatch(changeAppRoute('plantInfo'));
     }
 
@@ -55,7 +54,7 @@ function PlantTile({ plant, idx }: { plant: Plant, idx: number }) {
                     <img
                         src={plant.images[0].url}
                         alt={`picture of ${plant_name}`}
-                        onClick={selectPlant}></img>
+                        onClick={viewPlant}></img>
                 </div>
                 <div className="card-box-garden">
                     <div className="input-garden">

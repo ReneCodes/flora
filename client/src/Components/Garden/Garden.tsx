@@ -2,7 +2,6 @@ import './Garden.css';
 // import React from 'react';
 // import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-// import { changePlantName, viewPlant, unselectPlant, changeAppRoute } from '../../actions';
 // import { updatePlant } from '../../service/APIClient';
 // import { waterDrops } from '../../service/helper.service';
 import { RootState } from '../../reduxFiles/store';
@@ -26,12 +25,12 @@ function Garden() {
 				<div className="garden">
 					{' '}
 					{gardenList ? (
-						gardenList.map((plant, idx) => {
-							const identKey = plant._id ? plant._id : idx;
+						gardenList.map((plant, plantIndex) => {
+							const identKey = plant._id ? plant._id : plantIndex;
 							return (
 								<PlantTile
 									key={identKey}
-									idx={idx}
+									plantIndex={plantIndex}
 									plant={plant}></PlantTile>
 							);
 						})
