@@ -1,6 +1,6 @@
 import './Homepage.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { changeAppRoute, viewPlant } from '../../reduxFiles/actions';
+import { changeAppRoute, selectPlant } from '../../reduxFiles/actions';
 import CareGuideLink from '../Navbar/CareGuideLink';
 import WaterGuideLink from '../Navbar/WaterGuideLink';
 import { RootState } from '../../reduxFiles/store';
@@ -14,18 +14,18 @@ function Homepage() {
 	}
 
 	//moved function to component
-	function ShowImage({ idx }: { idx: number }) {
-		const image: string = garden[idx].images[0].url;
+	function ShowImage({ plantIndex }: { plantIndex: number }) {
+		const image: string = garden[plantIndex].images[0].url;
 		return (
 			<img
 				src={image}
 				alt=""
-				onClick={() => goToPlant(idx, 'plantInfo')}></img>
+				onClick={() => goToPlant(plantIndex, 'plantInfo')}></img>
 		);
 	}
 
-	function goToPlant(idx: number, route: string) {
-		dispatch(viewPlant(Number(idx)));
+	function goToPlant(plantIndex: number, route: string) {
+		dispatch(selectPlant((plantIndex)));
 		dispatch(changeAppRoute(route));
 	}
 
@@ -45,7 +45,7 @@ function Homepage() {
 
 						{garden.slice(0, 2).map(plant => (
 							<div className="card-img">
-								<ShowImage idx={garden.indexOf(plant)} />
+								<ShowImage plantIndex={garden.indexOf(plant)} />
 							</div>
 						))}
 					</div>

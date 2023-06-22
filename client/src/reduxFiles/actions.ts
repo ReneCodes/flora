@@ -37,15 +37,16 @@ export const storeGarden = (garden: Plant[]) => ({
 	_id: null
 });
 
-export const viewPlant = (_id: string) => ({
+//From Homepage and PlantTile, selectPlant is called with idx which is the indexOf plant in the garden.
+export const selectPlant = (plantIndex: number) => ({
 	type: 'SELECT_PLANT' as const,
-	payload: null,
-	_id,
+	payload: plantIndex,
+	_id: null,
 });
 
-export const deletePlantFromGarden = (plantIDX: number) => ({
+export const deletePlantFromGarden = (plantIndex: number) => ({
 	type: 'DELETE_PLANT' as const,
-	payload: plantIDX,
+	payload: plantIndex,
 	idx: null
 });
 

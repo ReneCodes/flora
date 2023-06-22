@@ -10,9 +10,14 @@ import { RootState } from '../../reduxFiles/store';
 import { Plant } from '../../Types';
 
 function PlantInfo() {
-	const plantIDX = useSelector((state: RootState) => state.plant);
-	const garden = useSelector((state: RootState) => state.garden);
-	const { plant_name, personal_name, plant_details, _id, api_id, images, note } = garden[plantIDX];
+	const plantIndex: number | boolean = useSelector((state: RootState) => state.plant);
+	const garden: Plant[] = useSelector((state: RootState) => state.garden);
+	console.log({ plantIndex, garden })
+	// const plant: Plant | undefined = garden.find(_id => _id === plantIndex);
+
+	// if (plant)
+
+	const { plant_name, personal_name, plant_details, _id, api_id, images, note } = garden[plantIndex as number];
 	const {
 		wiki_description,
 		wiki_image,
@@ -77,7 +82,7 @@ function PlantInfo() {
 	async function deleteThisPlant() {
 		try {
 			await (_id ? deletePlant({ _id }) : deletePlant({ api_id })).then(() => {
-				dispatch(deletePlantFromGarden(plantIDX));
+				dispatch(deletePlantFromGarden(plantIndex));
 				goToGarden();
 			});
 		} catch (error) {

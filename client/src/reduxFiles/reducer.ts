@@ -20,11 +20,6 @@ const garden = (state: Plant[] = [], action: Action) => {
 		case 'INSERT':
 			return [...state, action.payload as Plant];
 
-		// case 'CHANGE_NAME':
-		// 	state[`${action._id}`].personal_name = action.payload;
-		// 	// console.log('CHANGE_NAME', state[idx].personal_name);
-		// 	state = [...state];
-		// 	return state;
 		case 'CHANGE_NAME':
 			const updatedStateWithName = state.map(plant => {
 				if (plant._id === action._id) {
@@ -32,14 +27,9 @@ const garden = (state: Plant[] = [], action: Action) => {
 				}
 				return plant
 			})
-			// console.log('CHANGE_NAME', state[idx].personal_name);
 			state = updatedStateWithName as Plant[];
 			return state;
 
-		// case 'ATTACH_NOTE':
-		// 	state[`${action._id}`].note = action.payload;
-		// 	state = [...state];
-		// 	return state;
 		case 'ATTACH_NOTE':
 			const updatedStateWithNote = state.map(plant => {
 				if (plant._id === action._id) {
@@ -70,10 +60,10 @@ const garden = (state: Plant[] = [], action: Action) => {
 	}
 };
 
-const plant = (state: boolean | string = false, action: Action) => {
+const plant = (state: boolean | number = false, action: Action) => {
 	switch (action.type) {
 		case 'SELECT_PLANT':
-			return (state = action._id as string);
+			return (state = action.payload as number);
 		case 'UNSELECT_PLANT':
 			return (state = false);
 		default:
