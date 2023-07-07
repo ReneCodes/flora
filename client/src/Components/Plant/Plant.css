@@ -141,7 +141,7 @@
 	list-style: none;
 	text-transform: capitalize;
 }
-.plant-container li::after {
+.plant-container .names li::after {
 	content: ',';
 	position: absolute;
 	right: -5px;

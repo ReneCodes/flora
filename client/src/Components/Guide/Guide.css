@@ -52,6 +52,7 @@
 	background-color: var(--lavender20);
 	margin-top: 8px;
 	border-radius: 5px;
+	color: var(--text-black);
 }
 .note h3 {
 	color: inherit;

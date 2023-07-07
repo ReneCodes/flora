@@ -114,7 +114,11 @@ function Plant() {
 							onBlur={writeTrueFalse}
 							readOnly={true}
 						/>
-						<button onClick={changeName}>🖋️</button>
+						<button
+							className="btn"
+							onClick={changeName}>
+							🖋️
+						</button>
 						<p>{plant_name}</p>
 					</div>
 				</section>
@@ -153,7 +157,11 @@ function Plant() {
 								onDoubleClick={writeTrueFalse}
 								onBlur={writeTrueFalse}
 								readOnly={true}></textarea>
-							<button onClick={writeNote}>🖋️</button>
+							<button
+								className="btn"
+								onClick={writeNote}>
+								🖋️
+							</button>
 						</div>
 					</div>
 				</section>
@@ -170,7 +178,7 @@ function Plant() {
 				<section>
 					<div className="plant-container">
 						<p>Common Names</p>
-						<ul className="info">
+						<ul className="info names">
 							{common_names ? (
 								common_names.map((elem) => (
 									<li

@@ -53,11 +53,19 @@
 		color: var(--white);
 		background-color: var(--black);
 	}
-	.App-Container {
+	.app-component {
 		background-color: var(--white);
 	}
-	.App-content {
+	.app-content {
 		background-color: var(--black);
 		border-color: var(--white);
+	}
+	.blob.blue,
+	.blob.green,
+	.blob.yellow,
+	.blob.lavender,
+	.note-plant textarea,
+	.banner-box {
+		color: var(--text-black);
 	}
 }

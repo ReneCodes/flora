@@ -10,7 +10,6 @@ import Plant from '../Plant/Plant';
 function PlantTile({plant, idx}) {
 	const dispatch = useDispatch();
 
-	// console.log('Plant:', idx);
 	const {plant_name, _id, api_id, personal_name, plant_details} = plant;
 	const {watering} = plant_details;
 	const maxWater = watering ? waterDrops[watering.max] : waterDrops[2];
@@ -65,7 +64,11 @@ function PlantTile({plant, idx}) {
 							onBlur={writeTrueFalse}
 							readOnly={true}
 						/>
-						<button onClick={changeName}>🖋️</button>
+						<button
+							className="btn"
+							onClick={changeName}>
+							🖋️
+						</button>
 						<p>{plant_name}</p>
 					</div>
 					<div className="water-garden">
@@ -113,8 +116,7 @@ function Garden() {
 		<>
 			<div>
 				<div className="garden">
-					{' '}
-					{typeof plantIDX === 'number' && currentRoute === 'plantInfo' ? <Plant></Plant> : <GardenTiles></GardenTiles>}
+					{typeof plantIDX === 'number' && currentRoute === 'plantInfo' ? <Plant /> : <GardenTiles />}
 				</div>
 			</div>
 		</>

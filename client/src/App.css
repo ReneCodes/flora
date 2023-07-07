@@ -92,6 +92,10 @@
 	border-radius: 5px;
 }
 
+.btn {
+	cursor: pointer;
+}
+
 .btn-API {
 	padding: 8px 16px;
 
