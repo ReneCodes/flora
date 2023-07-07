@@ -3,7 +3,7 @@ import {useRef, useEffect, useState} from 'react';
 import {findPlant} from '../../service/APIClient';
 import {useSelector, useDispatch} from 'react-redux';
 import {storeIdentResult, changeAppRoute, accessCamera} from '../../actions';
-import {Loader} from '../Suggestions/Suggestions';
+import Loader from '../Loader/Loader';
 
 function Camera() {
 	const dispatch = useDispatch();
