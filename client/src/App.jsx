@@ -16,7 +16,8 @@ import WaterGuide from './Components/Guide/WaterGuide';
 import * as service from './service/APIClient';
 
 function App() {
-	const isCameraOn = useSelector((state) => state.camera);
+	const isCameraOn = useSelector((state) => state.cameraOn);
+	const isCameraOff = !isCameraOn;
 	const route = useSelector((state) => state.basicRouting);
 	const dispatch = useDispatch();
 
@@ -56,7 +57,7 @@ function App() {
 					{route[0] === 'careGuide' && <CareGuide />}
 					{route[0] === 'waterGuide' && <WaterGuide />}
 				</div>
-				{!isCameraOn && <Navbar />}
+				{isCameraOff && <Navbar />}
 			</div>
 		</section>
 	);
