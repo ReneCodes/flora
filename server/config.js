@@ -5,5 +5,5 @@ module.exports = {
 	DB_PASS: process.env.MONGO_PASSWORD,
 	VAULT: process.env.MONGO_VAULT,
 	DB_NAME: process.env.MONGO_DB_NAME,
-	PLANT_ID: process.env.PLANT_ID_V,
+	PLANT_ID: process.env.PLANT_ID_KEY,
 };

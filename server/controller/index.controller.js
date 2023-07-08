@@ -1,18 +1,17 @@
 const axios = require('axios');
 const Plant = require('../model/Plant.model');
-const helper = require('../model/helperFunc'); // TODO: Maybe rename to Ident.service
+const service = require('../model/plantIdent.service');
 
-// // TODO: Uncomment for real API Identification => very limited API calls
-// // HOT WIRE START
+// TODO: Uncomment for real API Identification => limited API calls
+// HOT WIRE START
 // exports.identifyPlant = async (req, res) => {
 // 	const {dataURL} = req.body;
 
 // 	try {
-// 		const data = helper.prepareIdentBody(dataURL);
+// 		const data = service.prepareIdentBody(dataURL);
 // 		const identResult = await axios
 // 			.post('https://api.plant.id/v2/identify', data)
 // 			.then((res) => {
-// 				console.log('Success:', res.data);
 // 				return res.data;
 // 			})
 // 			.catch((error) => {
@@ -20,7 +19,7 @@ const helper = require('../model/helperFunc'); // TODO: Maybe rename to Ident.se
 // 			});
 
 // 		/* Clean Data */
-// 		const plantData = await helper.cleanPlantData(identResult);
+// 		const plantData = await service.cleanPlantData(identResult);
 
 // 		res.status(200).send(plantData);
 // 	} catch (error) {
@@ -30,19 +29,19 @@ const helper = require('../model/helperFunc'); // TODO: Maybe rename to Ident.se
 // 	}
 // };
 
-// TODO: Uncomment for using Fake data as response
-// COLD START
+// // TODO: Uncomment for using Fake data as response
+// // COLD START
 exports.identifyPlant = async (req, res) => {
 	try {
 		const identResult = false; // for cold calls
 
 		/* Clean Data */
-		const plantData = await helper.cleanPlantData(identResult);
+		const plantData = await service.cleanPlantData(identResult);
 
 		res.status(200).send(plantData);
 	} catch (error) {
 		res.status(417);
-		console.log(error);
+		// console.log(error);
 		res.send({result: 'Error during identification', error});
 	}
 };
@@ -61,7 +60,6 @@ exports.savePlantToGarden = async (req, res) => {
 	const plant = {
 		...req.body,
 	};
-	console.log(plant);
 	try {
 		await Plant.create(plant);
 		res.status(201).send({result: 'planted in Garden'});
@@ -90,7 +88,6 @@ exports.updatePlant = async (req, res) => {
 };
 
 exports.removePlant = async (req, res) => {
-	// const {_id} = req.body;
 	try {
 		const plant = await Plant.findOneAndRemove(getIdField(req.body)); // returns removed plant
 		res.status(200).send({result: `Plant ${plant._id} Removed`});

@@ -40,10 +40,8 @@ function PlantsInGarden({garden}) {
 function Homepage() {
 	const dispatch = useDispatch();
 	const garden = useSelector((state) => state.garden);
-	// const garden = ''; //TODO: delete this variable
 
 	function navigateRoute(switchRoute) {
-		console.log(switchRoute);
 		dispatch(changeAppRoute(switchRoute));
 	}
 
@@ -68,7 +66,6 @@ function Homepage() {
 						</div>
 					)}
 				</div>
-				{/* <CareGuideLink navigateRoute={navigateRoute} /> */}
 				<CareGuideLink />
 				<WaterGuideLink />
 			</div>

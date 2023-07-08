@@ -29,6 +29,5 @@ export const cleanAndPushPlant = (suggestion, images) => {
 	delete suggestion['probability'];
 	delete suggestion['id'];
 	savePlant(suggestion); // send to BE
-	console.log('Save to BE', suggestion);
 	return suggestion;
 };

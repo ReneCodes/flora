@@ -35,6 +35,7 @@ function Navbar() {
 				{((currentRoute === 'guides' && previousRoute === 'home') ||
 					(currentRoute === 'guides' && previousRoute === 'waterGuide') ||
 					(currentRoute === 'guides' && previousRoute === 'plantInfo') ||
+					(currentRoute === 'guides' && previousRoute === 'identResult') ||
 					(currentRoute === 'guides' && previousRoute === 'careGuide') ||
 					(currentRoute === 'guides' && previousRoute === 'garden')) && (
 					<span
@@ -43,11 +44,6 @@ function Navbar() {
 						🏡
 					</span>
 				)}
-				{/* <span
-					className="nav-icon"
-					route="guides">
-					🧑‍🌾
-				</span> */}
 			</button>
 			<button onClick={openCamera}>
 				<span
@@ -89,6 +85,7 @@ function Navbar() {
 					(currentRoute === 'guides' && previousRoute === 'waterGuide') ||
 					(currentRoute === 'guides' && previousRoute === 'careGuide') ||
 					(currentRoute === 'guides' && previousRoute === 'plantInfo') ||
+					(currentRoute === 'guides' && previousRoute === 'identResult') ||
 					(currentRoute === 'guides' && previousRoute === 'garden')) && (
 					<span
 						className="nav-icon scale"

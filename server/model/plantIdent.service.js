@@ -2,6 +2,7 @@ const axios = require('axios');
 const fs = require('fs');
 // secret variables
 const {PLANT_ID} = require('../config');
+const {identifyPlant} = require('../controller/index.controller');
 
 exports.dateString = () => {
 	return new Date().toLocaleDateString(undefined, {month: 'short', day: '2-digit', year: 'numeric'});
@@ -14,7 +15,6 @@ exports.prepareIdentBody = (base64dataURL) => {
 		/* modifiers*/
 		modifiers: ['crops_fast'],
 		/* response language for common name and wiki text */
-		// TODO: get user preference language from device
 		plant_language: 'en',
 		/* expected plant details */
 		plant_details: [
@@ -34,45 +34,32 @@ exports.prepareIdentBody = (base64dataURL) => {
 };
 
 /* CLEAN DATA */
-// TODO: remove temp data for production
 exports.cleanPlantData = async (identResult) => {
-	const plant = identResult ? identResult : require('./Temp/searchResult.example.two.js'); // for mock data reason
-	// const plant = identResult ? identResult : require('./Temp/searchResult.example.one'); // for mock data reason
+	const plant = identResult ? identResult : require('./Temp/searchResult.example.one');
+
 	const scientificNames = [];
 	const wikiPlantData = [];
 	let temp_idx = 0;
 
 	plant.uploaded_datetime = new Date();
-	// DELETE not needed keys
 	plant['_id'] = plant.id;
+
 	deleteKeys(plant);
 
 	let {suggestions} = plant;
 
-	// Exclude found plants below 10% BUT keep at least one
-	// TODO: outsource function
-	suggestions.forEach((plant, idx) => {
-		if (plant.probability < 0.1 && !temp_idx) temp_idx = idx;
-	});
-	if (temp_idx) suggestions.splice(temp_idx); // delete everything after idx position
+	excludeLowMatches(suggestions, temp_idx);
 
 	cleanSuggestions(suggestions, scientificNames);
 
-	// Fetch up-to-date Wiki data
-	for (let i = 0; i < scientificNames.length; i++) {
-		scientificNames[i].split(' ').join('_');
-		const getWiki = await wikiSummary(scientificNames[i]);
-		wikiPlantData.push(getWiki);
-	}
+	await getNewestWikiData(scientificNames, wikiPlantData);
 
-	// TODO: Fetch More Wiki mobile Data	=> // TODO: Strip out HTML tags => https://en.wikipedia.org/api/rest_v1/#/Mobile/getSectionsRemaining
-
-	updateSuggestions(suggestions, wikiPlantData);
+	updateSuggestionsWiki(suggestions, wikiPlantData);
 
 	return plant;
 };
 
-// FOR CLEAN DATA
+// DELETE not needed keys
 function deleteKeys(plant) {
 	const keyList = ['id', 'custom_id', 'meta_data', 'finished_datetime', 'modifiers', 'secret'];
 
@@ -81,22 +68,27 @@ function deleteKeys(plant) {
 	});
 }
 
-// FOR CLEAN DATA
-function cleanSuggestions(suggestions, scientificNames) {
-	suggestions.map((plant) => {
-		delete plant.confirmed;
-
-		const {plant_details} = plant;
-		const {common_names, synonyms, scientific_name} = plant_details;
-
-		if (common_names && common_names.length > 5) common_names.splice(5);
-		if (synonyms && synonyms.length > 5) synonyms.splice(5);
-		scientificNames.push(scientific_name);
+// Exclude found plants below 10%
+// BUT keep at least one if all are below 10%
+function excludeLowMatches(suggestions, temp_idx) {
+	suggestions.forEach((plant, idx) => {
+		if (plant.probability < 0.1 && !temp_idx) temp_idx = idx;
 	});
+	if (temp_idx) {
+		suggestions.splice(temp_idx);
+	} // delete everything after idx position
 }
 
-// FOR CLEAN DATA //  TODO: include user pref language option
-const wikiSummary = async (plant_name, lang = 'en') => {
+// Fetch up-to-date Wiki data
+async function getNewestWikiData(scientificNames, wikiPlantData) {
+	for (let i = 0; i < scientificNames.length; i++) {
+		scientificNames[i].split(' ').join('_');
+		const getWiki = await callWikiSummary(scientificNames[i]);
+		wikiPlantData.push(getWiki);
+	}
+}
+
+const callWikiSummary = async (plant_name, lang = 'en') => {
 	const url = `https://${lang}.wikipedia.org/api/rest_v1/page/summary/${plant_name}`;
 
 	return await axios.get(url).then((response) => {
@@ -111,8 +103,20 @@ const wikiSummary = async (plant_name, lang = 'en') => {
 	});
 };
 
-// FOR CLEAN DATA
-function updateSuggestions(suggestions, wikiPlantData) {
+function cleanSuggestions(suggestions, scientificNames) {
+	suggestions.map((plant) => {
+		delete plant.confirmed;
+
+		const {plant_details} = plant;
+		const {common_names, synonyms, scientific_name} = plant_details;
+
+		if (common_names && common_names.length > 5) common_names.splice(5);
+		if (synonyms && synonyms.length > 5) synonyms.splice(5);
+		scientificNames.push(scientific_name);
+	});
+}
+
+function updateSuggestionsWiki(suggestions, wikiPlantData) {
 	suggestions.forEach((plant, idx) => {
 		const {description, extract, originalimage, url} = wikiPlantData[idx];
 		const {plant_details} = plant;

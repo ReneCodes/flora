@@ -20,6 +20,7 @@
 .card-img.garden {
 	height: 180px;
 	width: 40%;
+	cursor: pointer;
 }
 
 .card-box-garden {

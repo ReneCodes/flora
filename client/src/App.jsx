@@ -16,7 +16,8 @@ import WaterGuide from './Components/Guide/WaterGuide';
 import * as service from './service/APIClient';
 
 function App() {
-	const isCameraOn = useSelector((state) => state.camera);
+	const isCameraOn = useSelector((state) => state.cameraOn);
+	const isCameraOff = !isCameraOn;
 	const route = useSelector((state) => state.basicRouting);
 	const dispatch = useDispatch();
 
@@ -55,55 +56,10 @@ function App() {
 					{route[0] === 'guides' && <Guide />}
 					{route[0] === 'careGuide' && <CareGuide />}
 					{route[0] === 'waterGuide' && <WaterGuide />}
-
-					{/* Experimental BOXES for testing functionalities */}
-					{/* <TestSection></TestSection> */}
 				</div>
-				{/* {!isCameraOn && <Navbar></Navbar>} */}
-				{!isCameraOn && <Navbar />}
-				{/* <Navbar /> */}
+				{isCameraOff && <Navbar />}
 			</div>
 		</section>
-	);
-}
-
-function TestSection() {
-	return (
-		<>
-			<div className="block">YELLOW BOX</div>
-			<div className="block">
-				{/* <button
-							className="btn-API"
-							onClick={service.getGarden}>
-							GET Garden
-						</button> */}
-				<button
-					className="btn-API"
-					onClick={service.findPlant}>
-					FIND PLant
-				</button>
-			</div>
-			<div className="block">
-				<button
-					className="btn-API"
-					onClick={service.savePlant}>
-					SAVE PLant
-				</button>
-			</div>
-			<div className="block">
-				{' '}
-				<button
-					className="btn-API"
-					onClick={service.updatePlant}>
-					UPDATE PLant
-				</button>
-				<button
-					className="btn-API"
-					onClick={service.deletePlant}>
-					DELETE PLant
-				</button>
-			</div>
-		</>
 	);
 }
 
