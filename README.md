@@ -4,12 +4,12 @@ Identify, track and care for your plant friends with FLORA 🌱🙌
 
 This app is a passion project to keep track of and take care of your favourite Houseplants.  
 A User can capture an image from his device to identify the plant and get information such as the watering schedule or natural habitat.  
-The plant can be added to their personal collection and it allows them to add personal notes.  
-Additionally you can have a look at care and watering guides which include helpfull tips.
+The plant can be added to their personal collection, and it allows them to add personal notes.  
+Additionally, you can have a look at care and watering guides which include helpful tips.
 
 ## Getting Started
 
-Install dependencies on client and server side with `mpn i`
+Install dependencies on the client and server side with `npm i`
 
 In the root of the server folder -> create a `.env` and include your variables
 e.g.
@@ -27,13 +27,13 @@ PLANT_ID_KEY=<your-API-key>
 
 #### Cold vs. Hot Wire
 
-Currently the server is **COLD Wired**, meaning that you can take a snapshot with the App but it will always give you the same plant as a result.  
-However, you can play around with the app without singing up for a Plant.id API key.
+Currently, the server is **COLD Wired**, meaning that you can take a snapshot with the App, but it will always give you the same plant as a result.  
+However, you can play around with the app without signing up for a Plant.id API key.
 
 **HOT Wiring:**  
 Sign up for API Access Key (see instructions below) and include them in your `.env` variables.
-Go to `index.controller.js` (server-side) and uncommend the `HOT WIRE START` function.  
-Respectively comment out the `COLD WIRE` function.  
+Go to `index.controller.js` (server-side) and uncomment the `HOT WIRE START` function.  
+Respectively, comment out the `COLD WIRE` function.  
 You should be good to go!
 
 ### Used API's
