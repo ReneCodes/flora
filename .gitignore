@@ -3,9 +3,11 @@ node_modules
 
 # PRIVATE STUFF
 .env*
+test.config
 
 # misc
 .DS_Store
-# Temp*
+TEMP
+Temp*
 picture
 vite-test
