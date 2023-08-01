@@ -1,5 +1,5 @@
-import {useDispatch} from 'react-redux';
-import {changeAppRoute} from '../../actions';
+import { useDispatch } from 'react-redux';
+import { changeAppRoute } from '../../reduxFiles/actions';
 
 export default function WaterGuideLink() {
 	const dispatch = useDispatch();

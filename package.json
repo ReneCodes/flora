@@ -2,9 +2,9 @@
   "name": "flora",
   "version": "1.0.0",
   "description": "Identify, track and care for your plant-friends",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
-    "test": "test"
+    "test": "NODE_ENV=TEST jest"
   },
   "repository": {
     "type": "git",
@@ -18,5 +18,17 @@
   "bugs": {
     "url": "https://github.com/ReneCodes/flora/issues"
   },
-  "homepage": "https://github.com/ReneCodes/flora#readme"
+  "homepage": "https://github.com/ReneCodes/flora#readme",
+  "dependencies": {
+    "@types/react-redux": "^7.1.25"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.22.5",
+    "@babel/preset-env": "^7.22.5",
+    "@babel/preset-typescript": "^7.22.5",
+    "@types/jest": "^29.5.2",
+    "babel-jest": "^29.5.0",
+    "jest": "^29.5.0",
+    "typescript": "^5.1.3"
+  }
 }
